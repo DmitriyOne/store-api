@@ -1,0 +1,65 @@
+@mixin media-minw($width) {
+	@media only screen and (min-width: ($width + "px")) {
+		@content;
+	}
+}
+
+@mixin media-w($width) {
+	@media only screen and (max-width: ($width + "px")) {
+		@content;
+	}
+}
+
+@mixin media-h($height) {
+	@media only screen and (max-height: ($height + "px")) {
+		@content;
+	}
+}
+
+@mixin bg-cover {
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+}
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin flex-spb {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+@mixin flex-column-spb {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+@mixin absolute-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	transform: translate(-50%, -50%);
+}
+
+@mixin square-size($size) {
+	width: $size + px;
+	height: $size + px;
+}
+
+@mixin fluidMaxSize($size, $property: width) {
+	#{$property}: 100%;
+	max-#{$property}: $size + px;
+}
+
+@mixin fonts($family, $weight: 400) {
+	font-family: $family;
+	font-weight: $weight;
+}

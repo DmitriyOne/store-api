@@ -1,0 +1,123 @@
+{
+	"root": true,
+	"extends": [
+		"next/core-web-vitals",
+		"eslint:recommended"
+	],
+	"plugins": [
+		"simple-import-sort"
+	],
+	"rules": {
+		"no-unused-vars": "warn",
+		"no-constant-condition": "off",
+		"no-console": "warn",
+		"quotes": [
+			"warn",
+			"single"
+		],
+		"jsx-quotes": [
+			"warn",
+			"prefer-double"
+		],
+		"indent": [
+			"warn",
+			"tab"
+		],
+		"comma-dangle": [
+			"warn",
+			"always-multiline"
+		],
+		"semi": [
+			"warn",
+			"never"
+		],
+		"no-multiple-empty-lines": [
+			"warn",
+			{
+				"max": 1
+			}
+		],
+		"eol-last": "warn",
+		"simple-import-sort/imports": "warn",
+		"simple-import-sort/exports": "warn"
+	},
+	"overrides": [
+		{
+			"files": [
+				"**/*.js",
+				"**/*.ts",
+				"**/*.tsx"
+			],
+			"rules": {
+				"simple-import-sort/imports": [
+					"warn",
+					{
+						"groups": [
+							// `react` first, `next` second, then packages starting with a character
+							[
+								"^react$",
+								"^next",
+								"^[a-z]"
+							],
+							[
+								"^antd",
+								"^@ant-design"
+							],
+							// Packages starting with `@`
+							[
+								"^@",
+								"^@crdr/constants",
+								"^@crdr/context",
+								"^@crdr/fakedata",
+								"^@crdr/hooks",
+								"^@crdr/store"
+							],
+							[
+								"^@crdr/enums",
+								"^@crdr/interfaces"
+							],
+							[
+								"^@crdr/pages"
+							],
+							[
+								"^@crdr/components",
+								"^@crdr/plugins",
+								"^@crdr/ui"
+							],
+							[
+								"^@crdr/image"
+							],
+							// Packages starting with `~`
+							[
+								"^~"
+							],
+							// Imports starting with `../`
+							[
+								"^\\.\\.(?!/?$)",
+								"^\\.\\./?$"
+							],
+							// Imports starting with `./`
+							[
+								"^\\./(?=.*/)(?!/?$)",
+								"^\\.(?!/?$)",
+								"^\\./?$"
+							],
+							// Side effect imports
+							[
+								"^\\u0000"
+							],
+							// Style css imports
+							[
+								"^.+\\.css$"
+							],
+							// Style scss imports
+							[
+								"^.+\\.scss$"
+							]
+						]
+					}
+				]
+			}
+		}
+	]
+}

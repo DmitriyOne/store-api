@@ -1,0 +1,38 @@
+{
+	//stylelint
+	"stylelint.enable": true,
+	//breadcrumbs
+	"breadcrumbs.icons": false,
+	"breadcrumbs.showKeys": false,
+	"breadcrumbs.showFiles": false,
+	"breadcrumbs.symbolPath": "off",
+	"breadcrumbs.showArrays": false,
+	"breadcrumbs.showEvents": false,
+	"breadcrumbs.showFields": false,
+	"breadcrumbs.showClasses": false,
+	"breadcrumbs.showMethods": false,
+	"breadcrumbs.showBooleans": false,
+	"breadcrumbs.showFunctions": false,
+	"breadcrumbs.showConstants": false,
+	"breadcrumbs.showEnumMembers": false,
+	"breadcrumbs.showConstructors": false,
+	//words
+	"cSpell.words": [
+		"antd"
+	],
+	"cSpell.languageSettings": [],
+	// workspace
+	"editor.insertSpaces": false,
+	"editor.tabSize": 2,
+	"editor.tabCompletion": "on",
+	"terminal.integrated.fontSize": 10,
+	"explorer.compactFolders": false,
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true,
+		"source.fixAll.eslint": true
+	},
+	"git.enabled": false,
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+}
