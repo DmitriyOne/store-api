@@ -64,6 +64,9 @@
 								"^@components"
 							],
 							[
+								"^@constants"
+							],
+							[
 								"^@enums",
 								"^@interfaces"
 							],
