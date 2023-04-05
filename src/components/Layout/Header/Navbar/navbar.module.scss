@@ -1,0 +1,60 @@
+@use '../../../../styles/mixins.scss';
+@use '../../../../styles/breakpoints.scss';
+@use '../../../../styles/colors.scss';
+@use '../../../../styles/z-index.scss';
+
+.component {
+	@include mixins.media-w(breakpoints.$tablet) {
+		@apply fixed top-11 -left-full w-full h-full px-8 py-10 bg-white transition-all;
+
+		z-index: z-index.$idx-navbar;
+	}
+
+	&.active {
+		@apply left-0;
+	}
+}
+
+.menu {
+	@apply flex items-center;
+
+	@include mixins.media-w(breakpoints.$tablet) {
+		@apply flex-col;
+	}
+}
+
+.item{
+	@apply mr-0 tablet:mr-5;
+
+	&:last-child {
+		@apply mr-0 mb-0;
+
+		& .icon {
+			@apply block;
+		}
+	}
+
+	@include mixins.media-w(breakpoints.$tablet) {
+		@apply w-full mb-8;
+	}
+}
+
+.link{
+	@apply p-1 flex transition-all;
+
+	&:hover {
+		@apply underline;
+	}
+
+	@include mixins.media-w(breakpoints.$tablet) {
+		@apply flex-row-reverse justify-end text-lg p-0;
+	}
+}
+
+.icon {
+	@apply w-6 ml-1 hidden;
+
+	@include mixins.media-w(breakpoints.$tablet) {
+		@apply block mr-6 ml-0;
+	}
+}

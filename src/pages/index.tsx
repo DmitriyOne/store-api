@@ -7,4 +7,3 @@ export const HomePage: NextPage = () => {
 }
 
 export default HomePage
-

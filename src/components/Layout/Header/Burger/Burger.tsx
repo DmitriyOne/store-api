@@ -1,13 +1,26 @@
 import { FC } from 'react'
 
-interface IProps {
+import { Button, GeneratorSvg } from '@components'
 
+import { useOverflow } from '@hooks'
+
+import styles from './burger.module.scss'
+
+interface IProps {
+	burgerToggle: () => void;
+	burgerIsOpen: boolean;
 }
 
-export const Burger: FC<IProps> = () => {
+export const Burger: FC<IProps> = ({ burgerIsOpen, burgerToggle }) => {
+	useOverflow(burgerIsOpen)
+	const burgerIcon = burgerIsOpen ? 'close' : 'burger'
+
 	return (
-		<div>
-			Burger
-		</div>
+		<Button
+			className={styles.component}
+			onClick={burgerToggle}
+		>
+			<GeneratorSvg id={burgerIcon} />
+		</Button >
 	)
 }

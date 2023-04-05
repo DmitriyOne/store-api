@@ -7,4 +7,3 @@ export const StorePage: NextPage = () => {
 }
 
 export default StorePage
-

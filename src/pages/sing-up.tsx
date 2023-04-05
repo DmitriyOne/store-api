@@ -7,4 +7,3 @@ export const SingUpPage: NextPage = () => {
 }
 
 export default SingUpPage
-

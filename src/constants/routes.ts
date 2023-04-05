@@ -3,4 +3,5 @@ export const STORE_ROUTES = {
 	STORE: '/store',
 	ABOUT: '/about',
 	SING_UP: '/sing-up',
+	CART: '/cart',
 }

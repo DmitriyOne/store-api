@@ -1,5 +1,7 @@
+import { ReactNode } from 'react'
+
 export interface IMenu {
-	key: string
 	title: string
 	href: string
+	icon?: ReactNode
 }
