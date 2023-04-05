@@ -1,28 +1,23 @@
-import { FC } from 'react'
 import Link from 'next/link'
-import classNames from 'classnames'
+
+import { GeneratorSvg } from '@components'
+
+import { STORE_ROUTES } from '@constants'
 
 import styles from './logo.module.scss'
 
-interface IProps {
-	className?: string
-}
+export const Logo = () => (
 
-export const Logo: FC<IProps> = ({
-	className,
-}) => {
+	<Link
+		href={STORE_ROUTES.HOME}
+		as={STORE_ROUTES.HOME}
+		passHref
+		className={styles.component}
+	>
+		<span className={styles.icon}>
+			<GeneratorSvg id="logo" />
+		</span>
 
-	return (
-		<div
-			className={classNames(styles.component, className)}
-		>
-			<Link
-				href={'/'}
-				passHref
-				as={'/'}
-			>
-				Logo
-			</Link>
-		</div>
-	)
-}
+		Store
+	</Link>
+)
