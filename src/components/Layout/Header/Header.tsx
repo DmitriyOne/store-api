@@ -1,4 +1,4 @@
-import { Container } from '@/components/Container'
+import { Container } from '@components'
 
 import { Logo } from '../Logo'
 
@@ -8,7 +8,7 @@ export const Header = () => {
 
 	return (
 		<header>
-			<Container size="l">
+			<Container>
 				<Logo />
 
 			</Container>

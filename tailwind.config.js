@@ -1,4 +1,5 @@
 const plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -28,6 +29,16 @@ module.exports = {
 				2: '2',
 				3: '3',
 			},
+		},
+		screens: {
+			'tablet': '768px',
+			'laptop': '1024px',
+			'desktop': '1280px',
+			...defaultTheme.screens,
+		},
+		container: {
+			center: true,
+			padding: '1.25rem',
 		},
 	},
 	plugins: [

@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import { Container } from '../Container'
+import { Container } from '@components'
 
 import { Footer } from './Footer/Footer'
 import { Header } from './Header/Header'
@@ -14,7 +14,7 @@ export const Layout: FC<IProps> = ({ children }) => {
 		<>
 			<Header />
 			<main>
-				<Container size="m">
+				<Container>
 					{children}
 				</Container>
 			</main>
