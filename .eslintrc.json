@@ -101,7 +101,8 @@
 							],
 							// Style scss imports
 							[
-								"^.+\\.scss$"
+								"^.+\\.scss$",
+								"^@styles"
 							]
 						]
 					}

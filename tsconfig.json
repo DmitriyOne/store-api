@@ -32,6 +32,9 @@
       "@screens/*": ["src/screens/*"],
 
 			"@images": ["public/*"],
+
+			"@styles": ["src/styles"],
+			"@styles/*": ["src/styles/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "env.d.ts"],
