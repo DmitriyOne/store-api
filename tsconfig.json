@@ -19,6 +19,9 @@
       "@components": ["src/components"],
       "@components/*": ["src/components/*"],
 
+			"@constants": ["src/constants"],
+			"@constants/*": ["src/constants/*"],
+
 			"@enums": ["src/models/enums"],
 			"@enums/*": ["src/models/enums/*"],
 
