@@ -1,10 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import 'mixins';
 @import 'breakpoints';
 @import 'colors';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 *,
 *::before,
@@ -61,7 +60,7 @@ textarea {
 
 svg {
 	width: 100% !important;
-  height: 100% !important;
+	height: 100% !important;
 }
 
 #__next {

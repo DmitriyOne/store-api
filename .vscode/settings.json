@@ -1,6 +1,10 @@
 {
 	//stylelint
 	"stylelint.enable": true,
+	"files.associations": {
+		"*.scss": "postcss",
+		".module.scss": "postcss"
+	},
 	//breadcrumbs
 	"breadcrumbs.icons": false,
 	"breadcrumbs.showKeys": false,
@@ -18,6 +22,8 @@
 	"breadcrumbs.showConstructors": false,
 	//words
 	"cSpell.words": [
+		"reduxjs",
+		"stylelint",
 		"tailwindcss"
 	],
 	"cSpell.languageSettings": [],
