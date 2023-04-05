@@ -59,33 +59,19 @@
 								"^next",
 								"^[a-z]"
 							],
-							[
-								"^antd",
-								"^@ant-design"
-							],
 							// Packages starting with `@`
 							[
-								"^@",
-								"^@crdr/constants",
-								"^@crdr/context",
-								"^@crdr/fakedata",
-								"^@crdr/hooks",
-								"^@crdr/store"
+								"^@components"
 							],
 							[
-								"^@crdr/enums",
-								"^@crdr/interfaces"
+								"^@enums",
+								"^@interfaces"
 							],
 							[
-								"^@crdr/pages"
+								"^@screens"
 							],
 							[
-								"^@crdr/components",
-								"^@crdr/plugins",
-								"^@crdr/ui"
-							],
-							[
-								"^@crdr/image"
+								"^@images"
 							],
 							// Packages starting with `~`
 							[
