@@ -13,6 +13,7 @@ interface IProps {
 
 export const Burger: FC<IProps> = ({ burgerIsOpen, burgerToggle }) => {
 	useOverflow(burgerIsOpen)
+	
 	const burgerIcon = burgerIsOpen ? 'close' : 'burger'
 
 	return (

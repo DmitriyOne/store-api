@@ -75,3 +75,18 @@ main {
 	flex-grow: 1;
 	width: 100%;
 }
+
+.anim-cart {
+	animation: bottom 0.4s;
+}
+
+@keyframes bottom {
+	from {
+		transform: translateY(440px);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+

@@ -9,4 +9,5 @@ export enum ESvg {
 	store = 'store',
 	about = 'about',
 	singUP = 'sing-up',
+	delete = 'delete',
 }
