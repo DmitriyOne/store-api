@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react'
 import { Container } from '../Container'
 
 import { Footer } from './Footer/Footer'
-import { MyHeader } from './Header/Header'
+import { Header } from './Header/Header'
 
 interface IProps {
 	children: ReactNode
@@ -12,7 +12,7 @@ interface IProps {
 export const Layout: FC<IProps> = ({ children }) => {
 	return (
 		<>
-			<MyHeader />
+			<Header />
 			<main>
 				<Container size="m">
 					{children}
