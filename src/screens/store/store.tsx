@@ -1,8 +1,10 @@
 import React from 'react'
 
-import { TagH1 } from '@components'
+import { ProductCard, TagH1 } from '@components'
 
 import { useGetAllProductsQuery } from '@services/product'
+
+import styles from './store.module.scss'
 
 export const Store = () => {
 	const { data } = useGetAllProductsQuery()
@@ -10,7 +12,11 @@ export const Store = () => {
 	return (
 		<>
 			<TagH1 title="Store" />
-			{data?.map(data => <div key={data.id}>{data.title}</div>)}
+			<div className={styles.container}>
+				{data?.map(product =>
+					<ProductCard key={product.id} product={product} />
+				)}
+			</div>
 		</>
 	)
 }
