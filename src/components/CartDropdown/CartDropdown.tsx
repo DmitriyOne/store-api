@@ -12,7 +12,7 @@ export const CartDropdown = () => {
 	return (
 		<>
 			<Button
-				className="bg-green-800 rounded-full text-white p-2 block w-8 z-50 relative"
+				className="rounded-full bg-stone-800 text-white p-2 block w-8 z-50 relative"
 				onClick={() => setIsShow(!isShow)}
 			>
 				{isShow ? <BsXLg /> : <BsCart />}
