@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -14,33 +18,71 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-		"baseUrl": ".",
+    "baseUrl": ".",
     "paths": {
-      "@components": ["src/components"],
-      "@components/*": ["src/components/*"],
-
-      "@hooks": ["src/hooks"],
-			"@hooks/*": ["src/hooks/*"],
-
-			"@constants": ["src/constants"],
-			"@constants/*": ["src/constants/*"],
-
-			"@enums": ["src/models/enums"],
-			"@enums/*": ["src/models/enums/*"],
-
-      "@interfaces": ["src/models/interfaces"],
-      "@interfaces/*": ["src/models/interfaces/*"],
-
-			"@screens": ["src/screens"],
-      "@screens/*": ["src/screens/*"],
-
-			"@images": ["public"],
-			"@images/*": ["public/*"],
-
-			"@styles": ["src/styles"],
-			"@styles/*": ["src/styles/*"],
+      "@components": [
+        "src/components"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@hooks": [
+        "src/hooks"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@store": [
+        "src/reducer"
+      ],
+      "@store/*": [
+        "src/reducer/*"
+      ],
+      "@constants": [
+        "src/constants"
+      ],
+      "@constants/*": [
+        "src/constants/*"
+      ],
+      "@enums": [
+        "src/models/enums"
+      ],
+      "@enums/*": [
+        "src/models/enums/*"
+      ],
+      "@interfaces": [
+        "src/models/interfaces"
+      ],
+      "@interfaces/*": [
+        "src/models/interfaces/*"
+      ],
+      "@screens": [
+        "src/screens"
+      ],
+      "@screens/*": [
+        "src/screens/*"
+      ],
+      "@images": [
+        "public"
+      ],
+      "@images/*": [
+        "public/*"
+      ],
+      "@styles": [
+        "src/styles"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "env.d.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "env.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

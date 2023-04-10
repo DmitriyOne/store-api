@@ -1,12 +1,10 @@
 import { NextPage } from 'next'
 
-import { TagH1 } from '@components'
+import { SingUp } from '@screens'
 
 export const SingUpPage: NextPage = () => {
 	return (
-		<>
-			<TagH1 title="Sing-up" />
-		</>
+		<SingUp />
 	)
 }
 

@@ -1,0 +1,5 @@
+export * from './about'
+export * from './home'
+export * from './product'
+export * from './sing-up'
+export * from './store'

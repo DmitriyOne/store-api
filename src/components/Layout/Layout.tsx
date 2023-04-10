@@ -14,7 +14,7 @@ export const Layout: FC<IProps> = ({ children }) => {
 		<>
 			<Header />
 			<main className="py-6">
-				<Container>
+				<Container variant="column" align="start">
 					{children}
 				</Container>
 			</main>
