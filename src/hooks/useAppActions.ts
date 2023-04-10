@@ -1,8 +1,10 @@
 import { useDispatch } from 'react-redux'
 import { bindActionCreators } from '@reduxjs/toolkit'
 
+import { cartActions } from '@services/reducers'
+
 const actions = {
-	// all actions
+	...cartActions,
 }
 
 export const useAppActions = () => {

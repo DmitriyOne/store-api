@@ -1,8 +1,13 @@
 import React, { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import classNames from 'classnames'
+
+import { Button } from '@components/Button'
 
 import { STORE_ROUTES } from '@constants'
+
+import { useAppActions, useAppSelector } from '@hooks'
 
 import { IProduct } from '@interfaces'
 
@@ -13,6 +18,21 @@ interface IProps {
 }
 
 export const ProductCard: FC<IProps> = ({ product }) => {
+	const { cart } = useAppSelector(state => state)
+	const { addItem } = useAppActions()
+
+	const isExistsInCart = cart.some(item => item.id === product.id)
+
+	const addProduct = () => {
+		if (!isExistsInCart) {
+			addItem(product)
+		}
+	}
+
+	const buttonClassName = classNames(styles.button, {
+		[styles.disabled]: isExistsInCart,
+	})
+
 	return (
 		<div className={styles.component}>
 			<div className={styles.imageWrapper}>
@@ -35,13 +55,13 @@ export const ProductCard: FC<IProps> = ({ product }) => {
 					${product.price}
 				</div>
 
-				<button
-					className={styles.button}
-				// onClick={() => !isExistsInCart && addItem(product)}
+				<Button
+					className={buttonClassName}
+					onClick={addProduct}
+					disabled={isExistsInCart}
 				>
-					{/* {isExistsInCart ? 'Already in cart' : 'Add to cart'} */}
-					Add to cart
-				</button>
+					{isExistsInCart ? 'Already in cart' : 'Add to cart'}
+				</Button>
 			</div>
 		</div>
 	)

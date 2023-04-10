@@ -5,7 +5,7 @@ import { IProduct } from '@interfaces'
 const baseUrl = 'https://fakestoreapi.com'
 
 export const productApi = createApi({
-	reducerPath: 'pokemonApi',
+	reducerPath: 'productApi',
 	baseQuery: fetchBaseQuery({
 		baseUrl: baseUrl,
 	}),

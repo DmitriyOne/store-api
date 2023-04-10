@@ -48,6 +48,10 @@ button {
 	outline: none;
 	background-color: transparent;
 	font-family: inherit;
+
+	&:disabled {
+		cursor: no-drop;
+	}
 }
 
 textarea {

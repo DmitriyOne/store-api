@@ -41,5 +41,13 @@
 }
 
 .button {
-	@apply text-sm bg-white rounded-xl w-3/4 mx-auto mt-auto block p-1 hover:bg-green-200;
+	@apply text-sm bg-white rounded-xl w-3/4 mx-auto mt-auto block p-1 transition-all;
+
+	&:not(.disabled):hover {
+		@apply bg-slate-400;
+	}
+}
+
+.disabled {
+	@apply bg-slate-300 text-slate-400;
 }
