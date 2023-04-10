@@ -1,8 +1,12 @@
 import { NextPage } from 'next'
 
+import { TagH1 } from '@components'
+
 export const SingUpPage: NextPage = () => {
 	return (
-		<h1>SingUp page</h1>
+		<>
+			<TagH1 title="Sing-up" />
+		</>
 	)
 }
 

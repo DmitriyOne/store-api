@@ -47,6 +47,10 @@
 	}
 }
 
+.active {
+	@apply underline font-bold;
+}
+
 .icon {
 	@apply w-6 ml-1 hidden;
 

@@ -1,8 +1,12 @@
 import { NextPage } from 'next'
 
+import { TagH1 } from '@components'
+
 export const AboutPage: NextPage = () => {
 	return (
-		<h1>About page</h1>
+		<>
+			<TagH1 title="About" />
+		</>
 	)
 }
 

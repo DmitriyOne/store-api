@@ -13,7 +13,7 @@ export const Layout: FC<IProps> = ({ children }) => {
 	return (
 		<>
 			<Header />
-			<main>
+			<main className="py-6">
 				<Container>
 					{children}
 				</Container>

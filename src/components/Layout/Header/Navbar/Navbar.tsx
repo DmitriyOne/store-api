@@ -1,6 +1,7 @@
 import { FC } from 'react'
-import Link from 'next/link'
 import classNames from 'classnames'
+
+import { ActiveLink } from '@components'
 
 import { menuItems } from './menu'
 
@@ -25,17 +26,21 @@ export const Navbar: FC<IProps> = ({ navbarIsOpen, navbarClose }) => {
 						key={idx}
 						className={styles.item}
 					>
-						<Link
+						<ActiveLink
 							href={item.href}
-							className={styles.link}
-							onClick={navbarClose}
+							activeClassName={styles.active}
 						>
-							{item.title}
+							<span
+								className={styles.link}
+								onClick={navbarClose}
+							>
+								{item.title}
 
-							<span className={styles.icon}>
-								{item.icon}
+								<span className={styles.icon}>
+									{item.icon}
+								</span>
 							</span>
-						</Link>
+						</ActiveLink>
 					</li>
 				)}
 			</ul>

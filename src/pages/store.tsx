@@ -1,8 +1,12 @@
 import { NextPage } from 'next'
 
+import { TagH1 } from '@components'
+
 export const StorePage: NextPage = () => {
 	return (
-		<h1>Store page</h1>
+		<>
+			<TagH1 title="Store" />
+		</>
 	)
 }
 
