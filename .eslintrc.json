@@ -71,7 +71,7 @@
 								"^@hooks"
 							],
 							[
-								"^@store"
+								"^@services"
 							],
 							[
 								"^@enums",

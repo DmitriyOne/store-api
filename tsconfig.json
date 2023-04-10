@@ -32,11 +32,11 @@
       "@hooks/*": [
         "src/hooks/*"
       ],
-      "@store": [
-        "src/reducer"
+      "@services": [
+        "src/services"
       ],
-      "@store/*": [
-        "src/reducer/*"
+      "@services/*": [
+        "src/services/*"
       ],
       "@constants": [
         "src/constants"

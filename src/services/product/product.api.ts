@@ -10,7 +10,7 @@ export const productApi = createApi({
 		baseUrl: baseUrl,
 	}),
 	endpoints: (builder) => ({
-		getAllProducts: builder.query<IProduct[], undefined>({
+		getAllProducts: builder.query<IProduct[], void>({
 			query: () => '/products',
 		}),
 	}),

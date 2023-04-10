@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 
 import { Layout } from '@components'
 
-import { store } from 'src/reducer'
+import { store } from 'src/services'
 
 import '@styles/global.scss'
 

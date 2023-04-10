@@ -2,10 +2,10 @@ import React from 'react'
 
 import { TagH1 } from '@components'
 
-import { useGetAllProductsQuery } from '@store/product'
+import { useGetAllProductsQuery } from '@services/product'
 
 export const Store = () => {
-	const { data } = useGetAllProductsQuery(undefined)
+	const { data } = useGetAllProductsQuery()
 
 	return (
 		<>
