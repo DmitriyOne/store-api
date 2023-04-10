@@ -1,10 +1,11 @@
-import React from 'react'
 import { NextPage } from 'next'
 
-import { TagH1 } from '@components'
+import { Product } from '@screens'
 
 export const ProductPage: NextPage = () => {
 	return (
-		<TagH1 title="Your change:" />
+		<Product />
 	)
 }
+
+export default ProductPage

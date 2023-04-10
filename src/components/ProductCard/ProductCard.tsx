@@ -1,5 +1,8 @@
 import React, { FC } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+
+import { STORE_ROUTES } from '@constants'
 
 import { IProduct } from '@interfaces'
 
@@ -18,12 +21,16 @@ export const ProductCard: FC<IProps> = ({ product }) => {
 					alt={product.title}
 					className={styles.image}
 					fill
+					sizes="auto"
 				/>
 			</div>
 			<div className={styles.body}>
-				<div className={styles.title}>
+				<Link
+					href={`${STORE_ROUTES.PRODUCT}/${product.id}`}
+					className={styles.title}
+				>
 					{product.title}
-				</div>
+				</Link>
 				<div className={styles.price}>
 					${product.price}
 				</div>
