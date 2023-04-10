@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import classNames from 'classnames'
 import { BsCart, BsTrash, BsXLg } from 'react-icons/bs'
 import { data } from 'src/data/data'
 
@@ -6,13 +7,15 @@ import { Button } from '@components/Button'
 
 import { useOutside } from '@hooks'
 
+import styles from './cart-dropdown.module.scss'
+
 export const CartDropdown = () => {
 	const { ref, isShow, setIsShow } = useOutside(false)
 
 	return (
 		<>
 			<Button
-				className="rounded-full bg-stone-800 text-white p-2 block w-8 z-50 relative"
+				className={styles.button}
 				onClick={() => setIsShow(!isShow)}
 			>
 				{isShow ? <BsXLg /> : <BsCart />}
@@ -20,43 +23,45 @@ export const CartDropdown = () => {
 
 			{isShow &&
 				<div
-					className="bg-white rounded-t-xl shadow-2xl fixed bottom-0 left-0 anim-cart z-999 py-7 px-5 w-full"
-					style={{ minHeight: '45%' }}
+					className={classNames(styles.dropdown, 'anim-cart')}
 					ref={ref}
 				>
-					{data.length ? (
+					{data.length
+						?
 						<>
 							{data.map((product: any) => (
 								<div
-									key={`Cart item: ${product.id}`}
-									className="flex items-center justify-between bg-green-100 rounded-lg p-4 mb-4"
+									key={product.id}
+									className={styles.dropdownItem}
 								>
-									<div className="w-3/4 flex items-center">
-										<div className="mr-4 relative w-7 h-7">
+									<div className={styles.dropdownWrapper}>
+										<div className={styles.dropdownImageWrapper}>
 											<Image
+												className={styles.dropdownImage}
 												src={product.image}
 												alt={product.title}
-												className="rounded-lg"
 												fill
 												sizes="auto"
 											/>
 										</div>
-										<div className="text-sm mr-4 w-3/4 ">
-											<div className="overflow-hidden text-ellipsis whitespace-nowrap font-semibold text-green-900 mb-1">
+										<div className={styles.dropdownBody}>
+											<div className={styles.dropdownTitle}>
 												{product.title}
 											</div>
-											<div className="text-green-800">${product.price}</div>
+											<div className={styles.dropdownPrice}>
+												${product.price}
+											</div>
 										</div>
 									</div>
-									<button className="w-4">
+									<button className={styles.dropdownButton}>
 										<BsTrash />
 									</button>
 								</div>
 							))}
 						</>
-					) : (
+						:
 						<div>Cart is empty</div>
-					)}
+					}
 				</div>
 			}
 		</>
