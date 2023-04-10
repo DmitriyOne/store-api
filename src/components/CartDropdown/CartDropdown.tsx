@@ -1,8 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import classNames from 'classnames'
 import { BsCart, BsTrash, BsXLg } from 'react-icons/bs'
 
 import { Button } from '@components/Button'
+
+import { STORE_ROUTES } from '@constants'
 
 import { useAppActions, useAppSelector, useOutside } from '@hooks'
 
@@ -46,9 +49,13 @@ export const CartDropdown = () => {
 											/>
 										</div>
 										<div className={styles.dropdownBody}>
-											<div className={styles.dropdownTitle}>
+											<Link
+												href={`${STORE_ROUTES.PRODUCT}/${product.id}`}
+												className={styles.dropdownTitle}
+												onClick={() => setIsShow(false)}
+											>
 												{product.title}
-											</div>
+											</Link>
 											<div className={styles.dropdownPrice}>
 												${product.price}
 											</div>
