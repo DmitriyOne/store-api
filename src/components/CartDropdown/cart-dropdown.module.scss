@@ -6,12 +6,14 @@
 }
 
 .dropdown {
-	@apply bg-white rounded-t-xl shadow-2xl fixed bottom-0 left-0 z-999 py-7 px-5 w-full;
+	@apply bg-white rounded-t-xl shadow-3xl fixed bottom-0 left-0 z-999 py-7 px-5 w-full overflow-y-scroll;
 
-	min-height: 45%;
+	min-height: 35%;
+	max-height: 35%;
 
 	@include mixins.media-w(breakpoints.$laptop) {
 		min-height: 25%;
+		max-height: 25%;
 	}
 }
 

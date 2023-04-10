@@ -1,16 +1,17 @@
 import Image from 'next/image'
 import classNames from 'classnames'
 import { BsCart, BsTrash, BsXLg } from 'react-icons/bs'
-import { data } from 'src/data/data'
 
 import { Button } from '@components/Button'
 
-import { useOutside } from '@hooks'
+import { useAppActions, useAppSelector, useOutside } from '@hooks'
 
 import styles from './cart-dropdown.module.scss'
 
 export const CartDropdown = () => {
 	const { ref, isShow, setIsShow } = useOutside(false)
+	const { cart } = useAppSelector(state => state)
+	const { removeItem } = useAppActions()
 
 	return (
 		<>
@@ -26,10 +27,10 @@ export const CartDropdown = () => {
 					className={classNames(styles.dropdown, 'anim-cart')}
 					ref={ref}
 				>
-					{data.length
+					{cart.length
 						?
 						<>
-							{data.map((product: any) => (
+							{cart.map((product) => (
 								<div
 									key={product.id}
 									className={styles.dropdownItem}
@@ -53,7 +54,10 @@ export const CartDropdown = () => {
 											</div>
 										</div>
 									</div>
-									<button className={styles.dropdownButton}>
+									<button
+										className={styles.dropdownButton}
+										onClick={() => removeItem(product)}
+									>
 										<BsTrash />
 									</button>
 								</div>
