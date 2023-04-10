@@ -1,6 +1,8 @@
 import { FC } from 'react'
+import { BsX } from 'react-icons/bs'
+import { GiHamburgerMenu } from 'react-icons/gi'
 
-import { Button, GeneratorSvg } from '@components'
+import { Button } from '@components'
 
 import { useOverflow } from '@hooks'
 
@@ -13,15 +15,13 @@ interface IProps {
 
 export const Burger: FC<IProps> = ({ burgerIsOpen, burgerToggle }) => {
 	useOverflow(burgerIsOpen)
-	
-	const burgerIcon = burgerIsOpen ? 'close' : 'burger'
 
 	return (
 		<Button
 			className={styles.component}
 			onClick={burgerToggle}
 		>
-			<GeneratorSvg id={burgerIcon} />
+			{burgerIsOpen ? <BsX /> : <GiHamburgerMenu />}
 		</Button >
 	)
 }

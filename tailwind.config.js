@@ -28,6 +28,7 @@ module.exports = {
 				1: '1',
 				2: '2',
 				3: '3',
+				999: '999',
 			},
 		},
 		screens: {
@@ -58,11 +59,11 @@ module.exports = {
 					},
 				},
 			}),
-			addUtilities({
-				'.text-shadow': {
-					textShadow: '1px 1px rgba(0, 0, 0, 0.4)',
-				},
-			})
+				addUtilities({
+					'.text-shadow': {
+						textShadow: '1px 1px rgba(0, 0, 0, 0.4)',
+					},
+				})
 		}),
 	],
 }

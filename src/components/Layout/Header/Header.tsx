@@ -1,4 +1,4 @@
-import { Container } from '@components'
+import { CartDropdown, Container } from '@components'
 
 import { useOpen, useWindowSize } from '@hooks'
 
@@ -17,14 +17,16 @@ export const Header = () => {
 		<header className={styles.component}>
 			<Container justify="space-between">
 				<Logo />
-				<Navbar navbarIsOpen={isOpen} navbarClose={onClose} />
 
+				<Navbar navbarIsOpen={isOpen} navbarClose={onClose} />
 				{isMobile &&
 					<Burger
 						burgerIsOpen={isOpen}
 						burgerToggle={onToggle}
 					/>
 				}
+
+				<CartDropdown />
 			</Container>
 		</header>
 	)

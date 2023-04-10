@@ -34,7 +34,8 @@
 			"@screens": ["src/screens"],
       "@screens/*": ["src/screens/*"],
 
-			"@images": ["public/*"],
+			"@images": ["public"],
+			"@images/*": ["public/*"],
 
 			"@styles": ["src/styles"],
 			"@styles/*": ["src/styles/*"],

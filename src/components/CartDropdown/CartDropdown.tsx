@@ -1,28 +1,26 @@
 import Image from 'next/image'
+import { BsCart, BsTrash, BsXLg } from 'react-icons/bs'
 import { data } from 'src/data/data'
 
 import { Button } from '@components/Button'
-import { GeneratorSvg } from '@components/GeneratorSvg'
 
 import { useOutside } from '@hooks'
 
 export const CartDropdown = () => {
 	const { ref, isShow, setIsShow } = useOutside(false)
 
-	const buttonIcon = isShow ? 'close' : 'cart'
-
 	return (
 		<>
 			<Button
-				className="bg-green-800 rounded-full text-white p-2 block w-10 z-50 relative"
+				className="bg-green-800 rounded-full text-white p-2 block w-8 z-50 relative"
 				onClick={() => setIsShow(!isShow)}
 			>
-				<GeneratorSvg id={buttonIcon} />
+				{isShow ? <BsXLg /> : <BsCart />}
 			</Button>
 
 			{isShow &&
 				<div
-					className="bg-white rounded-t-xl shadow-2xl fixed bottom-0 left-0 anim-cart z-10 py-7 px-5 w-full"
+					className="bg-white rounded-t-xl shadow-2xl fixed bottom-0 left-0 anim-cart z-999 py-7 px-5 w-full"
 					style={{ minHeight: '45%' }}
 					ref={ref}
 				>
@@ -51,7 +49,7 @@ export const CartDropdown = () => {
 										</div>
 									</div>
 									<button className="w-4">
-										<GeneratorSvg id="delete" />
+										<BsTrash />
 									</button>
 								</div>
 							))}

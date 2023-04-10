@@ -28,10 +28,6 @@
 
 	&:last-child {
 		@apply mr-0 mb-0;
-
-		& .icon {
-			@apply block;
-		}
 	}
 
 	@include mixins.media-w(breakpoints.$tablet) {

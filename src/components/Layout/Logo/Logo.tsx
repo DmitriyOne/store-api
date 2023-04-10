@@ -1,6 +1,5 @@
 import Link from 'next/link'
-
-import { GeneratorSvg } from '@components'
+import { BsShop } from 'react-icons/bs'
 
 import { STORE_ROUTES } from '@constants'
 
@@ -15,7 +14,7 @@ export const Logo = () => (
 		className={styles.component}
 	>
 		<span className={styles.icon}>
-			<GeneratorSvg id="logo" />
+			<BsShop />
 		</span>
 
 		Store
