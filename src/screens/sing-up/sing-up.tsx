@@ -1,12 +1,12 @@
-import { MyHeading } from '@components'
+import { Heading } from '@components'
 
 export const SingUp = () => {
-	
+
 	return (
 		<>
-			<MyHeading size="xl">
+			<Heading size="xl">
 				SingUp page
-			</MyHeading>
+			</Heading>
 		</>
 	)
 }

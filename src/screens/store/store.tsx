@@ -1,20 +1,18 @@
-import { MyHeading, ProductCard } from '@components'
+import { Heading } from '@components'
 
 import { useGetAllProductsQuery } from '@services/product'
-
-import styles from './store.module.scss'
 
 export const Store = () => {
 	const { data } = useGetAllProductsQuery()
 
 	return (
 		<>
-			<MyHeading size="xl">
+			<Heading size="xl">
 				Store page
-			</MyHeading>
-			<div className={styles.container}>
+			</Heading>
+			<div>
 				{data?.map(product =>
-					<ProductCard key={product.id} product={product} />
+					product.title
 				)}
 			</div>
 		</>

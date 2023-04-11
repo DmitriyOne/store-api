@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 
 import { skipToken } from '@reduxjs/toolkit/dist/query'
 
-import { MyHeading } from '@components'
+import { Heading } from '@components'
 
 import { useGetCurrentProductQuery } from '@services/product'
 
@@ -18,9 +18,9 @@ export const Product = () => {
 
 	return (
 		<>
-			<MyHeading size="xl">
+			<Heading size="xl">
 				Your change:
-			</MyHeading>
+			</Heading>
 			<div>
 				{data?.title}
 			</div>

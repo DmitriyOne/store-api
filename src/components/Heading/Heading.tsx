@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-import { Heading, HeadingProps } from '@chakra-ui/react'
+import { Heading as HeadingChakraUi, HeadingProps } from '@chakra-ui/react'
 
 import { EHeading } from '@enums'
 
@@ -9,15 +9,15 @@ interface IProps extends HeadingProps {
 	children: ReactNode
 }
 
-export const MyHeading: FunctionComponent<IProps> = ({
+export const Heading: FunctionComponent<IProps> = ({
 	as = 'h1',
 	children,
 	...props
 }) => {
 
 	return (
-		<Heading as={as} {...props}>
+		<HeadingChakraUi as={as} {...props}>
 			{children}
-		</Heading>
+		</HeadingChakraUi>
 	)
 }

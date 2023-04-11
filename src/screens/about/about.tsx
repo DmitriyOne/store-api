@@ -1,11 +1,11 @@
-import { MyHeading } from '@components'
+import { Heading } from '@components'
 
 export const About = () => {
 	return (
 		<>
-			<MyHeading size="xl">
+			<Heading size="xl">
 				About page
-			</MyHeading>
+			</Heading>
 		</>
 	)
 }

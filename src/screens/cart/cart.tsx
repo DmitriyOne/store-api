@@ -1,9 +1,9 @@
-import { MyHeading } from '@components'
+import { Heading } from '@components'
 
 export const Cart = () => {
 	return (
-		<MyHeading size="xl">
+		<Heading size="xl">
 			Cart page
-		</MyHeading>
+		</Heading>
 	)
 }
