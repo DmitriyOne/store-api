@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import Link from 'next/link'
 
 import { Box, Button, Flex, useColorModeValue } from '@chakra-ui/react'
 
@@ -18,8 +17,6 @@ interface IProps {
 
 export const ProductBody: FC<IProps> = ({ product }) => {
 
-	const href = product.id.toString()
-
 	return (
 		<Flex
 			h="full"
@@ -36,9 +33,7 @@ export const ProductBody: FC<IProps> = ({ product }) => {
 					mb={1}
 					textAlign="center"
 				>
-					<Link href={href} className="block" >
-						{product.title}
-					</Link>
+					{product.title}
 				</Heading>
 				<Flex
 					direction={{ base: 'column', md: 'column' }}

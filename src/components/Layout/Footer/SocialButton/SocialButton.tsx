@@ -1,9 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import { chakra, VisuallyHidden } from '@chakra-ui/react'
-
-import { useSocialsBgHover } from './social-button.hover'
-import { buttonStyles } from './social-button.styles'
+import { chakra, useColorModeValue, VisuallyHidden } from '@chakra-ui/react'
 
 interface IProps {
 	label: string
@@ -12,14 +9,23 @@ interface IProps {
 }
 
 export const SocialButton: FC<IProps> = ({ label, href, children }) => {
-	const bg = useSocialsBgHover()
 
 	return (
 		<chakra.button
-			as="a"
+			bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+			rounded={'full'}
+			w={8}
+			h={8}
+			cursor={'pointer'}
+			as={'a'}
 			href={href}
-			{...bg}
-			{...buttonStyles}
+			display={'inline-flex'}
+			alignItems={'center'}
+			justifyContent={'center'}
+			transition={'background 0.3s ease'}
+			_hover={{
+				bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
+			}}
 		>
 			<VisuallyHidden>
 				{label}
