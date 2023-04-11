@@ -12,7 +12,6 @@ export const Footer = () => {
 		>
 			<Container
 				as={Stack}
-				
 				maxW="container.xl"
 				py={4}
 				direction={{ base: 'column', md: 'row' }}

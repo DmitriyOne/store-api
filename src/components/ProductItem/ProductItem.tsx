@@ -20,7 +20,6 @@ export const ProductItem: FC<IProps> = ({ product }) => {
 	return (
 		<Box
 			key={product.id}
-			
 			bg={bg}
 			maxW="full"
 			borderWidth="1px"
