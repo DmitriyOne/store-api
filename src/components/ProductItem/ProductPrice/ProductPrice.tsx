@@ -1,23 +1,26 @@
 import { FC } from 'react'
 
-import { Box, useColorModeValue } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
+
+import { useCustomStyles } from '@hooks'
 
 interface IProps {
 	price: number
 }
 
 export const ProductPrice: FC<IProps> = ({ price }) => {
+	const { productPriceBoxStyles } = useCustomStyles()
 
 	return (
 		<Box
 			fontSize="lg"
-			color={useColorModeValue('gray.800', 'white')}
 			paddingTop={3}
+			{...productPriceBoxStyles}
 		>
 			<Box
 				as="span"
-				color={useColorModeValue('gray.600', 'white')}
 				fontSize="lg"
+				{...productPriceBoxStyles}
 			>
 				£
 			</Box>

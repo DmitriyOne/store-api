@@ -1,14 +1,18 @@
-import { Box, Flex, useColorModeValue } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
+
+import { useCustomStyles } from '@hooks'
 
 import { Account } from './Account'
 import { Navbar } from './Navbar'
 
 export const Header = () => {
+	const { headerBoxStyles } = useCustomStyles()
+
 	return (
 		<Box
 			as="header"
-			bg={useColorModeValue('gray.100', 'gray.900')}
 			px={4}
+			{...headerBoxStyles}
 		>
 			<Flex
 				h={16}

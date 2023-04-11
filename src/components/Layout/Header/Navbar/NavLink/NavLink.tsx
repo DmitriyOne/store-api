@@ -1,7 +1,9 @@
 import { FC } from 'react'
 import NextLink from 'next/link'
 
-import { Link, useColorModeValue } from '@chakra-ui/react'
+import { Link } from '@chakra-ui/react'
+
+import { useCustomStyles } from '@hooks'
 
 import { IMenu } from '@interfaces'
 
@@ -13,6 +15,7 @@ interface IProps {
 }
 
 export const NavLink: FC<IProps> = ({ menu, onClick }) => {
+	const { navLinkButtonBg } = useCustomStyles()
 
 	return (
 		<li
@@ -25,11 +28,8 @@ export const NavLink: FC<IProps> = ({ menu, onClick }) => {
 				px={2}
 				py={1}
 				rounded="md"
-				_hover={{
-					textDecoration: 'none',
-					bg: useColorModeValue('gray.200', 'gray.700'),
-				}}
 				onClick={onClick}
+				{...navLinkButtonBg}
 			>
 				{menu.title}
 			</Link>
