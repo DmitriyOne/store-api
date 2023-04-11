@@ -1,9 +1,7 @@
 import { FC } from 'react'
 import { IconType } from 'react-icons'
 
-import { Button, Icon, PlacementWithLogical, Tooltip as TooltipChakraUi } from '@chakra-ui/react'
-
-import { useCustomStyles } from '@hooks'
+import { Button, Icon, PlacementWithLogical, Tooltip as TooltipChakraUi, useColorModeValue } from '@chakra-ui/react'
 
 interface IProps {
 	label: string
@@ -12,7 +10,6 @@ interface IProps {
 }
 
 export const Tooltip: FC<IProps> = ({ label, placement = 'top', icon }) => {
-	const { tooltipButtonStyles } = useCustomStyles()
 
 	return (
 		<TooltipChakraUi
@@ -28,7 +25,10 @@ export const Tooltip: FC<IProps> = ({ label, placement = 'top', icon }) => {
 				top={{ base: '1', lg: '2' }}
 				right={{ base: '1', lg: '2' }}
 				p="2"
-				{...tooltipButtonStyles}
+				bg={useColorModeValue('red.50', 'transparent')}
+				_hover={{
+					bg: useColorModeValue('red.100', 'transparent'),
+				}}
 			>
 				<Icon
 					as={icon}

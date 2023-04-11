@@ -1,8 +1,6 @@
 import { FC } from 'react'
 
-import { Box, Flex } from '@chakra-ui/react'
-
-import { useCustomStyles } from '@hooks'
+import { Box, Flex, useColorModeValue } from '@chakra-ui/react'
 
 import { menuItem } from '../menu'
 import { NavLink } from '../NavLink'
@@ -12,7 +10,6 @@ interface IProps {
 }
 
 export const MenuMobile: FC<IProps> = ({ onClose }) => {
-	const { menuMobBoxStyles } = useCustomStyles()
 
 	return (
 		<Box
@@ -24,7 +21,7 @@ export const MenuMobile: FC<IProps> = ({ onClose }) => {
 			left="0"
 			width="full"
 			height="full"
-			{...menuMobBoxStyles}
+			bg={useColorModeValue('gray.100', 'gray.900')}
 		>
 			<Flex
 				as="ul"

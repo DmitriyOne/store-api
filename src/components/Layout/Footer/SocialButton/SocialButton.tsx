@@ -2,8 +2,7 @@ import { FC, ReactNode } from 'react'
 
 import { chakra, VisuallyHidden } from '@chakra-ui/react'
 
-import { useCustomStyles } from '@hooks'
-
+import { useSocialsBgHover } from './social-button.hover'
 import { buttonStyles } from './social-button.styles'
 
 interface IProps {
@@ -13,13 +12,13 @@ interface IProps {
 }
 
 export const SocialButton: FC<IProps> = ({ label, href, children }) => {
-	const { socialButtonBg } = useCustomStyles()
+	const bg = useSocialsBgHover()
 
 	return (
 		<chakra.button
 			as="a"
 			href={href}
-			{...socialButtonBg}
+			{...bg}
 			{...buttonStyles}
 		>
 			<VisuallyHidden>

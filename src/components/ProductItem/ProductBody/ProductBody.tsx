@@ -1,11 +1,9 @@
 import { FC } from 'react'
 import Link from 'next/link'
 
-import { Box, Button, Flex } from '@chakra-ui/react'
+import { Box, Button, Flex, useColorModeValue } from '@chakra-ui/react'
 
 import { Heading } from '@components'
-
-import { useCustomStyles } from '@hooks'
 
 import { IProduct } from '@interfaces'
 
@@ -19,7 +17,6 @@ interface IProps {
 }
 
 export const ProductBody: FC<IProps> = ({ product }) => {
-	const { productBodyButtonBg } = useCustomStyles()
 
 	const href = product.id.toString()
 
@@ -67,7 +64,10 @@ export const ProductBody: FC<IProps> = ({ product }) => {
 					ml="auto"
 					mr="auto"
 					color="black.300"
-					{...productBodyButtonBg}
+					bg={useColorModeValue('green.100', 'green.700')}
+					_hover={{
+						bg: useColorModeValue('green.200', 'green.600'),
+					}}
 				>
 					Add to cart
 				</Button>

@@ -1,26 +1,31 @@
-import { Box, Container, Stack, Text } from '@chakra-ui/react'
+import { Box, Container, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 
-import { useCustomStyles } from '@hooks'
-
-import { containerStyles, stackStyles } from './footer.styles'
 import { SocialButton } from './SocialButton'
 import { socialItem } from './socials'
 
 export const Footer = () => {
-	const { footerBoxStyles } = useCustomStyles()
 
 	return (
-		<Box {...footerBoxStyles}>
+		<Box
+			bg={useColorModeValue('gray.50', 'gray.900')}
+			color={useColorModeValue('gray.700', 'gray.200')}
+		>
 			<Container
 				as={Stack}
-				{...containerStyles}
+				maxW="container.xl"
+				py={4}
+				direction={{ base: 'column', md: 'row' }}
+				spacing={4}
+				justify={{ base: 'center', md: 'space-between' }}
+				align={{ base: 'center', md: 'center' }}
 			>
 				<Text>
 					© 2023 Chakra Templates. All rights reserved
 				</Text>
 
 				<Stack
-					{...stackStyles}
+					direction="row"
+					spacing={6}
 				>
 					{socialItem.map(social =>
 						<SocialButton
