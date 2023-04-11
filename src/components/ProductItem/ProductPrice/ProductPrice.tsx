@@ -12,7 +12,7 @@ export const ProductPrice: FC<IProps> = ({ price }) => {
 		<Box
 			fontSize="lg"
 			color={useColorModeValue('gray.800', 'white')}
-			paddingTop={{ base: 3, md: 0 }}
+			paddingTop={3}
 		>
 			<Box
 				as="span"
