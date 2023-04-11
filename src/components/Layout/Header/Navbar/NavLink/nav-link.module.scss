@@ -1,0 +1,12 @@
+@use '../../../../../styles/mixins.scss';
+@use '../../../../../styles/breakpoints.scss';
+
+.component {
+	@include mixins.media-w(breakpoints.$tablet) {
+		margin-top: 25px;
+	}
+
+	&:first-child {
+		margin-top: 0;
+	}
+}

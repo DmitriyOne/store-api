@@ -5,15 +5,19 @@ import { Link, useColorModeValue } from '@chakra-ui/react'
 
 import { IMenu } from '@interfaces'
 
+import styles from './nav-link.module.scss'
+
 interface IProps {
 	menu: IMenu
-	onClick: () => void
+	onClick?: () => void
 }
 
 export const NavLink: FC<IProps> = ({ menu, onClick }) => {
 
 	return (
-		<li>
+		<li
+			className={styles.component}
+		>
 			<Link
 				as={NextLink}
 				href={menu.href}

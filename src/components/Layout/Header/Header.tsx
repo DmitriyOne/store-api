@@ -1,13 +1,9 @@
-import { Box, Flex, useColorModeValue, useDisclosure } from '@chakra-ui/react'
+import { Box, Flex, useColorModeValue } from '@chakra-ui/react'
 
-import { MenuAccount } from './MenuAccount'
-import { MenuBurger } from './MenuBurger'
-import { MenuDesktop } from './MenuDesktop'
-import { MenuMobile } from './MenuMobile'
+import { Account } from './Account'
+import { Navbar } from './Navbar'
 
 export const Header = () => {
-	const { isOpen, onOpen, onClose } = useDisclosure()
-
 	return (
 		<Box
 			as="header"
@@ -21,16 +17,13 @@ export const Header = () => {
 				maxW="container.xl"
 				margin="0 auto"
 			>
-				<MenuBurger
-					isOpen={isOpen}
-					onOpen={onOpen}
-					onClose={onClose}
-				/>
-				<MenuDesktop />
-				<MenuAccount />
-			</Flex>
+				<Navbar />
+				<Account />
 
-			{isOpen && <MenuMobile onClose={onClose} />}
+				{/* 
+
+				<MenuAccount /> */}
+			</Flex>
 		</Box>
 	)
 }

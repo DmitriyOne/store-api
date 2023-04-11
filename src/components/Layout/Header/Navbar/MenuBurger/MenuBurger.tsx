@@ -18,6 +18,7 @@ export const MenuBurger: FC<IProps> = ({ isOpen, onOpen, onClose }) => {
 			aria-label="Open Menu"
 			display={{ md: 'none' }}
 			onClick={isOpen ? onClose : onOpen}
+			zIndex="99"
 		/>
 	)
 }

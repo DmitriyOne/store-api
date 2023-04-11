@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { Box, Stack } from '@chakra-ui/react'
+import { Box, Flex, useColorModeValue } from '@chakra-ui/react'
 
 import { menuItem } from '../menu'
 import { NavLink } from '../NavLink'
@@ -16,10 +16,19 @@ export const MenuMobile: FC<IProps> = ({ onClose }) => {
 			as="nav"
 			pb={4}
 			display={{ md: 'none' }}
+			position="fixed"
+			top="0"
+			left="0"
+			width="full"
+			height="full"
+			bg={useColorModeValue('gray.100', 'gray.900')}
 		>
-			<Stack
+			<Flex
 				as="ul"
-				spacing={4}
+				direction="column"
+				justify="center"
+				align="center"
+				height="full"
 			>
 				{menuItem.map((item, idx) => (
 					<NavLink
@@ -28,7 +37,7 @@ export const MenuMobile: FC<IProps> = ({ onClose }) => {
 						onClick={onClose}
 					/>
 				))}
-			</Stack>
+			</Flex>
 		</Box>
 	)
 }

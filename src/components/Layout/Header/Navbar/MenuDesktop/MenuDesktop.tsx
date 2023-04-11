@@ -1,6 +1,6 @@
 import { HStack } from '@chakra-ui/react'
 
-import { Logo } from '../Logo'
+import { Logo } from '../../Logo'
 import { menuItem } from '../menu'
 import { NavLink } from '../NavLink'
 
@@ -12,7 +12,7 @@ export const MenuDesktop = () => {
 			alignItems="center"
 		>
 			<Logo />
-			
+
 			<HStack
 				as="nav"
 				spacing={8}
