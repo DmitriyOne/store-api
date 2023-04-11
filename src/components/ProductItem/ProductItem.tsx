@@ -1,6 +1,9 @@
 import { FC } from 'react'
+import { FiHeart } from 'react-icons/fi'
 
 import { Box, useColorModeValue } from '@chakra-ui/react'
+
+import { Tooltip } from '@components'
 
 import { IProduct } from '@interfaces'
 
@@ -22,10 +25,18 @@ export const ProductItem: FC<IProps> = ({ product }) => {
 			borderWidth="1px"
 			rounded="lg"
 			shadow="lg"
-			p={6}
+			p={4}
+			display="flex"
+			flexDirection="column"
+			position="relative"
 		>
 			<ProductImage product={product} />
 			<ProductBody product={product} />
+
+			<Tooltip
+				label="Add to favorites"
+				icon={FiHeart}
+			/>
 		</Box>
 	)
 }

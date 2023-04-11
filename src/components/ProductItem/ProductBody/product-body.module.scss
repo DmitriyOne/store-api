@@ -1,0 +1,13 @@
+@use '../../../styles/mixins.scss';
+@use '../../../styles/breakpoints.scss';
+
+.title {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+
+	@include mixins.media-w(breakpoints.$tablet) {
+		-webkit-line-clamp: 2;
+	}
+}

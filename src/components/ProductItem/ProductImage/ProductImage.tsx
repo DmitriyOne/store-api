@@ -16,7 +16,8 @@ export const ProductImage: FC<IProps> = ({ product }) => {
 	return (
 		<Box
 			className={styles.component}
-			// p={5}
+			mt={6}
+			mb={4}
 		>
 			<Image
 				className={styles.image}
