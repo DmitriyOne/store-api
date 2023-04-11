@@ -1,11 +1,13 @@
 import React from 'react'
 
-import { TagH1 } from '@components'
+import { MyHeading } from '@components'
 
 export const About = () => {
 	return (
 		<>
-			<TagH1 title="About" />
+			<MyHeading size="xl">
+				About page
+			</MyHeading>
 		</>
 	)
 }

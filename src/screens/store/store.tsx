@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ProductCard, TagH1 } from '@components'
+import { MyHeading, ProductCard } from '@components'
 
 import { useGetAllProductsQuery } from '@services/product'
 
@@ -11,7 +11,9 @@ export const Store = () => {
 
 	return (
 		<>
-			<TagH1 title="Store" />
+			<MyHeading size="xl">
+				Store page
+			</MyHeading>
 			<div className={styles.container}>
 				{data?.map(product =>
 					<ProductCard key={product.id} product={product} />

@@ -12,6 +12,9 @@
     "lint:styles:fix": "stylelint \"**/*.scss\" --fix"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.5.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
@@ -20,6 +23,7 @@
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "framer-motion": "^10.11.2",
     "init": "^0.1.2",
     "next": "13.2.4",
     "react": "18.2.0",

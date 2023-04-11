@@ -1,11 +1,13 @@
 import React from 'react'
 
-import { TagH1 } from '@components'
+import { MyHeading } from '@components'
 
 export const SingUp = () => {
 	return (
 		<>
-			<TagH1 title="Sing-up" />
+			<MyHeading size="xl">
+				SingUp page
+			</MyHeading>
 		</>
 	)
 }

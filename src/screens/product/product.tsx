@@ -1,8 +1,9 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+
 import { skipToken } from '@reduxjs/toolkit/dist/query'
 
-import { TagH1 } from '@components'
+import { MyHeading } from '@components'
 
 import { useGetCurrentProductQuery } from '@services/product'
 
@@ -18,7 +19,9 @@ export const Product = () => {
 
 	return (
 		<>
-			<TagH1 title="Your change:" />
+			<MyHeading size="xl">
+				Your change:
+			</MyHeading>
 			<div>
 				{data?.title}
 			</div>

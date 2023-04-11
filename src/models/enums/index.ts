@@ -1,1 +1,2 @@
-export * from './svg.enum'
+export * from './heading.enum'
+export * from './position.enum'

@@ -58,9 +58,15 @@
 								"^react$",
 								"^next",
 								"^[a-z]",
-								"^@reduxjs/toolkit"
+								""
 							],
 							// Packages starting with `@`
+							[
+								"^@chakra-ui/react"
+							],
+							[
+								"^@reduxjs/toolkit"
+							],
 							[
 								"^@components"
 							],
