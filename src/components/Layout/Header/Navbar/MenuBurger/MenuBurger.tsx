@@ -13,12 +13,13 @@ export const MenuBurger: FC<IProps> = ({ isOpen, onOpen, onClose }) => {
 
 	return (
 		<IconButton
+			onClick={isOpen ? onClose : onOpen}
+
 			size="md"
 			icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-			aria-label="Open Menu"
 			display={{ md: 'none' }}
-			onClick={isOpen ? onClose : onOpen}
 			zIndex="99"
+			aria-label="Open Menu"
 		/>
 	)
 }

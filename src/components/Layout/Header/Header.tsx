@@ -19,10 +19,6 @@ export const Header = () => {
 			>
 				<Navbar />
 				<Account />
-
-				{/* 
-
-				<MenuAccount /> */}
 			</Flex>
 		</Box>
 	)

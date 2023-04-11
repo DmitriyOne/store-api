@@ -14,8 +14,8 @@ export const Layout: FC<IProps> = ({ children }) => {
 		<>
 			<Header />
 			<Container
-				maxW="container.xl"
 				as="main"
+				maxW="container.xl"
 				pt={{ base: 6, md: 10 }}
 				px={4}
 				pb={{ base: 10, md: 20 }}

@@ -12,13 +12,14 @@ export const SocialButton: FC<IProps> = ({ label, href, children }) => {
 
 	return (
 		<chakra.button
+			as={'a'}
+			href={href}
+			
 			bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
 			rounded={'full'}
 			w={8}
 			h={8}
 			cursor={'pointer'}
-			as={'a'}
-			href={href}
 			display={'inline-flex'}
 			alignItems={'center'}
 			justifyContent={'center'}

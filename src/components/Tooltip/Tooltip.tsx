@@ -14,8 +14,9 @@ export const Tooltip: FC<IProps> = ({ label, placement = 'top', icon }) => {
 	return (
 		<TooltipChakraUi
 			label={label}
-			bg="white"
 			placement={placement}
+
+			bg="white"
 			color="gray.800"
 			fontSize="1em"
 		>

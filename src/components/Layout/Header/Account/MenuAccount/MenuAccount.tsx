@@ -6,8 +6,9 @@ export const MenuAccount = () => {
 		<Menu>
 			<MenuButton
 				as={Button}
-				rounded="full"
 				variant="link"
+
+				rounded="full"
 				cursor="pointer"
 				minW={0}
 			>
