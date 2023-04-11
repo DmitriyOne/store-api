@@ -21,7 +21,6 @@ export const NavLink: FC<IProps> = ({ menu, onClick }) => {
 			<Link
 				as={NextLink}
 				href={menu.href}
-				onClick={onClick}
 
 				px={2}
 				py={1}
@@ -30,6 +29,7 @@ export const NavLink: FC<IProps> = ({ menu, onClick }) => {
 					textDecoration: 'none',
 					bg: useColorModeValue('gray.200', 'gray.700'),
 				}}
+				onClick={onClick}
 			>
 				{menu.title}
 			</Link>
