@@ -15,7 +15,7 @@ interface IProps {
 }
 
 export const NavLink: FC<IProps> = ({ menu, onClick }) => {
-	const { navLinkButtonBg } = useCustomStyles()
+	const { navLinkButtonStyles } = useCustomStyles()
 
 	return (
 		<li
@@ -29,7 +29,7 @@ export const NavLink: FC<IProps> = ({ menu, onClick }) => {
 				py={1}
 				rounded="md"
 				onClick={onClick}
-				{...navLinkButtonBg}
+				{...navLinkButtonStyles}
 			>
 				{menu.title}
 			</Link>

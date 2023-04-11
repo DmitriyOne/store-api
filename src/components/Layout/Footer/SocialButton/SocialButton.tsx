@@ -13,13 +13,13 @@ interface IProps {
 }
 
 export const SocialButton: FC<IProps> = ({ label, href, children }) => {
-	const { socialButtonBg } = useCustomStyles()
+	const { socialButtonStyles } = useCustomStyles()
 
 	return (
 		<chakra.button
 			as="a"
 			href={href}
-			{...socialButtonBg}
+			{...socialButtonStyles}
 			{...buttonStyles}
 		>
 			<VisuallyHidden>
