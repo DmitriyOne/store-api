@@ -82,17 +82,10 @@ main {
 	width: 100%;
 }
 
-.anim-cart {
-	animation: bottom 0.4s;
+.block {
+	display: block;
 }
 
-@keyframes bottom {
-	from {
-		transform: translateY(440px);
-	}
-
-	to {
-		transform: translateY(0);
-	}
+.h-full {
+	height: 100%;
 }
-
