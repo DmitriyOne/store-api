@@ -62,7 +62,8 @@
 							],
 							// Packages starting with `@`
 							[
-								"^@chakra-ui/react"
+								"^@chakra-ui/react",
+								"^@chakra-ui/icons"
 							],
 							[
 								"^@reduxjs/toolkit"

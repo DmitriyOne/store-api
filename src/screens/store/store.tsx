@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { MyHeading, ProductCard } from '@components'
 
 import { useGetAllProductsQuery } from '@services/product'
