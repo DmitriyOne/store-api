@@ -1,10 +1,10 @@
 {
 	//stylelint
 	"stylelint.enable": true,
-	"files.associations": {
-		"*.scss": "postcss",
-		".module.scss": "postcss"
-	},
+	// "files.associations": {
+	// 	"*.scss": "postcss",
+	// 	".module.scss": "postcss"
+	// },
 	//breadcrumbs
 	"breadcrumbs.icons": false,
 	"breadcrumbs.showKeys": false,
