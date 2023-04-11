@@ -1,11 +1,9 @@
-import { Box, Flex, HStack, Stack, useColorModeValue, useDisclosure } from '@chakra-ui/react'
+import { Box, Flex, useColorModeValue, useDisclosure } from '@chakra-ui/react'
 
-import { Logo } from './Logo'
-import { menuItem } from './menu'
 import { MenuAccount } from './MenuAccount'
+import { MenuBurger } from './MenuBurger'
 import { MenuDesktop } from './MenuDesktop'
 import { MenuMobile } from './MenuMobile'
-import { NavLink } from './NavLink'
 
 export const Header = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -18,27 +16,21 @@ export const Header = () => {
 		>
 			<Flex
 				h={16}
-				alignItems="center"
 				justifyContent="space-between"
+				alignItems="center"
+				maxW="container.xl"
+				margin="0 auto"
 			>
-				<MenuMobile isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-				<HStack spacing={8} alignItems={'center'}>
-					<Logo />
-					<MenuDesktop />
-				</HStack>
+				<MenuBurger
+					isOpen={isOpen}
+					onOpen={onOpen}
+					onClose={onClose}
+				/>
+				<MenuDesktop />
 				<MenuAccount />
-
 			</Flex>
 
-			{isOpen ? (
-				<Box as="nav" pb={4} display={{ md: 'none' }}>
-					<Stack as="ul" spacing={4}>
-						{menuItem.map((item, idx) => (
-							<NavLink key={idx} menu={item} />
-						))}
-					</Stack>
-				</Box>
-			) : null}
+			{isOpen && <MenuMobile onClose={onClose} />}
 		</Box>
 	)
 }

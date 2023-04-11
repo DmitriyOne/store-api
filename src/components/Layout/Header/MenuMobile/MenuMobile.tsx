@@ -1,28 +1,34 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
-import { Box, IconButton, Stack, useDisclosure } from '@chakra-ui/react'
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
+import { Box, Stack } from '@chakra-ui/react'
 
 import { menuItem } from '../menu'
 import { NavLink } from '../NavLink'
 
 interface IProps {
-	isOpen: boolean
-	onOpen: () => void
 	onClose: () => void
 }
 
-export const MenuMobile: FC<IProps> = ({ isOpen, onOpen, onClose }) => {
+export const MenuMobile: FC<IProps> = ({ onClose }) => {
 
 	return (
-		<>
-			<IconButton
-				size="md"
-				icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-				aria-label="Open Menu"
-				display={{ md: 'none' }}
-				onClick={isOpen ? onClose : onOpen}
-			/>
-		</>
+		<Box
+			as="nav"
+			pb={4}
+			display={{ md: 'none' }}
+		>
+			<Stack
+				as="ul"
+				spacing={4}
+			>
+				{menuItem.map((item, idx) => (
+					<NavLink
+						key={idx}
+						menu={item}
+						onClick={onClose}
+					/>
+				))}
+			</Stack>
+		</Box>
 	)
 }

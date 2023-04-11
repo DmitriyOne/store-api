@@ -1,4 +1,3 @@
-import React from 'react'
 import Link from 'next/link'
 
 import { Box, Text, useBreakpointValue, useColorModeValue } from '@chakra-ui/react'
@@ -13,7 +12,8 @@ export const Logo = () => {
 				as="span"
 				textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
 				fontFamily={'heading'}
-				color={useColorModeValue('gray.800', 'white')}>
+				color={useColorModeValue('gray.800', 'white')}
+			>
 				<Link
 					href={STORE_ROUTES.HOME}
 					passHref
