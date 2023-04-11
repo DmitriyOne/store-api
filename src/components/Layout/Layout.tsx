@@ -13,7 +13,13 @@ export const Layout: FC<IProps> = ({ children }) => {
 	return (
 		<>
 			<Header />
-			<Container maxW="container.xl" as="main" p={4}>
+			<Container
+				maxW="container.xl"
+				as="main"
+				pt={{ base: 6, md: 10 }}
+				px={4}
+				pb={{ base: 10, md: 20 }}
+			>
 				{children}
 			</Container>
 			<Footer />
