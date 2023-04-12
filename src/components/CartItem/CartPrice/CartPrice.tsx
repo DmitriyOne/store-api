@@ -2,6 +2,8 @@ import { FC } from 'react'
 
 import { HStack, Text } from '@chakra-ui/react'
 
+import { componentStyles, textStyles } from './cart-price.styles'
+
 interface IProps {
 	price: number
 }
@@ -9,11 +11,10 @@ interface IProps {
 export const CartPrice: FC<IProps> = ({ price }) => {
 
 	return (
-		<HStack spacing="1">
+		<HStack {...componentStyles}>
 			<Text
 				as="span"
-				fontWeight="medium"
-				color="red.500"
+				{...textStyles}
 			>
 				{price}$
 			</Text>

@@ -26,7 +26,7 @@ export const ProductBody: FC<IProps> = ({ product }) => {
 			<Box mb={3}>
 				<Heading
 					as="h4"
-					className={styles.title}
+					className="text-one-line"
 					{...titleStyles}
 				>
 					<Link

@@ -8,6 +8,7 @@ export const navStyles: BoxProps = {
 	left: '0',
 	width: 'full',
 	height: 'full',
+	zIndex: '99',
 }
 
 export const ulStyles: FlexProps = {

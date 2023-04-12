@@ -1,12 +1,16 @@
 /* eslint-disable no-unused-vars */
 import { FC } from 'react'
 
-import { CloseButton, Flex, Link } from '@chakra-ui/react'
+import { Button, CloseButton, Flex } from '@chakra-ui/react'
 
 import { ICart } from '@interfaces'
 
+import { useWindowSize } from '@hooks/useWindowSize'
+
 import { CartMeta } from './CartMeta'
 import { CartPrice } from './CartPrice'
+
+import { buttonOnMobileStyles, componentStyles, flexOnMobileStyles } from './cart-item.styles'
 
 interface IProps {
 	product: ICart
@@ -15,37 +19,36 @@ interface IProps {
 }
 
 export const CartItem: FC<IProps> = ({ product, onChangeQuantity, onClickDelete }) => {
+	const { isMobile } = useWindowSize()
 
 	return (
-		<Flex direction={{ base: 'column', md: 'row' }} justify="space-between" align="center">
+		<Flex {...componentStyles}>
 			<CartMeta
 				title={product.title}
 				category={product.category}
 				image={product.image}
 			/>
 
-			{/* Desktop */}
-			<Flex width="full" justify="space-between" display={{ base: 'none', md: 'flex' }}>
-				<CartPrice price={product.price} />
-				<CloseButton
-					aria-label={`Delete ${name} from cart`}
-					onClick={onClickDelete}
-				/>
-			</Flex>
-
-			{/* Mobile */}
-			<Flex
-				mt="4"
-				align="center"
-				width="full"
-				justify="space-between"
-				display={{ base: 'flex', md: 'none' }}
-			>
-				<Link fontSize="sm" textDecor="underline">
-					Delete
-				</Link>
-				<CartPrice price={product.price} />
-			</Flex>
+			{isMobile
+				?
+				<Flex {...flexOnMobileStyles}>
+					<Button
+						aria-label={`Delete ${product.title} from cart`}
+						{...buttonOnMobileStyles}
+					>
+						Delete
+					</Button>
+					<CartPrice price={product.price} />
+				</Flex>
+				:
+				<>
+					<CartPrice price={product.price} />
+					<CloseButton
+						aria-label={`Delete ${product.title} from cart`}
+						onClick={onClickDelete}
+					/>
+				</>
+			}
 		</Flex>
 	)
 }

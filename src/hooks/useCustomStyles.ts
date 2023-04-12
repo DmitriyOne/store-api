@@ -81,6 +81,18 @@ export const useCustomStyles = () => {
 		},
 	}
 
+	// CartMeta
+	const cartMetaTextDefault = useColorModeValue('gray.600', 'gray.400')
+	const cartMetaTextStyles: TextProps = {
+		color: cartMetaTextDefault,
+	}
+
+	//Continue shopping
+	const contShoppingLinkDefault = useColorModeValue('blue.500', 'blue.200')
+	const contShoppingLinkStyles: LinkProps = {
+		color: contShoppingLinkDefault,
+	}
+
 	return {
 		headerBoxStyles,
 		logoTextStyles,
@@ -92,5 +104,7 @@ export const useCustomStyles = () => {
 		tooltipButtonStyles,
 		footerBoxStyles,
 		socialButtonStyles,
+		cartMetaTextStyles,
+		contShoppingLinkStyles,
 	}
 }

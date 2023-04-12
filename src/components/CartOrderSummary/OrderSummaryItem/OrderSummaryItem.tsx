@@ -32,7 +32,7 @@ export const OrderSummaryItem: FC<IProps> = ({
 				{label}
 			</Text>
 			<Text fontWeight={fontWeightPrice}>
-				{price}$
+				{price.toFixed(2)}$
 			</Text>
 		</Flex>
 	)

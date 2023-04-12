@@ -1,3 +1,6 @@
+@use './mixins.scss';
+@use './breakpoints.scss';
+
 *,
 *::before,
 *::after {
@@ -92,4 +95,26 @@ main {
 
 .relative {
 	position: relative;
+}
+
+.text-one-line {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+
+	@include mixins.media-w(breakpoints.$tablet) {
+		-webkit-line-clamp: 2;
+	}
+}
+
+.text-two-line {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+
+	@include mixins.media-w(breakpoints.$tablet) {
+		-webkit-line-clamp: unset;
+	}
 }

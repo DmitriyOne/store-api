@@ -1,12 +1,12 @@
 import { FC } from 'react'
-import Image from 'next/image'
 
-import {
-	Box,
-	Stack,
-	Text,
-	useColorModeValue,
-} from '@chakra-ui/react'
+import { Box, Image, Stack, Text } from '@chakra-ui/react'
+
+import { useCustomStyles } from '@hooks'
+
+import { Heading } from '@components'
+
+import { boxStyles, categoryStyles, componentStyles, imageStyles, stackStyles, titleStyles } from './cart-meta.styles'
 
 interface IProps {
 	title: string
@@ -15,31 +15,32 @@ interface IProps {
 }
 
 export const CartMeta: FC<IProps> = ({ title, category, image }) => {
+	const { cartMetaTextStyles } = useCustomStyles()
 
 	return (
-		<Stack
-			direction="row"
-			spacing="5"
-			width="full"
-		>
-			<Image
-				width="120"
-				height="120"
-				src={image}
-				alt={title}
-				draggable="false"
-				loading="lazy"
-			/>
-			<Box pt="4">
-				<Stack spacing="0.5">
-					<Text fontWeight="medium">
-						{title}
-					</Text>
-					<Text
-						color={useColorModeValue('gray.600', 'gray.400')}
-						fontSize="sm"
+		<Stack {...componentStyles}>
+			<Box display="block">
+				<Image
+					src={image}
+					alt={title}
+					loading="lazy"
+					{...imageStyles}
+				/>
+			</Box>
+			<Box {...boxStyles}>
+				<Stack {...stackStyles}>
+					<Heading
+						as="h4"
+						className="text-two-line"
+						{...titleStyles}
 					>
-						category:{category}
+						{title}
+					</Heading>
+					<Text
+						{...categoryStyles}
+						{...cartMetaTextStyles}
+					>
+						Category: {category}
 					</Text>
 				</Stack>
 			</Box>
