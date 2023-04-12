@@ -1,17 +1,13 @@
-import NextLink from 'next/link'
 
-import { Flex, HStack, Link, Stack } from '@chakra-ui/react'
+import { Flex, Stack, Text } from '@chakra-ui/react'
 
-import { STORE_ROUTES } from '@constants'
+import { useAppSelector } from '@hooks'
 
-import { useAppSelector, useCustomStyles } from '@hooks'
+import { CartItem, CartOrderSummary, ContinueShopping, Heading } from '@components'
 
-import { CartItem, CartOrderSummary, Heading } from '@components'
-
-import { containerStyles, continueShopContainerStyles, continueShopWrapStyles, itemWrapperStyles, titleStyles } from './cart.styles'
+import { containerStyles, continueShopContainerStyles, itemWrapperStyles, titleStyles } from './cart.styles'
 
 export const Cart = () => {
-	const { contShoppingLinkStyles } = useCustomStyles()
 	const { cart } = useAppSelector(state => state)
 
 	const cartItems = cart.items.map(item => item.id)
@@ -23,30 +19,31 @@ export const Cart = () => {
 				Shopping Cart ({cart.items.length} items)
 			</Heading>
 
-			<Stack {...containerStyles}>
-				<Stack {...itemWrapperStyles}>
-					{cart.items.map((product) => (
-						<CartItem
-							key={product.id}
-							product={product}
-						/>
-					))}
-				</Stack>
+			{cart.items.length >= 1
+				?
+				<Stack {...containerStyles}>
+					<Stack {...itemWrapperStyles}>
+						{cart.items.map((product) => (
+							<CartItem
+								key={product.id}
+								product={product}
+							/>
+						))}
+					</Stack>
 
-				<Flex {...continueShopContainerStyles}>
-					<CartOrderSummary />
-					<HStack {...continueShopWrapStyles}>
-						<span>or</span>
-						<Link
-							as={NextLink}
-							href={STORE_ROUTES.SHOP}
-							{...contShoppingLinkStyles}
-						>
-							Continue shopping
-						</Link>
-					</HStack>
-				</Flex>
-			</Stack>
+					<Flex {...continueShopContainerStyles}>
+						<CartOrderSummary />
+						<ContinueShopping textSpan="or" />
+					</Flex>
+				</Stack>
+				:
+				<>
+					<Text>
+						Sorry, you don&rsquo;t have items in cart.
+					</Text>
+					<ContinueShopping />
+				</>
+			}
 		</>
 	)
 }
