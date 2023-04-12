@@ -7,6 +7,8 @@ import { useCustomStyles } from '@hooks'
 
 import { IMenu } from '@interfaces'
 
+import { linkStyles } from './nav-link-styles'
+
 import styles from './nav-link.module.scss'
 
 interface IProps {
@@ -24,11 +26,8 @@ export const NavLink: FC<IProps> = ({ menu, onClick }) => {
 			<Link
 				as={NextLink}
 				href={menu.href}
-
-				px={2}
-				py={1}
-				rounded="md"
 				onClick={onClick}
+				{...linkStyles}
 				{...navLinkButtonStyles}
 			>
 				{menu.title}

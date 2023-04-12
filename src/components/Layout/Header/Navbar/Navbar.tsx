@@ -18,7 +18,9 @@ export const Navbar = () => {
 			<MenuDesktop />
 
 			{isOpen &&
-				<MenuMobile onClose={onClose} />
+				<MenuMobile
+					onClose={onClose}
+				/>
 			}
 		</>
 	)

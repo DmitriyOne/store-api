@@ -4,6 +4,8 @@ import { Box } from '@chakra-ui/react'
 
 import { useCustomStyles } from '@hooks'
 
+import { boxSpanStyles, boxStyles } from './product-price.styles'
+
 interface IProps {
 	price: number
 }
@@ -13,19 +15,17 @@ export const ProductPrice: FC<IProps> = ({ price }) => {
 
 	return (
 		<Box
-			fontSize="lg"
-			paddingTop={3}
+			{...boxStyles}
 			{...productPriceBoxStyles}
 		>
 			<Box
 				as="span"
-				fontSize="lg"
+				{...boxSpanStyles}
 				{...productPriceBoxStyles}
 			>
 				£
 			</Box>
 			{price}
 		</Box>
-
 	)
 }

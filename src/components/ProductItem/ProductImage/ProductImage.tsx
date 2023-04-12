@@ -6,6 +6,8 @@ import { Box } from '@chakra-ui/react'
 
 import { IProduct } from '@interfaces'
 
+import { boxStyles } from './product-image.styles'
+
 import styles from './product-image.module.scss'
 
 interface IProps {
@@ -19,10 +21,12 @@ export const ProductImage: FC<IProps> = ({ product }) => {
 	return (
 		<Box
 			className={styles.component}
-			mt={6}
-			mb={4}
+			{...boxStyles}
 		>
-			<Link href={href} className="block h-full">
+			<Link
+				href={href}
+				className="block h-full"
+			>
 				<Image
 					className={styles.image}
 					src={product.image}

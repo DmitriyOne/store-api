@@ -9,6 +9,7 @@ import { useCustomStyles } from '@hooks'
 
 import { IProduct } from '@interfaces'
 
+import { boxStyles } from './product-item.styles'
 import { ProductBody } from './ProductBody'
 import { ProductImage } from './ProductImage'
 
@@ -22,14 +23,7 @@ export const ProductItem: FC<IProps> = ({ product }) => {
 	return (
 		<Box
 			key={product.id}
-			maxW="full"
-			borderWidth="1px"
-			rounded="lg"
-			shadow="lg"
-			p={4}
-			display="flex"
-			flexDirection="column"
-			position="relative"
+			{...boxStyles}
 			{...productItemBoxStyles}
 		>
 			<ProductImage product={product} />

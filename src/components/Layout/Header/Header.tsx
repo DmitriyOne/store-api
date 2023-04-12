@@ -3,6 +3,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import { useCustomStyles } from '@hooks'
 
 import { Account } from './Account'
+import { flexStyles, headerStyles } from './header.styles'
 import { Navbar } from './Navbar'
 
 export const Header = () => {
@@ -11,16 +12,10 @@ export const Header = () => {
 	return (
 		<Box
 			as="header"
-			px={4}
+			{...headerStyles}
 			{...headerBoxStyles}
 		>
-			<Flex
-				h={16}
-				justifyContent="space-between"
-				alignItems="center"
-				maxW="container.xl"
-				margin="0 auto"
-			>
+			<Flex {...flexStyles}>
 				<Navbar />
 				<Account />
 			</Flex>

@@ -1,11 +1,9 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-import { Heading as HeadingChakraUi, HeadingProps } from '@chakra-ui/react'
-
-import { EHeading } from '@enums'
+import { As, Heading as HeadingChakraUi, HeadingProps } from '@chakra-ui/react'
 
 interface IProps extends HeadingProps {
-	as?: keyof typeof EHeading
+	as?: As
 	children: ReactNode
 }
 

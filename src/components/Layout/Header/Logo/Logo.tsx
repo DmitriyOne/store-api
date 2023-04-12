@@ -1,10 +1,12 @@
 import Link from 'next/link'
 
-import { Box, Text, useBreakpointValue } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 
 import { STORE_ROUTES } from '@constants'
 
 import { useCustomStyles } from '@hooks'
+
+import { textStyles } from './logo.styles'
 
 export const Logo = () => {
 	const { logoTextStyles } = useCustomStyles()
@@ -12,9 +14,7 @@ export const Logo = () => {
 		<Box>
 			<Text
 				as="span"
-				
-				textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-				fontFamily={'heading'}
+				{...textStyles}
 				{...logoTextStyles}
 			>
 				<Link

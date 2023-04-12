@@ -1,4 +1,4 @@
-import { BoxProps, ButtonProps, LinkProps, TextProps, useColorModeValue } from '@chakra-ui/react'
+import { BoxProps, ButtonProps, LinkProps, TextProps, useBreakpointValue, useColorModeValue } from '@chakra-ui/react'
 
 export const useCustomStyles = () => {
 	// Header
@@ -10,6 +10,7 @@ export const useCustomStyles = () => {
 	// Logo
 	const colorLogoBoxDefault = useColorModeValue('gray.800', 'white')
 	const logoTextStyles: TextProps = {
+		textAlign: useBreakpointValue({ base: 'center', md: 'left' }),
 		color: colorLogoBoxDefault,
 	}
 

@@ -1,16 +1,17 @@
 import { Button, Flex, useColorMode } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
+import { buttonStyles, flexStyles } from './account.styles'
 import { MenuAccount } from './MenuAccount'
 
 export const Account = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
 
 	return (
-		<Flex alignItems="center">
+		<Flex {...flexStyles}>
 			<Button
 				onClick={toggleColorMode}
-				marginRight="2"
+				{...buttonStyles}
 			>
 				{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
 			</Button>

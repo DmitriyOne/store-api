@@ -4,6 +4,7 @@ import { Container } from '@chakra-ui/react'
 
 import { Footer } from './Footer'
 import { Header } from './Header'
+import { mainStyles } from './layout.styles'
 
 interface IProps {
 	children: ReactNode
@@ -15,10 +16,7 @@ export const Layout: FC<IProps> = ({ children }) => {
 			<Header />
 			<Container
 				as="main"
-				maxW="container.xl"
-				pt={{ base: 6, md: 10 }}
-				px={4}
-				pb={{ base: 10, md: 20 }}
+				{...mainStyles}
 			>
 				{children}
 			</Container>

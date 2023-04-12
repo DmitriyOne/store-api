@@ -1,16 +1,15 @@
 import { Avatar, Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 
+import { buttonStyles } from './menu-account.styles'
+
 export const MenuAccount = () => {
-	
+
 	return (
 		<Menu>
 			<MenuButton
 				as={Button}
 				variant="link"
-
-				rounded="full"
-				cursor="pointer"
-				minW={0}
+				{...buttonStyles}
 			>
 				<Avatar size="sm" />
 			</MenuButton>

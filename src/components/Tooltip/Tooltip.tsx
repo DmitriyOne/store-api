@@ -5,6 +5,8 @@ import { Button, Icon, PlacementWithLogical, Tooltip as TooltipChakraUi } from '
 
 import { useCustomStyles } from '@hooks'
 
+import { buttonStyles, iconStyles, tooltipStyles } from './tooltip.styles'
+
 interface IProps {
 	label: string
 	placement?: PlacementWithLogical
@@ -18,24 +20,15 @@ export const Tooltip: FC<IProps> = ({ label, placement = 'top', icon }) => {
 		<TooltipChakraUi
 			label={label}
 			placement={placement}
-
-			bg="white"
-			color="gray.800"
-			fontSize="1em"
+			{...tooltipStyles}
 		>
 			<Button
-				display="flex"
-				position="absolute"
-				top={{ base: '1', lg: '2' }}
-				right={{ base: '1', lg: '2' }}
-				p="2"
+				{...buttonStyles}
 				{...tooltipButtonStyles}
 			>
 				<Icon
 					as={icon}
-					h={5}
-					w={5}
-					alignSelf="center"
+					{...iconStyles}
 				/>
 			</Button>
 		</TooltipChakraUi >

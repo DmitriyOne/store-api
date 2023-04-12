@@ -4,24 +4,23 @@ import { Logo } from '../../Logo'
 import { menuItem } from '../menu'
 import { NavLink } from '../NavLink'
 
+import { hStackStyles, navStyles, ulStyles } from './menu-desktop.styles'
+
 export const MenuDesktop = () => {
 
 	return (
 		<HStack
-			spacing={8}
-			alignItems="center"
+			{...hStackStyles}
 		>
 			<Logo />
 
 			<HStack
 				as="nav"
-				spacing={8}
-				alignItems="center"
-				display={{ base: 'none', md: 'flex' }}
+				{...navStyles}
 			>
 				<HStack
 					as="ul"
-					spacing={4}
+					{...ulStyles}
 				>
 					{menuItem.map((item, idx) =>
 						<NavLink

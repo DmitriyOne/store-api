@@ -3,6 +3,8 @@ import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
 
 import { Box } from '@chakra-ui/react'
 
+import { boxStyles } from './product-rading.styles'
+
 interface IProps {
 	rating: number;
 }
@@ -10,7 +12,7 @@ interface IProps {
 export const ProductRating: FC<IProps> = ({ rating }) => {
 
 	return (
-		<Box display="flex" alignItems="center">
+		<Box {...boxStyles}>
 			{Array(5)
 				.fill('')
 				.map((_, i) => {

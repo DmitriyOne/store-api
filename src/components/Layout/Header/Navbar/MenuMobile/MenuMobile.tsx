@@ -7,6 +7,8 @@ import { useCustomStyles } from '@hooks'
 import { menuItem } from '../menu'
 import { NavLink } from '../NavLink'
 
+import { navStyles, ulStyles } from './menu-mobile.styles'
+
 interface IProps {
 	onClose: () => void
 }
@@ -17,21 +19,12 @@ export const MenuMobile: FC<IProps> = ({ onClose }) => {
 	return (
 		<Box
 			as="nav"
-			pb={4}
-			display={{ md: 'none' }}
-			position="fixed"
-			top="0"
-			left="0"
-			width="full"
-			height="full"
+			{...navStyles}
 			{...menuMobBoxStyles}
 		>
 			<Flex
 				as="ul"
-				direction="column"
-				justify="center"
-				align="center"
-				height="full"
+				{...ulStyles}
 			>
 				{menuItem.map((item, idx) => (
 					<NavLink
