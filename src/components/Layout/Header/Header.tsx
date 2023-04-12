@@ -2,10 +2,12 @@ import { Box, Flex } from '@chakra-ui/react'
 
 import { useCustomStyles } from '@hooks'
 
-import { Account } from './Account'
+import { MenuAccount } from './MenuAccount'
+import { MenuCart } from './MenuCart'
+import { MenuMode } from './MenuMode'
 import { Navbar } from './Navbar'
 
-import { flexStyles, headerStyles } from './header.styles'
+import { flexRightStyles, flexWrapStyles, headerStyles } from './header.styles'
 
 export const Header = () => {
 	const { headerBoxStyles } = useCustomStyles()
@@ -16,9 +18,13 @@ export const Header = () => {
 			{...headerStyles}
 			{...headerBoxStyles}
 		>
-			<Flex {...flexStyles}>
+			<Flex {...flexWrapStyles}>
 				<Navbar />
-				<Account />
+				<Flex {...flexRightStyles}>
+					<MenuCart />
+					<MenuMode />
+					<MenuAccount />
+				</Flex>
 			</Flex>
 		</Box>
 	)
