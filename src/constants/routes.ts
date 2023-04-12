@@ -1,6 +1,6 @@
 export const STORE_ROUTES = {
 	HOME: '/',
-	STORE: '/store',
+	SHOP: '/shop',
 	PRODUCT: '/products',
 	ABOUT: '/about',
 	SING_UP: '/sing-up',

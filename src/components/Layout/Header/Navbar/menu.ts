@@ -8,7 +8,7 @@ export const menuItem: IMenu[] = [
 	},
 	{
 		title: 'Shop',
-		href: STORE_ROUTES.STORE,
+		href: STORE_ROUTES.SHOP,
 	},
 	{
 		title: 'About',
