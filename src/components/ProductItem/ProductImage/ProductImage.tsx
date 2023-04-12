@@ -24,13 +24,14 @@ export const ProductImage: FC<IProps> = ({ product }) => {
 		>
 			<Link
 				href={href}
-				className="block h-full"
+				className="block h-full relative"
 			>
 				<Image
 					className={styles.image}
 					src={product.image}
 					alt={`Picture of ${product.title}`}
 					fill
+					sizes="auto"
 				/>
 			</Link>
 		</Box>
