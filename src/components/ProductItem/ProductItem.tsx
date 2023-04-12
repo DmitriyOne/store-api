@@ -19,7 +19,7 @@ interface IProps {
 }
 
 export const ProductItem: FC<IProps> = ({ product }) => {
-	const { productItemBoxStyles } = useCustomStyles()
+	const { productItemBoxStyles } = useCustomStyles()	
 
 	return (
 		<Box

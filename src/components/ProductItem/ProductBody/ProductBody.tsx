@@ -5,14 +5,14 @@ import { Box, Button, Flex } from '@chakra-ui/react'
 
 import { IProduct } from '@interfaces'
 
-import { useCustomStyles } from '@hooks'
+import { useAppActions, useAppSelector, useCustomStyles } from '@hooks'
 
 import { Heading } from '@components'
 
 import { ProductPrice } from '../ProductPrice'
 import { ProductRating } from '../ProductRating'
 
-import { buttonStyles, buttonWrapStyles, flex2Styles, flexMainStyles, titleStyles } from './product-body.styles'
+import { buttonDisabledStyles, buttonStyles, buttonWrapStyles, flex2Styles, flexMainStyles, titleStyles } from './product-body.styles'
 import styles from './product-body.module.scss'
 
 interface IProps {
@@ -21,8 +21,19 @@ interface IProps {
 
 export const ProductBody: FC<IProps> = ({ product }) => {
 	const { productBodyButtonStyles } = useCustomStyles()
+	const { cart } = useAppSelector(state => state)
+	const { addItem } = useAppActions()
+	const isExistInCart = cart.some(item => item.id === product.id)
 
+	const addToCart = () => {
+		if (isExistInCart) {
+			return
+		}
+		addItem(product)
+	}
 	const href = product.id.toString()
+
+	const disabled = isExistInCart ? { ...buttonDisabledStyles } : {...productBodyButtonStyles}
 
 	return (
 		<Flex {...flexMainStyles}>
@@ -51,10 +62,12 @@ export const ProductBody: FC<IProps> = ({ product }) => {
 
 			<Flex {...buttonWrapStyles}>
 				<Button
+					onClick={addToCart}
+					disabled={isExistInCart}
 					{...buttonStyles}
-					{...productBodyButtonStyles}
+					{...disabled}
 				>
-					Add to cart
+					{isExistInCart ? 'Already in cart' : 'Add to cart'}
 				</Button>
 			</Flex>
 		</Flex>
