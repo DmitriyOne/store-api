@@ -1,4 +1,4 @@
-import { ButtonProps, FlexProps, HeadingProps } from '@chakra-ui/react'
+import { FlexProps, HeadingProps } from '@chakra-ui/react'
 
 export const flexMainStyles: FlexProps = {
 	h: 'full',
@@ -18,27 +18,4 @@ export const flex2Styles: FlexProps = {
 	direction: { base: 'column', md: 'column' },
 	justifyContent: 'space-between',
 	alignItems: 'center',
-}
-
-export const buttonWrapStyles: FlexProps = {
-	justifyContent: 'space-between',
-	alignItems: 'center',
-}
-
-export const buttonStyles: ButtonProps = {
-	width: 'full',
-	maxW: '52',
-	ml: 'auto',
-	mr: 'auto',
-	color: 'black.300',
-}
-
-// Disabled
-export const buttonDisabledStyles: ButtonProps = {
-	bg: 'blackAlpha.200',
-	color: 'gray.400',
-	cursor: 'no-drop',
-	_hover: {
-		bg: 'blackAlpha.200',
-	},
 }
