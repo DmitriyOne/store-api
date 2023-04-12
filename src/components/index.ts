@@ -1,6 +1,5 @@
 export * from './CartItem'
 export * from './CartOrderSummary'
-export * from './ContinueShopping'
 export * from './Heading'
 export * from './Layout'
 export * from './ProductItem'

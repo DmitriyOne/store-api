@@ -3,7 +3,9 @@ import { Flex, Stack, Text } from '@chakra-ui/react'
 
 import { useAppSelector } from '@hooks'
 
-import { CartItem, CartOrderSummary, ContinueShopping, Heading } from '@components'
+import { CartItem, CartOrderSummary, Heading } from '@components'
+
+import { Shopping } from './shopping'
 
 import { containerStyles, continueShopContainerStyles, itemWrapperStyles, titleStyles } from './cart.styles'
 
@@ -30,7 +32,7 @@ export const Cart = () => {
 
 					<Flex {...continueShopContainerStyles}>
 						<CartOrderSummary />
-						<ContinueShopping textSpan="or" />
+						<Shopping textSpan="or" textLink="Continue shopping" />
 					</Flex>
 				</Stack>
 				:
@@ -38,7 +40,7 @@ export const Cart = () => {
 					<Text>
 						Sorry, you don&rsquo;t have items in cart.
 					</Text>
-					<ContinueShopping />
+					<Shopping textLink="Go to shopping" />
 				</>
 			}
 		</>

@@ -7,15 +7,16 @@ import { STORE_ROUTES } from '@constants'
 
 import { useCustomStyles } from '@hooks'
 
-import { componentStyles } from './continue-shopping.styles'
+import { componentStyles } from './shopping.styles'
 
 interface IProps {
+	textLink: string
 	textSpan?: string
 }
 
-export const ContinueShopping: FC<IProps> = ({ textSpan }) => {
+export const Shopping: FC<IProps> = ({ textLink, textSpan }) => {
 	const { contShoppingLinkStyles } = useCustomStyles()
-	
+
 	return (
 		<HStack as="span" {...componentStyles}>
 			{textSpan &&
@@ -29,7 +30,7 @@ export const ContinueShopping: FC<IProps> = ({ textSpan }) => {
 				href={STORE_ROUTES.SHOP}
 				{...contShoppingLinkStyles}
 			>
-				Continue shopping
+				{textLink}
 			</Link>
 		</HStack>
 	)
