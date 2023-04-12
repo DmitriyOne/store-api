@@ -15,7 +15,7 @@ export const cartSlice = createSlice({
 			state.items.push(action.payload)
 			state.totalPrice += action.payload.price
 		},
-		removeItem: (state, action: PayloadAction<{ id: number }>) => {
+		removeItem: (state, action: PayloadAction<ICart>) => {
 			const removeItem = state.items.find(item => item.id === action.payload.id)
 			if (removeItem) {
 				state.items = state.items.filter(item => item.id !== action.payload.id)

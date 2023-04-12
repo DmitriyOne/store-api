@@ -10,9 +10,6 @@ import { containerStyles, continueShopContainerStyles, itemWrapperStyles, titleS
 export const Cart = () => {
 	const { cart } = useAppSelector(state => state)
 
-	const cartItems = cart.items.map(item => item.id)
-	console.log('cartItems: ', cartItems)
-
 	return (
 		<>
 			<Heading {...titleStyles}>

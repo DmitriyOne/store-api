@@ -5,6 +5,7 @@ import { Button, CloseButton, Flex } from '@chakra-ui/react'
 
 import { ICart } from '@interfaces'
 
+import { useAppActions } from '@hooks'
 import { useWindowSize } from '@hooks/useWindowSize'
 
 import { CartMeta } from './CartMeta'
@@ -14,12 +15,15 @@ import { buttonOnMobileStyles, componentStyles, flexOnDesktopStyles, flexOnMobil
 
 interface IProps {
 	product: ICart
-	onChangeQuantity?: (id: number) => void
-	onClickDelete?: () => void
 }
 
-export const CartItem: FC<IProps> = ({ product, onChangeQuantity, onClickDelete }) => {
+export const CartItem: FC<IProps> = ({ product }) => {
 	const { isMobile } = useWindowSize()
+	const { removeItem } = useAppActions()
+
+	const removeInCart = () => {
+		removeItem(product)
+	}
 
 	return (
 		<Flex {...componentStyles}>
@@ -45,7 +49,7 @@ export const CartItem: FC<IProps> = ({ product, onChangeQuantity, onClickDelete 
 					<CartPrice price={product.price} />
 					<CloseButton
 						aria-label={`Delete ${product.title} from cart`}
-						onClick={onClickDelete}
+						onClick={removeInCart}
 					/>
 				</Flex>
 			}
