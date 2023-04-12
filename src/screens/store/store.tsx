@@ -1,8 +1,8 @@
 import { SimpleGrid } from '@chakra-ui/react'
 
-import { Heading, ProductItem } from '@components'
-
 import { useGetAllProductsQuery } from '@services/product'
+
+import { Heading, ProductItem } from '@components'
 
 export const Store = () => {
 	const { data } = useGetAllProductsQuery()

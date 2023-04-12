@@ -3,17 +3,16 @@ import Link from 'next/link'
 
 import { Box, Button, Flex } from '@chakra-ui/react'
 
-import { Heading } from '@components'
+import { IProduct } from '@interfaces'
 
 import { useCustomStyles } from '@hooks'
 
-import { IProduct } from '@interfaces'
+import { Heading } from '@components'
 
 import { ProductPrice } from '../ProductPrice'
 import { ProductRating } from '../ProductRating'
 
 import { buttonStyles, buttonWrapStyles, flex2Styles, flexMainStyles, titleStyles } from './product-body.styles'
-
 import styles from './product-body.module.scss'
 
 interface IProps {

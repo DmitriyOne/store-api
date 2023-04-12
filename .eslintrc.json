@@ -58,7 +58,7 @@
 								"^react$",
 								"^next",
 								"^[a-z]",
-								""
+								"^@reduxjs/toolkit"
 							],
 							// Packages starting with `@`
 							[
@@ -66,23 +66,16 @@
 								"^@chakra-ui/icons"
 							],
 							[
-								"^@reduxjs/toolkit"
+								"^@constants",
+								"^@enums",
+								"^@interfaces"
 							],
 							[
-								"^@components"
-							],
-							[
-								"^@constants"
-							],
-							[
-								"^@hooks"
-							],
-							[
+								"^@hooks",
 								"^@services"
 							],
 							[
-								"^@enums",
-								"^@interfaces"
+								"^@components"
 							],
 							[
 								"^@screens"
@@ -115,6 +108,7 @@
 							],
 							// Style scss imports
 							[
+								".+\\.styles",
 								"^.+\\.scss$",
 								"^@styles"
 							]

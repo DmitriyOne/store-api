@@ -2,9 +2,10 @@ import { Box, Container, Stack, Text } from '@chakra-ui/react'
 
 import { useCustomStyles } from '@hooks'
 
-import { containerStyles, stackStyles } from './footer.styles'
 import { SocialButton } from './SocialButton'
 import { socialItem } from './socials'
+
+import { containerStyles, stackStyles } from './footer.styles'
 
 export const Footer = () => {
 	const { footerBoxStyles } = useCustomStyles()

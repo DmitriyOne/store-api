@@ -1,7 +1,6 @@
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
 
-import { STORE_LINKS } from '@constants/links'
-
+import { STORE_LINKS } from '@constants'
 import { ISocial } from '@interfaces'
 
 export const socialItem: ISocial[] = [

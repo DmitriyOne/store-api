@@ -1,5 +1,4 @@
 import { STORE_ROUTES } from '@constants'
-
 import { IMenu } from '@interfaces'
 
 export const menuItem: IMenu[] = [

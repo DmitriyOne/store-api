@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router'
-
 import { skipToken } from '@reduxjs/toolkit/dist/query'
 
-import { Heading } from '@components'
-
 import { useGetCurrentProductQuery } from '@services/product'
+
+import { Heading } from '@components'
 
 export const Product = () => {
 	const router = useRouter()

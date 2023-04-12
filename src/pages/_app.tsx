@@ -3,9 +3,9 @@ import { Provider } from 'react-redux'
 
 import { ChakraProvider } from '@chakra-ui/react'
 
-import { Layout } from '@components'
-
 import { store } from '@services'
+
+import { Layout } from '@components'
 
 import '@styles/global.scss'
 

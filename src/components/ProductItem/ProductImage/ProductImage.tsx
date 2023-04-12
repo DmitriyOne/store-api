@@ -7,7 +7,6 @@ import { Box } from '@chakra-ui/react'
 import { IProduct } from '@interfaces'
 
 import { boxStyles } from './product-image.styles'
-
 import styles from './product-image.module.scss'
 
 interface IProps {

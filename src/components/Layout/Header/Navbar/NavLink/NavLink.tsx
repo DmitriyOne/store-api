@@ -3,12 +3,11 @@ import NextLink from 'next/link'
 
 import { Link } from '@chakra-ui/react'
 
-import { useCustomStyles } from '@hooks'
-
 import { IMenu } from '@interfaces'
 
-import { linkStyles } from './nav-link-styles'
+import { useCustomStyles } from '@hooks'
 
+import { linkStyles } from './nav-link.styles'
 import styles from './nav-link.module.scss'
 
 interface IProps {
