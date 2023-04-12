@@ -4,6 +4,8 @@ import { useGetAllProductsQuery } from '@services/product'
 
 import { Heading, ProductItem } from '@components'
 
+import { gridStyles } from './shop.styles'
+
 export const Shop = () => {
 	const { data } = useGetAllProductsQuery()
 
@@ -14,11 +16,7 @@ export const Shop = () => {
 			</Heading>
 			{data
 				?
-				<SimpleGrid
-					columns={{ base: 2, md: 3, lg: 4 }}
-					spacing={{ base: '10px', md: '20px', lg: '20px' }}
-					alignItems="stretch"
-				>
+				<SimpleGrid {...gridStyles}>
 					{data.map(product =>
 						<ProductItem
 							key={product.id}

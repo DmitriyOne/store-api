@@ -6,17 +6,13 @@ import { useAppSelector } from '@hooks'
 
 import { OrderSummaryItem } from './OrderSummaryItem'
 
+import { buttonStyles, componentStyles } from './cart-order-summary.styles'
+
 export const CartOrderSummary = () => {
 	const { cart } = useAppSelector(state => state)
 
 	return (
-		<Stack
-			spacing="8"
-			borderWidth="1px"
-			rounded="lg"
-			padding="8"
-			width="full"
-		>
+		<Stack {...componentStyles}>
 			<Heading size="md">
 				Order Summary
 			</Heading>
@@ -36,10 +32,8 @@ export const CartOrderSummary = () => {
 			</Stack>
 
 			<Button
-				colorScheme="blue"
-				size="lg"
-				fontSize="md"
 				rightIcon={<FaArrowRight />}
+				{...buttonStyles}
 			>
 				Checkout
 			</Button>

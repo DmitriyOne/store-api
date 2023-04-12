@@ -1,8 +1,12 @@
 import { FC } from 'react'
 
-import { Flex, Text, useColorModeValue } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 
 import { EFontSize, EFontWeight } from '@enums'
+
+import { useCustomStyles } from '@hooks'
+
+import { componentStyles } from './order-summary-item.styles'
 
 interface IProps {
 	label: string
@@ -19,15 +23,16 @@ export const OrderSummaryItem: FC<IProps> = ({
 	fontWeightLabel = 'medium',
 	fontWeightPrice = 'medium',
 }) => {
+	const { orderSumItemTextStyles } = useCustomStyles()
 
 	return (
 		<Flex
-			justify="space-between"
 			fontSize={fontSize}
+			{...componentStyles}
 		>
 			<Text
 				fontWeight={fontWeightLabel}
-				color={useColorModeValue('gray.600', 'gray.100')}
+				{...orderSumItemTextStyles}
 			>
 				{label}
 			</Text>

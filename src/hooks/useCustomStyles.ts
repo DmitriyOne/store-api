@@ -93,6 +93,12 @@ export const useCustomStyles = () => {
 		color: contShoppingLinkDefault,
 	}
 
+	// Order Summary Item
+	const orderSumItemTextDefault = useColorModeValue('gray.600', 'gray.100')
+	const orderSumItemTextStyles: TextProps = {
+		color: orderSumItemTextDefault,
+	}
+
 	return {
 		headerBoxStyles,
 		logoTextStyles,
@@ -106,5 +112,6 @@ export const useCustomStyles = () => {
 		socialButtonStyles,
 		cartMetaTextStyles,
 		contShoppingLinkStyles,
+		orderSumItemTextStyles,
 	}
 }
