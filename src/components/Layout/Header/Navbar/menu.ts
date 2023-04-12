@@ -14,8 +14,8 @@ export const menuItem: IMenu[] = [
 		title: 'About',
 		href: STORE_ROUTES.ABOUT,
 	},
-	// {
-	// 	title: 'Cart',
-	// 	href: STORE_ROUTES.CART,
-	// },
+	{
+		title: 'Favorites',
+		href: STORE_ROUTES.FAVORITES,
+	},
 ]

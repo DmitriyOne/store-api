@@ -5,4 +5,5 @@ export const STORE_ROUTES = {
 	ABOUT: '/about',
 	SING_UP: '/sing-up',
 	CART: '/cart',
+	FAVORITES: '/favorites',
 }
