@@ -14,7 +14,7 @@ import { CartItem, CartOrderSummary, Heading } from '@components'
 export const Cart = () => {
 	const { cart } = useAppSelector(state => state)
 
-	const cartItems = cart.map(item => item.id)
+	const cartItems = cart.items.map(item => item.id)
 	console.log('cartItems: ', cartItems)
 
 	return (
@@ -40,7 +40,7 @@ export const Cart = () => {
 						</Heading>
 
 						<Stack spacing="6">
-							{cart.map((product) => (
+							{cart.items.map((product) => (
 								<CartItem
 									key={product.id}
 									product={product}
