@@ -12,12 +12,20 @@ export const flexStyles: FlexProps = {
 	align: 'center',
 }
 
-export const flexOnMobileStyles: FlexProps = {
-	mt: '4',
+export const flexOnDesktopStyles: FlexProps = {
+	// width: 'full',
+	display: { base: 'none', md: 'flex' },
 	align: 'center',
-	width: 'full',
 	justify: 'space-between',
+	flex: 1
+}
+
+export const flexOnMobileStyles: FlexProps = {
+	width: 'full',
 	display: { base: 'flex', md: 'none' },
+	justify: 'space-between',
+	align: 'center',
+	mt: '4',
 }
 
 export const buttonOnMobileStyles: ButtonProps = {

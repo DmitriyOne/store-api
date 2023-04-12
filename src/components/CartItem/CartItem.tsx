@@ -10,7 +10,7 @@ import { useWindowSize } from '@hooks/useWindowSize'
 import { CartMeta } from './CartMeta'
 import { CartPrice } from './CartPrice'
 
-import { buttonOnMobileStyles, componentStyles, flexOnMobileStyles } from './cart-item.styles'
+import { buttonOnMobileStyles, componentStyles, flexOnDesktopStyles, flexOnMobileStyles } from './cart-item.styles'
 
 interface IProps {
 	product: ICart
@@ -41,13 +41,13 @@ export const CartItem: FC<IProps> = ({ product, onChangeQuantity, onClickDelete 
 					<CartPrice price={product.price} />
 				</Flex>
 				:
-				<>
+				<Flex {...flexOnDesktopStyles}>
 					<CartPrice price={product.price} />
 					<CloseButton
 						aria-label={`Delete ${product.title} from cart`}
 						onClick={onClickDelete}
 					/>
-				</>
+				</Flex>
 			}
 		</Flex>
 	)

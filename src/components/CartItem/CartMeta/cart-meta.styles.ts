@@ -4,6 +4,7 @@ export const componentStyles: StackProps = {
 	direction: 'row',
 	spacing: '5',
 	width: { base: 'full', md: 'auto' },
+	flex: 2.5,
 }
 
 export const boxStyles: BoxProps = {
