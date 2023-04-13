@@ -1,0 +1,12 @@
+- head dynamic title
+- head favicon
+- adaptive header
+- universal short item component
+- page
+-- product
+-- form
+-- account
+-- favorites
+-- home
+-- about
+-- ?checkout

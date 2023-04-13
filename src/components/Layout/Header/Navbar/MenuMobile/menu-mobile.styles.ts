@@ -5,10 +5,15 @@ export const navStyles: BoxProps = {
 	display: { md: 'none' },
 	position: 'fixed',
 	top: '0',
-	left: '0',
+	left: '-100%',
 	width: 'full',
 	height: 'full',
 	zIndex: '99',
+	transition: 'all .4s',
+}
+
+export const navActiveStyles: BoxProps = {
+	left: '0',
 }
 
 export const ulStyles: FlexProps = {

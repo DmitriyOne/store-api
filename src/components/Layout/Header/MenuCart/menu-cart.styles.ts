@@ -9,7 +9,7 @@ export const iconStyles: ButtonProps = {
 	h: 'auto',
 	minW: 'auto',
 	p: 2,
-	marginRight: '2',
+	marginRight: '3',
 	fontSize: '26px',
 	_hover: {
 		bg: 'transparent',

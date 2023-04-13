@@ -7,7 +7,7 @@ import { MenuCart } from './MenuCart'
 import { MenuMode } from './MenuMode'
 import { Navbar } from './Navbar'
 
-import { flexRightStyles, flexWrapStyles, headerStyles } from './header.styles'
+import {  flexRightStyles, flexWrapStyles, headerStyles } from './header.styles'
 
 export const Header = () => {
 	const { headerBoxStyles } = useCustomStyles()
@@ -20,9 +20,10 @@ export const Header = () => {
 		>
 			<Flex {...flexWrapStyles}>
 				<Navbar />
+
 				<Flex {...flexRightStyles}>
-					<MenuCart />
 					<MenuMode />
+					<MenuCart />
 					<MenuAccount />
 				</Flex>
 			</Flex>

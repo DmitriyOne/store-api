@@ -1,10 +1,5 @@
 import { StackProps } from '@chakra-ui/react'
 
-export const hStackStyles: StackProps = {
-	spacing: 8,
-	alignItems: 'center',
-}
-
 export const navStyles: StackProps = {
 	spacing: 8,
 	alignItems: 'center',

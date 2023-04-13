@@ -1,7 +1,8 @@
 import { BoxProps, FlexProps } from '@chakra-ui/react'
 
 export const headerStyles: BoxProps = {
-	px: 4,
+	pr: 4,
+	pl: { base: 1, md: 4 },
 }
 
 export const flexWrapStyles: FlexProps = {
@@ -10,6 +11,10 @@ export const flexWrapStyles: FlexProps = {
 	alignItems: 'center',
 	maxW: 'container.xl',
 	margin: '0 auto',
+}
+
+export const flexLeftStyles: FlexProps = {
+	alignItems: 'center',
 }
 
 export const flexRightStyles: FlexProps = {

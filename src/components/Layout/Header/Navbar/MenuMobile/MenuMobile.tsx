@@ -7,19 +7,22 @@ import { useCustomStyles } from '@hooks'
 import { menuItem } from '../menu'
 import { NavLink } from '../NavLink'
 
-import { navStyles, ulStyles } from './menu-mobile.styles'
+import { navActiveStyles, navStyles, ulStyles } from './menu-mobile.styles'
 
 interface IProps {
+	isOpen: boolean
 	onClose: () => void
 }
 
-export const MenuMobile: FC<IProps> = ({ onClose }) => {
+export const MenuMobile: FC<IProps> = ({ isOpen, onClose }) => {
 	const { menuMobBoxStyles } = useCustomStyles()
 
+	const activeClass = isOpen && { ...navActiveStyles }
 	return (
 		<Box
 			as="nav"
 			{...navStyles}
+			{...activeClass}
 			{...menuMobBoxStyles}
 		>
 			<Flex
