@@ -1,5 +1,7 @@
+import { useContext } from 'react'
 import NextLink from 'next/link'
 import { AiOutlineShopping } from 'react-icons/ai'
+import { HeaderContext } from 'src/context'
 
 import { Box, IconButton, useColorMode } from '@chakra-ui/react'
 
@@ -10,6 +12,7 @@ import { useAppSelector } from '@hooks'
 import { componentStyles, countStyles, iconStyles } from './menu-cart.styles'
 
 export const MenuCart = () => {
+	const { onCloseNav } = useContext(HeaderContext)
 	const { colorMode } = useColorMode()
 	const { cart } = useAppSelector(state => state)
 	const fill = colorMode === 'light' ? '#000' : '#ffffff'
@@ -20,6 +23,7 @@ export const MenuCart = () => {
 				as={NextLink}
 				href={STORE_ROUTES.CART}
 				aria-label="Go to cart"
+				onClick={onCloseNav}
 				icon={<AiOutlineShopping fill={fill} />}
 				{...iconStyles}
 			/>

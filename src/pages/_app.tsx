@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
+import { HeaderProvider } from 'src/context'
 
 import { ChakraProvider } from '@chakra-ui/react'
 
@@ -14,9 +15,11 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<ChakraProvider>
 			<Provider store={store}>
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
+				<HeaderProvider>
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
+				</HeaderProvider>
 			</Provider>
 		</ChakraProvider>
 	)

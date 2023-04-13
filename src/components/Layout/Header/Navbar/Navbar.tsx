@@ -1,4 +1,4 @@
-import { HStack, useDisclosure } from '@chakra-ui/react'
+import { HStack } from '@chakra-ui/react'
 
 import { Logo } from '../Logo'
 
@@ -9,24 +9,13 @@ import { MenuMobile } from './MenuMobile'
 import { hStackStyles } from './navbar.styles'
 
 export const Navbar = () => {
-	const { isOpen, onOpen, onClose } = useDisclosure()
 
 	return (
 		<HStack {...hStackStyles}>
 			<Logo />
-
-			<MenuBurger
-				isOpen={isOpen}
-				onOpen={onOpen}
-				onClose={onClose}
-			/>
-
+			<MenuBurger />
 			<MenuDesktop />
-
-			<MenuMobile
-				isOpen={isOpen}
-				onClose={onClose}
-			/>
+			<MenuMobile />
 		</HStack>
 	)
 }

@@ -1,4 +1,5 @@
-import { FC } from 'react'
+import { useContext } from 'react'
+import { HeaderContext } from 'src/context'
 
 import { Box, Flex } from '@chakra-ui/react'
 
@@ -9,15 +10,11 @@ import { NavLink } from '../NavLink'
 
 import { navActiveStyles, navStyles, ulStyles } from './menu-mobile.styles'
 
-interface IProps {
-	isOpen: boolean
-	onClose: () => void
-}
-
-export const MenuMobile: FC<IProps> = ({ isOpen, onClose }) => {
+export const MenuMobile = () => {
 	const { menuMobBoxStyles } = useCustomStyles()
+	const { isOpenNav, onCloseNav } = useContext(HeaderContext)
 
-	const activeClass = isOpen && { ...navActiveStyles }
+	const activeClass = isOpenNav && { ...navActiveStyles }
 	return (
 		<Box
 			as="nav"
@@ -33,7 +30,7 @@ export const MenuMobile: FC<IProps> = ({ isOpen, onClose }) => {
 					<NavLink
 						key={idx}
 						menu={item}
-						onClick={onClose}
+						onClick={onCloseNav}
 					/>
 				))}
 			</Flex>

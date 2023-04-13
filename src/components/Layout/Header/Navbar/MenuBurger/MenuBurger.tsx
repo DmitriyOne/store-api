@@ -1,22 +1,18 @@
-import { FC } from 'react'
+import { useContext } from 'react'
+import { HeaderContext } from 'src/context'
 
 import { IconButton } from '@chakra-ui/react'
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
 
 import { iconStyles } from './menu-burger.styles'
 
-interface IProps {
-	isOpen: boolean
-	onOpen: () => void
-	onClose: () => void
-}
-
-export const MenuBurger: FC<IProps> = ({ isOpen, onOpen, onClose }) => {
+export const MenuBurger = () => {
+	const { isOpenNav, onOpenNav, onCloseNav } = useContext(HeaderContext)
 
 	return (
 		<IconButton
-			onClick={isOpen ? onClose : onOpen}
-			icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+			onClick={isOpenNav ? onCloseNav : onOpenNav}
+			icon={isOpenNav ? <CloseIcon /> : <HamburgerIcon />}
 			{...iconStyles}
 		/>
 	)
