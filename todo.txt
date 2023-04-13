@@ -1,6 +1,6 @@
-- head dynamic title
+- head dynamic title(done)
 - head favicon
-- adaptive header
+- adaptive header (done)
 - universal short item component
 - page
 -- product
