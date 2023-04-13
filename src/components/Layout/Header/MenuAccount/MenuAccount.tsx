@@ -1,4 +1,8 @@
+import NextLink from 'next/link'
+
 import { Avatar, Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+
+import { menuItem } from './menu'
 
 import { buttonStyles } from './menu-account.styles'
 
@@ -14,8 +18,15 @@ export const MenuAccount = () => {
 				<Avatar size="sm" />
 			</MenuButton>
 			<MenuList>
-				<MenuItem>Link 1</MenuItem>
-				<MenuItem>Link 2</MenuItem>
+				{menuItem.map(item =>
+					<MenuItem
+						as={NextLink}
+						key={item.href}
+						href={item.href}
+					>
+						{item.title}
+					</MenuItem>
+				)}
 			</MenuList>
 		</Menu>
 	)

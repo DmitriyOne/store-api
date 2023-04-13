@@ -1,11 +1,11 @@
 import { Heading } from '@components'
 
-export const SingUp = () => {
+export const Settings = () => {
 
 	return (
 		<>
 			<Heading size="xl">
-				SingUp page
+				Settings page
 			</Heading>
 		</>
 	)
