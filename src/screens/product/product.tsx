@@ -3,7 +3,9 @@ import { skipToken } from '@reduxjs/toolkit/dist/query'
 
 import { useGetCurrentProductQuery } from '@services/product'
 
-import { Heading } from '@components'
+import { Heading, ProductDetails } from '@components'
+
+import { titleStyles } from './product.styles'
 
 export const Product = () => {
 	const router = useRouter()
@@ -15,14 +17,16 @@ export const Product = () => {
 		: skipToken, { skip: router.isFallback }
 	)
 
+	if (!data) {
+		return <div>Loading...</div>
+	}
+
 	return (
 		<>
-			<Heading size="xl">
-				Your change:
+			<Heading {...titleStyles}>
+				breadcrumbs
 			</Heading>
-			<div>
-				{data?.title}
-			</div>
+			<ProductDetails product={data} />
 		</>
 	)
 }

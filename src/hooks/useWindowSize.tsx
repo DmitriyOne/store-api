@@ -26,7 +26,7 @@ export const useWindowSize = () => {
 	}, [])
 
 	const isMobile = windowSize.width ? windowSize.width <= 768 : undefined
-	const isDesktop = windowSize.width ? windowSize.width > 1024 : undefined
+	const isDesktop = windowSize.width ? windowSize.width > 768 : undefined
 
 	return { ...windowSize, isMobile, isDesktop }
 }

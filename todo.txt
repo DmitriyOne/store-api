@@ -1,7 +1,9 @@
-- head dynamic title(done)
-- head favicon
+- head dynamic title (done)
+- head favicon (done)
 - adaptive header (done)
-- universal short item component
+- universal short item component (done)
+- filters product
+- pagination product
 - page
 ---- product
 ---- form
@@ -11,3 +13,5 @@
 ---- about
 ---- ?checkout
 - seo
+- form
+- breadcrumbs
