@@ -1,11 +1,16 @@
 import { NextPage } from 'next'
 
+import { HeadTitleDynamic } from '@components'
+
 import { Cart } from '@screens'
 
 export const CartPage: NextPage = () => {
-	
+
 	return (
-		<Cart />
+		<>
+			<HeadTitleDynamic pageTitle="Cart" />
+			<Cart />
+		</>
 	)
 }
 

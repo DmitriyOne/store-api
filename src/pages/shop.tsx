@@ -2,6 +2,8 @@ import { NextPage } from 'next'
 
 import { useAppSelector } from '@hooks'
 
+import { HeadTitleDynamic } from '@components'
+
 import { Shop } from '@screens'
 
 export const ShopPage: NextPage = () => {
@@ -9,7 +11,10 @@ export const ShopPage: NextPage = () => {
 	// console.log('cart: ', cart)
 
 	return (
-		<Shop />
+		<>
+			<HeadTitleDynamic />
+			<Shop />
+		</>
 	)
 }
 

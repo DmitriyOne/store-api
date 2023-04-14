@@ -3,10 +3,11 @@
 - adaptive header (done)
 - universal short item component
 - page
--- product
--- form
--- account
--- favorites
--- home
--- about
--- ?checkout
+---- product
+---- form
+---- account
+---- favorites
+---- home
+---- about
+---- ?checkout
+- seo

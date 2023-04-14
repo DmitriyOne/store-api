@@ -1,11 +1,16 @@
 import { NextPage } from 'next'
 
+import { HeadTitleDynamic } from '@components'
+
 import { Login } from '@screens'
 
 export const LoginPage: NextPage = () => {
 
 	return (
-		<Login />
+		<>
+			<HeadTitleDynamic pageTitle="Fake" />
+			<Login />
+		</>
 	)
 }
 
