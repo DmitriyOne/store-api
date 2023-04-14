@@ -35,6 +35,7 @@ export const ProductTooltip: FC<IProps> = ({ product }) => {
 		>
 			<Button
 				onClick={onToggle}
+				sx={{ ':hover > svg': { transform: 'scale(1.1)' } }}
 				{...buttonStyles}
 			>
 				<Icon

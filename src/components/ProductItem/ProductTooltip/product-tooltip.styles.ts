@@ -27,6 +27,7 @@ export const iconStylesDefault: IconProps = {
 	fill: 'transparent',
 	stroke: 'red.400',
 	alignSelf: 'center',
+	transition: 'all .3s',
 }
 
 export const iconStylesActive: IconProps = {
@@ -35,4 +36,5 @@ export const iconStylesActive: IconProps = {
 	fill: 'red.500',
 	stroke: 'red.500',
 	alignSelf: 'center',
+	transition: 'all .2s',
 }
