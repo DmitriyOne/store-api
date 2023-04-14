@@ -16,10 +16,10 @@ interface IProps {
 
 export const ProductInFavorites: FC<IProps> = ({ product }) => {
 	const { isMobile } = useWindowSize()
-	const { removeItemCart } = useAppActions()
+	const { removeItemFavorites } = useAppActions()
 
 	const onRemove = () => {
-		removeItemCart(product)
+		removeItemFavorites(product)
 	}
 
 	return (
@@ -35,6 +35,7 @@ export const ProductInFavorites: FC<IProps> = ({ product }) => {
 				?
 				<Button
 					aria-label={`Delete ${product.title} from favorites`}
+					onClick={onRemove}
 					{...buttonOnMobileStyles}
 				>
 					Delete

@@ -7,15 +7,15 @@ import { STORE_ROUTES } from '@constants'
 
 import { useCustomStyles } from '@hooks'
 
-import { componentStyles } from './shopping.styles'
+import { componentStyles } from './msg-with-btn.styles'
 
 interface IProps {
 	textLink: string
 	textSpan?: string
 }
 
-export const Shopping: FC<IProps> = ({ textLink, textSpan }) => {
-	const { contShoppingLinkStyles } = useCustomStyles()
+export const MessageWithButton: FC<IProps> = ({ textLink, textSpan }) => {
+	const { buttonWithMsgStyles } = useCustomStyles()
 
 	return (
 		<HStack as="span" {...componentStyles}>
@@ -28,7 +28,7 @@ export const Shopping: FC<IProps> = ({ textLink, textSpan }) => {
 			<Link
 				as={NextLink}
 				href={STORE_ROUTES.SHOP}
-				{...contShoppingLinkStyles}
+				{...buttonWithMsgStyles}
 			>
 				{textLink}
 			</Link>

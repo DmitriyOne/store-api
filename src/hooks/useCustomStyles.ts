@@ -88,9 +88,9 @@ export const useCustomStyles = () => {
 	}
 
 	//Continue shopping
-	const contShoppingLinkDefault = useColorModeValue('blue.500', 'blue.200')
-	const contShoppingLinkStyles: LinkProps = {
-		color: contShoppingLinkDefault,
+	const buttonWithMsgStylesDefault = useColorModeValue('blue.500', 'blue.200')
+	const buttonWithMsgStyles: LinkProps = {
+		color: buttonWithMsgStylesDefault,
 	}
 
 	// Order Summary Item
@@ -111,7 +111,7 @@ export const useCustomStyles = () => {
 		footerBoxStyles,
 		socialButtonStyles,
 		cartMetaTextStyles,
-		contShoppingLinkStyles,
+		buttonWithMsgStyles,
 		orderSumItemTextStyles,
 	}
 }

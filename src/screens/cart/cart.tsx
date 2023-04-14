@@ -3,14 +3,13 @@ import { Flex, Stack, Text } from '@chakra-ui/react'
 
 import { useAppSelector } from '@hooks'
 
-import { CartOrderSummary, Heading, ProductInCart } from '@components'
-
-import { Shopping } from './shopping'
+import { CartOrderSummary, Heading, MessageWithButton, ProductInCart } from '@components'
 
 import { containerStyles, continueShopContainerStyles, itemWrapperStyles, titleStyles } from './cart.styles'
 
 export const Cart = () => {
 	const { cart } = useAppSelector(state => state)
+	const messageBtn = cart.items.length ? 'Continue shopping' : 'Go to shopping'
 
 	return (
 		<>
@@ -32,7 +31,7 @@ export const Cart = () => {
 
 					<Flex {...continueShopContainerStyles}>
 						<CartOrderSummary />
-						<Shopping textSpan="or" textLink="Continue shopping" />
+						<MessageWithButton textSpan="or" textLink={messageBtn} />
 					</Flex>
 				</Stack>
 				:
@@ -40,7 +39,7 @@ export const Cart = () => {
 					<Text>
 						Sorry, you don&rsquo;t have items in cart.
 					</Text>
-					<Shopping textLink="Go to shopping" />
+					<MessageWithButton textLink={messageBtn} />
 				</>
 			}
 		</>

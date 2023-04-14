@@ -4,3 +4,4 @@ export const componentStyles: StackProps = {
 	mt: '6',
 	fontWeight: 'semibold',
 }
+

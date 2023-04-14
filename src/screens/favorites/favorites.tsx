@@ -3,7 +3,7 @@ import { Stack, Text } from '@chakra-ui/react'
 
 import { useAppSelector } from '@hooks'
 
-import { Heading, ProductInFavorites } from '@components'
+import { Heading, MessageWithButton, ProductInFavorites } from '@components'
 
 import { containerStyles, titleStyles } from './favorites.styles'
 
@@ -31,6 +31,7 @@ export const Favorites = () => {
 					<Text>
 						Sorry, you don&rsquo;t have items in favorites.
 					</Text>
+					<MessageWithButton textLink="Go to shop" />
 				</>
 			}
 		</>

@@ -37,6 +37,7 @@ export const ProductInCart: FC<IProps> = ({ product }) => {
 				<Flex {...flexOnMobileStyles}>
 					<Button
 						aria-label={`Delete ${product.title} from cart`}
+						onClick={onRemove}
 						{...buttonOnMobileStyles}
 					>
 						Delete
