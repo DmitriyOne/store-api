@@ -1,6 +1,9 @@
 import { FC } from 'react'
+import Link from 'next/link'
 
 import { Box, Image, Stack, Text } from '@chakra-ui/react'
+
+import { STORE_ROUTES } from '@constants'
 
 import { useCustomStyles } from '@hooks'
 
@@ -9,12 +12,13 @@ import { Heading } from '@components'
 import { boxStyles, categoryStyles, componentStyles, imageStyles, stackStyles, titleStyles } from './product-meta.styles'
 
 interface IProps {
+	id: number
 	title: string
 	category: string
 	image: string
 }
 
-export const ProductMeta: FC<IProps> = ({ title, category, image }) => {
+export const ProductMeta: FC<IProps> = ({ id, title, category, image }) => {
 	const { cartMetaTextStyles } = useCustomStyles()
 
 	return (
@@ -34,7 +38,9 @@ export const ProductMeta: FC<IProps> = ({ title, category, image }) => {
 						className="text-two-line"
 						{...titleStyles}
 					>
-						{title}
+						<Link href={`${STORE_ROUTES.PRODUCT}/${id}`}>
+							{title}
+						</Link>
 					</Heading>
 					<Text
 						{...categoryStyles}

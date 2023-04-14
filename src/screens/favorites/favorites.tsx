@@ -3,7 +3,7 @@ import { Stack, Text } from '@chakra-ui/react'
 
 import { useAppSelector } from '@hooks'
 
-import { Heading, ShortProductItem } from '@components'
+import { Heading, ProductInFavorites } from '@components'
 
 import { containerStyles, titleStyles } from './favorites.styles'
 
@@ -20,10 +20,9 @@ export const Favorites = () => {
 				?
 				<Stack {...containerStyles}>
 					{favorites.map((product) => (
-						<ShortProductItem
+						<ProductInFavorites
 							key={product.id}
 							product={product}
-							variant="favorites"
 						/>
 					))}
 				</Stack>

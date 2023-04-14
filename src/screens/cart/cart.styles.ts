@@ -12,7 +12,7 @@ export const containerStyles: StackProps = {
 }
 
 export const itemWrapperStyles: StackProps = {
-	spacing: { base: '8', md: '10' },
+	spacing: { base: '6', md: '10' },
 	flex: '2',
 }
 
