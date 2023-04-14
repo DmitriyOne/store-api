@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import { Box } from '@chakra-ui/react'
 
+import { STORE_ROUTES } from '@constants'
 import { IProduct } from '@interfaces'
 
 import { boxStyles } from './product-image.styles'
@@ -23,7 +24,7 @@ export const ProductImage: FC<IProps> = ({ product }) => {
 			{...boxStyles}
 		>
 			<Link
-				href={href}
+				href={`${STORE_ROUTES.PRODUCT}/${href}`}
 				className="block h-full relative"
 			>
 				<Image

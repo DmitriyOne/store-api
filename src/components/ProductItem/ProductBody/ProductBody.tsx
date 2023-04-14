@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { Box, Flex } from '@chakra-ui/react'
 
+import { STORE_ROUTES } from '@constants'
 import { IProduct } from '@interfaces'
 
 import { Heading } from '@components'
@@ -12,13 +13,13 @@ import { ProductPrice } from '../ProductPrice'
 import { ProductRating } from '../ProductRating'
 
 import { flex2Styles, flexMainStyles, titleStyles } from './product-body.styles'
-import styles from './product-body.module.scss'
 
 interface IProps {
 	product: IProduct
 }
 
 export const ProductBody: FC<IProps> = ({ product }) => {
+	
 	const href = product.id.toString()
 
 	return (
@@ -30,7 +31,7 @@ export const ProductBody: FC<IProps> = ({ product }) => {
 					{...titleStyles}
 				>
 					<Link
-						href={href}
+						href={`${STORE_ROUTES.PRODUCT}/${href}`}
 						className="block"
 					>
 						{product.title}
