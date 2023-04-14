@@ -15,3 +15,4 @@
 - seo
 - form
 - breadcrumbs
+- count product in cart

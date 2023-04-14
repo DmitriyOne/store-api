@@ -75,9 +75,20 @@ export const btnWrapStyles: StackProps = {
 	w: { base: 'full', md: 'auto' },
 }
 
-export const btnCartStyles: ButtonProps = {
+export const btnCartDefaultStyles: ButtonProps = {
 	variant: 'solid',
 	w: { base: 'full', md: 'auto' },
+}
+
+export const btnCartDisabledStyles: ButtonProps = {
+	variant: 'solid',
+	w: { base: 'full', md: 'auto' },
+	bg: 'blackAlpha.200',
+	color: 'gray.400',
+	cursor: 'no-drop',
+	_hover: {
+		bg: 'blackAlpha.200',
+	},
 }
 
 export const iconCartStyles: IconProps = {
@@ -98,17 +109,22 @@ export const btnFavoritesStyles: ButtonProps = {
 	top: { base: '0', md: '0' },
 	right: { base: '0', md: '0' },
 	px: { base: 0, md: 4 },
-	py: 0,
-	bg: 'transparent',
-	_hover: {
-		bg: 'transparent',
-	},
 }
 
-export const iconFavoritesStyles: IconProps = {
+export const iconFavDefaultStyles: IconProps = {
 	h: { base: 6, md: 4 },
 	w: { base: 6, md: 4 },
 	fill: 'transparent',
+	stroke: 'red.400',
+	alignSelf: 'center',
+	transition: 'all .3s',
+	ml: { base: 0, md: 2 },
+}
+
+export const iconFavActiveStyles: IconProps = {
+	h: { base: 6, md: 4 },
+	w: { base: 6, md: 4 },
+	fill: 'red.400',
 	stroke: 'red.400',
 	alignSelf: 'center',
 	transition: 'all .3s',
