@@ -53,16 +53,6 @@ export const useCustomStyles = () => {
 		color: colorProductPriceBoxDefault,
 	}
 
-	// Tooltip
-	const bgTooltipDefault = useColorModeValue('red.50', 'transparent')
-	const bgTooltipHover = useColorModeValue('red.100', 'transparent')
-	const tooltipButtonStyles: ButtonProps = {
-		bg: bgTooltipDefault,
-		_hover: {
-			bg: bgTooltipHover,
-		},
-	}
-
 	// Footer
 	const bgFooterBoxDefault = useColorModeValue('gray.50', 'gray.900')
 	const colorFooterBoxDefault = useColorModeValue('gray.700', 'gray.200')
@@ -107,7 +97,6 @@ export const useCustomStyles = () => {
 		productItemBoxStyles,
 		productBodyButtonStyles,
 		productPriceBoxStyles,
-		tooltipButtonStyles,
 		footerBoxStyles,
 		socialButtonStyles,
 		cartMetaTextStyles,

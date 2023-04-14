@@ -12,10 +12,27 @@ export const buttonStyles: ButtonProps = {
 	top: { base: '1', lg: '2' },
 	right: { base: '1', lg: '2' },
 	p: '2',
+	bg: 'transparent',
+	_hover: {
+		bg: 'transparent',
+	},
+	_disabled: {
+		opacity: 1,
+	},
 }
 
-export const iconStyles: IconProps = {
+export const iconStylesDefault: IconProps = {
 	h: 5,
 	w: 5,
+	fill: 'transparent',
+	stroke: 'red.400',
+	alignSelf: 'center',
+}
+
+export const iconStylesActive: IconProps = {
+	h: 6,
+	w: 6,
+	fill: 'red.500',
+	stroke: 'transparent',
 	alignSelf: 'center',
 }
