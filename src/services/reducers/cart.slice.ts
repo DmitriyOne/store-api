@@ -11,11 +11,11 @@ export const cartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		addItemCart: (state, action: PayloadAction<IShortProduct>) => {
+		onAddItemCart: (state, action: PayloadAction<IShortProduct>) => {
 			state.items.push(action.payload)
 			state.totalPrice += action.payload.price
 		},
-		removeItemCart: (state, action: PayloadAction<IShortProduct>) => {
+		onRemoveItemCart: (state, action: PayloadAction<IShortProduct>) => {
 			const removeItem = state.items.find(item => item.id === action.payload.id)
 			if (removeItem) {
 				state.items = state.items.filter(item => item.id !== action.payload.id)

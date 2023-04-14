@@ -30,9 +30,9 @@ export const iconStylesDefault: IconProps = {
 }
 
 export const iconStylesActive: IconProps = {
-	h: 6,
-	w: 6,
+	h: 5,
+	w: 5,
 	fill: 'red.500',
-	stroke: 'transparent',
+	stroke: 'red.500',
 	alignSelf: 'center',
 }

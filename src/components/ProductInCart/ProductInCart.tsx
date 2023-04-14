@@ -17,10 +17,10 @@ interface IProps {
 
 export const ProductInCart: FC<IProps> = ({ product }) => {
 	const { isMobile } = useWindowSize()
-	const { removeItemCart } = useAppActions()
+	const { onRemoveItemCart } = useAppActions()
 
 	const onRemove = () => {
-		removeItemCart(product)
+		onRemoveItemCart(product)
 	}
 
 	return (

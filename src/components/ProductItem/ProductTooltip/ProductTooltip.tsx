@@ -5,7 +5,7 @@ import { Button, Icon, Tooltip } from '@chakra-ui/react'
 
 import { IProduct } from '@interfaces'
 
-import { useAppActions, useAppSelector } from '@hooks'
+import { useAppActions, useAppSelector, useWindowSize } from '@hooks'
 
 import { buttonStyles, iconStylesActive, iconStylesDefault, tooltipStyles } from './product-tooltip.styles'
 
@@ -15,25 +15,26 @@ interface IProps {
 
 export const ProductTooltip: FC<IProps> = ({ product }) => {
 	const { favorites } = useAppSelector(state => state)
-	const { addItemFavorites } = useAppActions()
+	const { onToggleItemFavorites } = useAppActions()
+	const { isMobile } = useWindowSize()
 
 	const isExistInFavorites = favorites.some(item => item.id === product.id)
+	const label = isExistInFavorites ? 'Remove from favorites' : 'Add to favorites'
 
-	const addToFavorites = () => {
-		if (isExistInFavorites) return
-		addItemFavorites(product)
+	const onToggle = () => {
+		onToggleItemFavorites(product)
 	}
 
 	const iconStyles = isExistInFavorites ? { ...iconStylesActive } : { ...iconStylesDefault }
 	return (
 		<Tooltip
-			label="Add to favorites"
+			label={label}
 			placement="top"
+			isDisabled={isMobile}
 			{...tooltipStyles}
 		>
 			<Button
-				isDisabled={isExistInFavorites}
-				onClick={addToFavorites}
+				onClick={onToggle}
 				{...buttonStyles}
 			>
 				<Icon

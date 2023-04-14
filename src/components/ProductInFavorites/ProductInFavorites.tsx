@@ -16,10 +16,10 @@ interface IProps {
 
 export const ProductInFavorites: FC<IProps> = ({ product }) => {
 	const { isMobile } = useWindowSize()
-	const { removeItemFavorites } = useAppActions()
+	const { onRemoveItemFavorites } = useAppActions()
 
 	const onRemove = () => {
-		removeItemFavorites(product)
+		onRemoveItemFavorites(product)
 	}
 
 	return (

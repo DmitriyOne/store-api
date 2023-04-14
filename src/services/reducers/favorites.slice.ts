@@ -8,10 +8,15 @@ export const favoritesSlice = createSlice({
 	name: 'favorites',
 	initialState,
 	reducers: {
-		addItemFavorites: (state, action: PayloadAction<IShortProduct>) => {
-			state.push(action.payload)
+		onToggleItemFavorites: (state, action: PayloadAction<IShortProduct>) => {
+			const existingIndex = state.findIndex(item => item.id === action.payload.id)
+			if (existingIndex !== -1) {
+				state.splice(existingIndex, 1)
+			} else {
+				state.push(action.payload)
+			}
 		},
-		removeItemFavorites: (state, action: PayloadAction<IShortProduct>) => {
+		onRemoveItemFavorites: (state, action: PayloadAction<IShortProduct>) => {
 			return state.filter(item => item.id !== action.payload.id)
 		},
 	},
