@@ -1,12 +1,6 @@
-export interface ICart {
-	id: number
-	title: string
-	category: string
-	price: number
-	image: string
-}
+import { IShortProduct } from '@interfaces'
 
 export interface ICartState {
-	items: ICart[];
+	items: IShortProduct[];
 	totalPrice: number;
 }

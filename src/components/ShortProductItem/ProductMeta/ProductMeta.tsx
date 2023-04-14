@@ -6,7 +6,7 @@ import { useCustomStyles } from '@hooks'
 
 import { Heading } from '@components'
 
-import { boxStyles, categoryStyles, componentStyles, imageStyles, stackStyles, titleStyles } from './cart-meta.styles'
+import { boxStyles, categoryStyles, componentStyles, imageStyles, stackStyles, titleStyles } from './product-meta.styles'
 
 interface IProps {
 	title: string
@@ -14,7 +14,7 @@ interface IProps {
 	image: string
 }
 
-export const CartMeta: FC<IProps> = ({ title, category, image }) => {
+export const ProductMeta: FC<IProps> = ({ title, category, image }) => {
 	const { cartMetaTextStyles } = useCustomStyles()
 
 	return (

@@ -2,13 +2,13 @@ import { FC } from 'react'
 
 import { HStack, Text } from '@chakra-ui/react'
 
-import { componentStyles, textStyles } from './cart-price.styles'
+import { componentStyles, textStyles } from './product-price.styles'
 
 interface IProps {
 	price: number
 }
 
-export const CartPrice: FC<IProps> = ({ price }) => {
+export const ProductPrice: FC<IProps> = ({ price }) => {
 
 	return (
 		<HStack {...componentStyles}>

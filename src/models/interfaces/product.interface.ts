@@ -12,3 +12,11 @@ export interface IProduct {
 	image: string
 	rating: IProductRating
 }
+
+export interface IShortProduct {
+	id: number
+	title: string
+	category: string
+	price: number
+	image: string
+}

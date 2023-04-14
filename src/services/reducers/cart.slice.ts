@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { ICart, ICartState } from '@interfaces'
+import { ICartState, IShortProduct } from '@interfaces'
 
 const initialState: ICartState = {
 	items: [],
@@ -11,11 +11,11 @@ export const cartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		addItem: (state, action: PayloadAction<ICart>) => {
+		addItemCart: (state, action: PayloadAction<IShortProduct>) => {
 			state.items.push(action.payload)
 			state.totalPrice += action.payload.price
 		},
-		removeItem: (state, action: PayloadAction<ICart>) => {
+		removeItemCart: (state, action: PayloadAction<IShortProduct>) => {
 			const removeItem = state.items.find(item => item.id === action.payload.id)
 			if (removeItem) {
 				state.items = state.items.filter(item => item.id !== action.payload.id)

@@ -3,7 +3,7 @@ import { Flex, Stack, Text } from '@chakra-ui/react'
 
 import { useAppSelector } from '@hooks'
 
-import { CartItem, CartOrderSummary, Heading } from '@components'
+import { CartOrderSummary, Heading, ShortProductItem } from '@components'
 
 import { Shopping } from './shopping'
 
@@ -23,9 +23,10 @@ export const Cart = () => {
 				<Stack {...containerStyles}>
 					<Stack {...itemWrapperStyles}>
 						{cart.items.map((product) => (
-							<CartItem
+							<ShortProductItem
 								key={product.id}
 								product={product}
+								variant="cart"
 							/>
 						))}
 					</Stack>

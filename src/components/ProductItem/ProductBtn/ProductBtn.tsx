@@ -15,12 +15,12 @@ interface IProps {
 export const ProductBtn: FC<IProps> = ({ product }) => {
 	const { productBodyButtonStyles } = useCustomStyles()
 	const { cart } = useAppSelector(state => state)
-	const { addItem } = useAppActions()
+	const { addItemCart } = useAppActions()
 	const isExistInCart = cart.items.some(item => item.id === product.id)
 
 	const addToCart = () => {
 		if (isExistInCart) return
-		addItem(product)
+		addItemCart(product)
 	}
 
 	const disabled = isExistInCart ? { ...buttonDisabledStyles } : { ...productBodyButtonStyles }

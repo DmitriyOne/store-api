@@ -3,31 +3,35 @@ import { FC } from 'react'
 
 import { Button, CloseButton, Flex } from '@chakra-ui/react'
 
-import { ICart } from '@interfaces'
+import { IShortProduct } from '@interfaces'
 
 import { useAppActions } from '@hooks'
 import { useWindowSize } from '@hooks/useWindowSize'
 
-import { CartMeta } from './CartMeta'
-import { CartPrice } from './CartPrice'
+import { ProductMeta } from './ProductMeta'
+import { ProductPrice } from './ProductPrice'
 
-import { buttonOnMobileStyles, componentStyles, flexOnDesktopStyles, flexOnMobileStyles } from './cart-item.styles'
+import { buttonOnMobileStyles, componentStyles, flexOnDesktopStyles, flexOnMobileStyles } from './short-product-item.styles'
 
 interface IProps {
-	product: ICart
+	product: IShortProduct
+	variant: 'cart' | 'favorites'
 }
 
-export const CartItem: FC<IProps> = ({ product }) => {
+export const ShortProductItem: FC<IProps> = ({ product, variant }) => {
 	const { isMobile } = useWindowSize()
-	const { removeItem } = useAppActions()
+	const { removeItemCart, removeItemFavorites } = useAppActions()
 
-	const removeInCart = () => {
-		removeItem(product)
+	const onRemove = () => {
+		if (variant === 'cart') {
+			removeItemCart(product)
+		}
+		removeItemFavorites(product)
 	}
 
 	return (
 		<Flex {...componentStyles}>
-			<CartMeta
+			<ProductMeta
 				title={product.title}
 				category={product.category}
 				image={product.image}
@@ -42,14 +46,14 @@ export const CartItem: FC<IProps> = ({ product }) => {
 					>
 						Delete
 					</Button>
-					<CartPrice price={product.price} />
+					{variant !== 'favorites' && <ProductPrice price={product.price} />}
 				</Flex>
 				:
 				<Flex {...flexOnDesktopStyles}>
-					<CartPrice price={product.price} />
+					{variant !== 'favorites' && <ProductPrice price={product.price} />}
 					<CloseButton
 						aria-label={`Delete ${product.title} from cart`}
-						onClick={removeInCart}
+						onClick={onRemove}
 					/>
 				</Flex>
 			}
