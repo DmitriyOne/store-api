@@ -1,16 +1,17 @@
 import { FaArrowRight } from 'react-icons/fa'
 
-import { Button, Heading, Stack } from '@chakra-ui/react'
+import { Box, Button, Heading, Stack } from '@chakra-ui/react'
 
 import { useAppSelector } from '@hooks'
 
+import { OrderPriceItem } from './OrderPriceItem'
 import { OrderSummaryItem } from './OrderSummaryItem'
 
 import { buttonStyles, componentStyles } from './cart-order-summary.styles'
 
 export const CartOrderSummary = () => {
 	const { cart } = useAppSelector(state => state)
-	console.log(cart.items)
+	console.log('cart order: ', cart.items)
 
 	return (
 		<Stack {...componentStyles}>
@@ -22,6 +23,9 @@ export const CartOrderSummary = () => {
 				<OrderSummaryItem
 					label="Subtotal"
 					price={cart.totalPrice}
+				/>
+				<OrderPriceItem
+					items={cart.items}
 				/>
 				<OrderSummaryItem
 					label="Total"

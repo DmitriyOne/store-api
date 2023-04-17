@@ -6,7 +6,9 @@ import { EFontSize, EFontWeight } from '@enums'
 
 import { useCustomStyles } from '@hooks'
 
-import { componentStyles } from './order-summary-item.styles'
+import { Heading } from '@components'
+
+import { componentStyles, textStyles, titleStyles } from './order-summary-item.styles'
 
 interface IProps {
 	label: string
@@ -30,13 +32,18 @@ export const OrderSummaryItem: FC<IProps> = ({
 			fontSize={fontSize}
 			{...componentStyles}
 		>
-			<Text
+			<Heading
+				as="h4"
 				fontWeight={fontWeightLabel}
+				{...titleStyles}
 				{...orderSumItemTextStyles}
 			>
 				{label}
-			</Text>
-			<Text fontWeight={fontWeightPrice}>
+			</Heading>
+			<Text
+				fontWeight={fontWeightPrice}
+				{...textStyles}
+			>
 				{price.toFixed(2)}$
 			</Text>
 		</Flex>
