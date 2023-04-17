@@ -1,4 +1,3 @@
-import { HYDRATE } from 'next-redux-wrapper'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { IProduct } from '@interfaces'
@@ -10,11 +9,6 @@ export const productApi = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: baseUrl,
 	}),
-	extractRehydrationInfo(action, { reducerPath }) {
-		if (action.type === HYDRATE) {
-			return action.payload[reducerPath]
-		}
-	},
 	endpoints: (builder) => ({
 		getAllProducts: builder.query<IProduct[], void>({
 			query: () => '/products',
@@ -27,7 +21,4 @@ export const productApi = createApi({
 
 export const {
 	useGetAllProductsQuery,
-	useGetCurrentProductQuery,
-	util: { getRunningQueriesThunk: getRQTProduct } } = productApi
-
-export const { getAllProducts, getCurrentProduct } = productApi.endpoints
+	useGetCurrentProductQuery } = productApi

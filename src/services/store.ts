@@ -1,4 +1,3 @@
-import { createWrapper } from 'next-redux-wrapper'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import { productApi } from './product'
@@ -10,12 +9,10 @@ const rootReducer = combineReducers({
 	favorites: favoritesReducer,
 })
 
-export const makeStore = () =>
-	configureStore({
-		reducer: rootReducer,
-		middleware: (gDM) => gDM().concat(productApi.middleware),
-	})
+export const store = configureStore({
+	reducer: rootReducer,
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware().concat(productApi.middleware),
+})
 
-export type AppStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<AppStore['getState']>;
-export const wrapper = createWrapper<AppStore>(makeStore, { debug: false })
+export type RootState = ReturnType<typeof store.getState>

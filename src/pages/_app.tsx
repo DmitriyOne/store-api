@@ -1,36 +1,26 @@
 /* eslint-disable no-unused-vars */
-import { FC, ReactElement, ReactNode } from 'react'
-import { NextPage } from 'next'
+import { FC } from 'react'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { HeaderProvider } from 'src/context'
+import { ApiProvider } from '@reduxjs/toolkit/query/react'
 
 import { ChakraProvider } from '@chakra-ui/react'
 
-import { wrapper } from '@services'
+import { store } from '@services'
 
 import { Layout } from '@components'
 
 import '@styles/global.scss'
 
-type NextPageWithLayout = NextPage & {
-	getLayout?: (page: ReactElement) => ReactNode;
-};
-
-type AppPropsWithLayout = AppProps & {
-	Component: NextPageWithLayout;
-};
-
-export const App: FC<AppPropsWithLayout> = ({ Component, ...rest }) => {
-	const { store, props } = wrapper.useWrappedStore(rest)
-	const getLayout = Component.getLayout ?? ((page) => page)
+export const App: FC<AppProps> = ({ Component, pageProps }) => {
 
 	return (
 		<ChakraProvider>
 			<Provider store={store}>
 				<HeaderProvider>
 					<Layout>
-						{getLayout(<Component {...props.pageProps} />)}
+						<Component {...pageProps} />
 					</Layout>
 				</HeaderProvider>
 			</Provider>

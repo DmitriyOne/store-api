@@ -14,5 +14,5 @@
 ---- ?checkout
 - seo
 - form
-- breadcrumbs
-- count product in cart
+- breadcrumbs (done)
+- count product in cart 
