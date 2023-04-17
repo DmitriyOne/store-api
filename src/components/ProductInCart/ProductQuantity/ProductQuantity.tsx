@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FC } from 'react'
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai'
 
 import { Button, Flex, Icon, Text } from '@chakra-ui/react'
@@ -6,22 +6,12 @@ import { Button, Flex, Icon, Text } from '@chakra-ui/react'
 import { buttonStyles, componentStyles, iconStyles, textStyles } from './product-quantity.styles'
 
 interface IProps {
-
+	quantity: number
+	incrementQuantity: () => void
+	decrementQuantity: () => void
 }
 
-export const ProductQuantity = () => {
-	const [quantity, setQuantity] = useState(1)
-
-	const incrementQuantity = () => {
-		setQuantity(prevCount => prevCount + 1)
-	}
-
-	const decrementQuantity = () => {
-		setQuantity(prevCount => {
-			if (prevCount <= 1) return 1
-			return prevCount - 1
-		})
-	}
+export const ProductQuantity: FC<IProps> = ({ quantity, incrementQuantity, decrementQuantity }) => {
 
 	return (
 		<Flex {...componentStyles}>
@@ -34,9 +24,11 @@ export const ProductQuantity = () => {
 					{...iconStyles}
 				/>
 			</Button>
+
 			<Text {...textStyles}>
 				{quantity}
 			</Text>
+			
 			<Button
 				onClick={incrementQuantity}
 				{...buttonStyles}

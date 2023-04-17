@@ -9,7 +9,7 @@ import { useCustomStyles } from '@hooks'
 
 import { Heading } from '@components'
 
-import { itemPriceStyles, itemTitleStyles, liIconStyles, liStyles, titleStyles } from './order-price-item.styles'
+import { itemPriceStyles, itemTitleQuantityStyles, itemTitleStyles, itemTitleWrapStyles, liIconStyles, liStyles, titleStyles } from './order-price-item.styles'
 
 interface IProps {
 	items: IShortProduct[]
@@ -38,13 +38,21 @@ export const OrderPriceItem: FC<IProps> = ({ items }) => {
 							as={MdCheckCircle}
 							{...liIconStyles}
 						/>
-						<Text
-							as="p"
-							className="text-one-line"
-							{...itemTitleStyles}
-							{...orderSumItemTextStyles}
-						>
-							{item.title}
+						<Text as="p" {...itemTitleWrapStyles}>
+							<Text
+								as="span"
+								className="text-one-line"
+								{...itemTitleStyles}
+								{...orderSumItemTextStyles}
+							>
+								{item.title}
+							</Text>
+							<Text
+								as="span"
+								{...itemTitleQuantityStyles}
+							>
+								x {item.quantity}
+							</Text>
 						</Text>
 						<Text
 							as="span"

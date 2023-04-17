@@ -6,9 +6,10 @@ import { componentStyles, textStyles } from './product-price.styles'
 
 interface IProps {
 	price: number
+	quantity: number
 }
 
-export const ProductPrice: FC<IProps> = ({ price }) => {
+export const ProductPrice: FC<IProps> = ({ price, quantity }) => {
 
 	return (
 		<HStack {...componentStyles}>
@@ -16,7 +17,7 @@ export const ProductPrice: FC<IProps> = ({ price }) => {
 				as="span"
 				{...textStyles}
 			>
-				{price}$
+				{(price * quantity).toFixed(2)}$
 			</Text>
 		</HStack>
 	)

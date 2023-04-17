@@ -11,7 +11,6 @@ import { buttonStyles, componentStyles } from './cart-order-summary.styles'
 
 export const CartOrderSummary = () => {
 	const { cart } = useAppSelector(state => state)
-	console.log('cart order: ', cart.items)
 
 	return (
 		<Stack {...componentStyles}>

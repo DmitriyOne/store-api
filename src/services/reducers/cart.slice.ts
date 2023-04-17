@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { ICartState, IShortProduct } from '@interfaces'
 
@@ -12,7 +12,15 @@ export const cartSlice = createSlice({
 	initialState,
 	reducers: {
 		onAddItemCart: (state, action: PayloadAction<IShortProduct>) => {
-			state.items.push(action.payload)
+			const item = state.items.find((item) => item.id === action.payload.id)
+			if (item) {
+				item.quantity += 1
+			} else {
+				state.items.push({
+					...action.payload,
+					quantity: 1,
+				})
+			}
 			state.totalPrice += action.payload.price
 		},
 		onRemoveItemCart: (state, action: PayloadAction<IShortProduct>) => {

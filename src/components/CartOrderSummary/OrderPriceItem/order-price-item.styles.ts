@@ -21,10 +21,23 @@ export const liIconStyles: IconProps = {
 	color: 'green.400',
 }
 
+export const itemTitleWrapStyles: TextProps = {
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'space-between',
+	pr: '10px',
+	flex: { base: 2, md: 3, lg: 2 },
+}
+
 export const itemTitleStyles: TextProps = {
 	fontSize: { base: 'xs', md: 'sm' },
-	flex: { base: 2, md: 3, lg: 2 },
-	pr: '10px',
+	pr: '4px',
+}
+
+export const itemTitleQuantityStyles: TextProps = {
+	display: 'flex',
+	fontSize: { base: '2xs', md: 'xs' },
+	whiteSpace: 'nowrap',
 }
 
 export const itemPriceStyles: TextProps = {

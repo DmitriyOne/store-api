@@ -19,4 +19,5 @@ export interface IShortProduct {
 	category: string
 	price: number
 	image: string
+	quantity: number
 }
