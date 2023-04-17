@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { FC, ReactElement, ReactNode } from 'react'
 import { NextPage } from 'next'
 import type { AppProps } from 'next/app'

@@ -1,24 +1,31 @@
 import { FC } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 
-import { BreadcrumbItem as BreadcrumbItemChakraUi, BreadcrumbLink } from '@chakra-ui/react'
+import { Box, BreadcrumbItem as BreadcrumbItemChakraUi, BreadcrumbItemProps, BreadcrumbLink } from '@chakra-ui/react'
 
 import { IBreadcrumb } from '@interfaces'
 
-export const BreadcrumbItem: FC<IBreadcrumb> = ({ href, title }) => {
-	const router = useRouter()
-	const isActive = router.pathname === href
+import { linkActiveStyles, linkDefaultStyles } from './breadcrumb-item.styles'
+
+interface IProps extends BreadcrumbItemProps {
+	breadcrumb: IBreadcrumb
+	isLast: boolean
+}
+
+export const BreadcrumbItem: FC<IProps> = ({ breadcrumb, isLast, ...props }) => {
 
 	return (
-		<BreadcrumbItemChakraUi isCurrentPage={isActive}>
-			{isActive ? (
-				<BreadcrumbLink>{title}</BreadcrumbLink>
-			) : (
-				<Link href={href} passHref>
-					<BreadcrumbLink>{title}</BreadcrumbLink>
-				</Link>
-			)}
+		<BreadcrumbItemChakraUi isCurrentPage={isLast} {...props}>
+			{isLast
+				?
+				<Box as="span" {...linkActiveStyles}>
+					{breadcrumb.label}
+				</Box>
+				:
+				<BreadcrumbLink href={breadcrumb.href} {...linkDefaultStyles}>
+					{breadcrumb.label}
+				</BreadcrumbLink>
+			}
+
 		</BreadcrumbItemChakraUi>
 	)
 }

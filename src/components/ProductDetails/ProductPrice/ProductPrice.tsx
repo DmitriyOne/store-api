@@ -15,7 +15,7 @@ export const ProductPrice: FC<IProps> = ({ price }) => {
 		<Box {...priceWrapStyles}>
 			<Text as="p" {...priceTextStyles}>
 				<Text as="span" {...priceTextThroughStyles}>
-					{priceSale}$
+					{priceSale.toFixed(2)}$
 				</Text>
 				<b>
 					&nbsp;{price}$

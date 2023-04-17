@@ -119,3 +119,7 @@ main {
 		-webkit-line-clamp: unset;
 	}
 }
+
+.chakra-breadcrumb__list-item > span {
+	display: flex;
+}

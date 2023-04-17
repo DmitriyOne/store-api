@@ -1,8 +1,4 @@
-import { FC } from 'react'
-
 import { SimpleGrid } from '@chakra-ui/react'
-
-import { IProduct } from '@interfaces'
 
 import { useGetAllProductsQuery } from '@services/product'
 
@@ -10,19 +6,19 @@ import { Heading, ProductItem } from '@components'
 
 import { gridStyles } from './shop.styles'
 
-// interface IProps {
-// 	products: IProduct[]
-// }
-
 export const Shop = () => {
-	const { data: products, isFetching,isLoading } = useGetAllProductsQuery()
+	const { data: products, isFetching, isLoading } = useGetAllProductsQuery()
+
+	if (isFetching || isLoading) {
+		return <div>Loading...</div>
+	}
 
 	return (
 		<>
 			<Heading size="xl" pb={6}>
 				Shop page
 			</Heading>
-			{products || isFetching || isLoading
+			{products
 				?
 				<SimpleGrid {...gridStyles}>
 					{products?.map(product =>
@@ -33,7 +29,7 @@ export const Shop = () => {
 					)}
 				</SimpleGrid>
 				:
-				<div>Loading...</div>
+				<div>Something went wrong...</div>
 			}
 		</>
 	)

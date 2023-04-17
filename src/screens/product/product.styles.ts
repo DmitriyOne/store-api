@@ -1,6 +1,5 @@
 import { HeadingProps } from '@chakra-ui/react'
 
-export const titleStyles: HeadingProps = {
-	size: 'lg',
+export const breadcrumbsStyles: HeadingProps = {
 	pb: { base: 5, md: 10 },
 }

@@ -1,13 +1,20 @@
+import { FC } from 'react'
 import { useRouter } from 'next/router'
 import { skipToken } from '@reduxjs/toolkit/dist/query'
 
+import { IBreadcrumb } from '@interfaces'
+
 import { useGetCurrentProductQuery } from '@services/product'
 
-import { ProductDetails } from '@components'
+import { MyBreadcrumbs, ProductDetails } from '@components'
 
-import { titleStyles } from './product.styles'
+import { breadcrumbsStyles } from './product.styles'
 
-export const Product = () => {
+interface IProps {
+	breadcrumbs: IBreadcrumb[]
+}
+
+export const Product: FC<IProps> = ({ breadcrumbs }) => {
 	const router = useRouter()
 	const { id } = router.query
 	const idToNumber = Number(id)
@@ -23,6 +30,7 @@ export const Product = () => {
 
 	return (
 		<>
+			<MyBreadcrumbs breadcrumbs={breadcrumbs} {...breadcrumbsStyles} />
 			<ProductDetails product={data} />
 		</>
 	)
