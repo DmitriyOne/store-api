@@ -18,7 +18,7 @@ interface IProps {
 
 export const ProductInCart: FC<IProps> = ({ product }) => {
 	const { isMobile } = useWindowSize()
-	const { onRemoveItemCart, onAddItemCart } = useAppActions()
+	const { onRemoveItemCart, onIncrementQuantity, onDecrementQuantity } = useAppActions()
 
 	const onRemove = () => {
 		onRemoveItemCart(product)
@@ -35,8 +35,8 @@ export const ProductInCart: FC<IProps> = ({ product }) => {
 
 			<ProductQuantity
 				quantity={product.quantity}
-				incrementQuantity={() => onAddItemCart(product)}
-				decrementQuantity={() => onRemoveItemCart(product)}
+				incrementQuantity={() => onIncrementQuantity(product)}
+				decrementQuantity={() => onDecrementQuantity(product)}
 			/>
 
 			{isMobile

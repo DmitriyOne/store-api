@@ -1,6 +1,6 @@
 import { FaArrowRight } from 'react-icons/fa'
 
-import { Box, Button, Heading, Stack } from '@chakra-ui/react'
+import { Button, Heading, Stack } from '@chakra-ui/react'
 
 import { useAppSelector } from '@hooks'
 
