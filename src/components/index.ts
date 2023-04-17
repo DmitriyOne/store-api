@@ -1,3 +1,4 @@
+export * from './Breadcrumbs'
 export * from './CartOrderSummary'
 export * from './Heading'
 export * from './Layout'
