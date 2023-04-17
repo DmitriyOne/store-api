@@ -29,7 +29,6 @@ export const flexOnMobileStyles: FlexProps = {
 	display: { base: 'flex', md: 'none' },
 	justify: 'space-between',
 	align: 'center',
-	mt: '4',
 }
 
 export const buttonOnMobileStyles: ButtonProps = {

@@ -8,6 +8,7 @@ import { useAppActions, useWindowSize } from '@hooks'
 
 import { ProductMeta } from './ProductMeta'
 import { ProductPrice } from './ProductPrice'
+import { ProductQuantity } from './ProductQuantity'
 
 import { buttonOnMobileStyles, componentStyles, flexOnDesktopStyles, flexOnMobileStyles } from './product-in-cart.styles'
 
@@ -31,6 +32,8 @@ export const ProductInCart: FC<IProps> = ({ product }) => {
 				category={product.category}
 				image={product.image}
 			/>
+
+			<ProductQuantity />
 
 			{isMobile
 				?
