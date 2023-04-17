@@ -1,17 +1,24 @@
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 
-import { HeadTitleDynamic } from '@components'
+import { IBreadcrumb } from '@interfaces'
+
+import { HeadTitleDynamic, MyBreadcrumbs } from '@components'
 
 import { Product } from '@screens'
 
-export const ProductPage: NextPage = () => {
+interface IProps {
+	breadcrumbs: IBreadcrumb[]
+}
+
+export const ProductPage: NextPage<IProps> = ({ breadcrumbs }) => {
 	const route = useRouter()
 	const { id } = route.query
 
 	return (
 		<>
 			<HeadTitleDynamic pageTitle={id?.toString()} />
+			<MyBreadcrumbs breadcrumbs={breadcrumbs} />
 			<Product />
 		</>
 	)

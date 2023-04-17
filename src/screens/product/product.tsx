@@ -3,7 +3,7 @@ import { skipToken } from '@reduxjs/toolkit/dist/query'
 
 import { useGetCurrentProductQuery } from '@services/product'
 
-import { Heading, MyBreadcrumbs, ProductDetails } from '@components'
+import { ProductDetails } from '@components'
 
 import { titleStyles } from './product.styles'
 
@@ -23,9 +23,6 @@ export const Product = () => {
 
 	return (
 		<>
-			<Heading {...titleStyles}>
-				<MyBreadcrumbs />
-			</Heading>
 			<ProductDetails product={data} />
 		</>
 	)

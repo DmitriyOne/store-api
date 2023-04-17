@@ -1,3 +1,4 @@
+import { HYDRATE } from 'next-redux-wrapper'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { IProduct } from '@interfaces'
@@ -5,10 +6,15 @@ import { IProduct } from '@interfaces'
 const baseUrl = 'https://fakestoreapi.com'
 
 export const productApi = createApi({
-	reducerPath: 'productApi',
+	reducerPath: 'product/api',
 	baseQuery: fetchBaseQuery({
 		baseUrl: baseUrl,
 	}),
+	extractRehydrationInfo(action, { reducerPath }) {
+		if (action.type === HYDRATE) {
+			return action.payload[reducerPath]
+		}
+	},
 	endpoints: (builder) => ({
 		getAllProducts: builder.query<IProduct[], void>({
 			query: () => '/products',
@@ -19,4 +25,9 @@ export const productApi = createApi({
 	}),
 })
 
-export const { useGetAllProductsQuery, useGetCurrentProductQuery } = productApi
+export const {
+	useGetAllProductsQuery,
+	useGetCurrentProductQuery,
+	util: { getRunningQueriesThunk: getRQTProduct } } = productApi
+
+export const { getAllProducts, getCurrentProduct } = productApi.endpoints

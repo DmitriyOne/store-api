@@ -1,16 +1,21 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { createWrapper } from 'next-redux-wrapper'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import { productApi } from './product'
 import { cartReducer, favoritesReducer } from './reducers'
 
-export const store = configureStore({
-	reducer: {
-		[productApi.reducerPath]: productApi.reducer,
-		cart: cartReducer,
-		favorites: favoritesReducer,
-	},
-	middleware: getDefaultMiddleware =>
-		getDefaultMiddleware().concat(productApi.middleware),
+const rootReducer = combineReducers({
+	[productApi.reducerPath]: productApi.reducer,
+	cart: cartReducer,
+	favorites: favoritesReducer,
 })
 
-export type RootState = ReturnType<typeof store.getState>
+export const makeStore = () =>
+	configureStore({
+		reducer: rootReducer,
+		middleware: (gDM) => gDM().concat(productApi.middleware),
+	})
+
+export type AppStore = ReturnType<typeof makeStore>;
+export type RootState = ReturnType<AppStore['getState']>;
+export const wrapper = createWrapper<AppStore>(makeStore, { debug: false })
