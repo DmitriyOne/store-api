@@ -5,7 +5,7 @@ import { Flex, SimpleGrid } from '@chakra-ui/react'
 
 import { EFilter } from '@enums'
 
-import { useFilter } from '@hooks'
+import { useFilter, usePagination } from '@hooks'
 import { useGetAllProductsQuery } from '@services/product'
 
 import { FilterSelect, Heading, ProductItem } from '@components'
@@ -13,24 +13,15 @@ import { FilterSelect, Heading, ProductItem } from '@components'
 import { gridStyles, rowFiltersStyles } from './shop.styles'
 
 export const Shop = () => {
-	const [currentPage, setCurrentPage] = useState(0)
 	const [filter, setFilter] = useState<keyof typeof EFilter>('None')
 	const { data: products, isFetching, isLoading } = useGetAllProductsQuery()
+
 	const filteredProducts = useFilter(products ?? [], filter)
+	const { slice, pageCount, handlePageClick } = usePagination(filteredProducts)
 
 	if (isFetching || isLoading) {
 		return <div>Loading...</div>
 	}
-
-	const handlePageClick = ({ selected }: { selected: number }) => {
-		setCurrentPage(selected)
-	}
-
-	const perPage = 8
-	const offset = currentPage * perPage
-	const pageCount = Math.ceil(filteredProducts.length / perPage)
-
-	const slice = filteredProducts.slice(offset, offset + perPage)
 
 	const onFilter = (e: ChangeEvent<HTMLSelectElement>) => {
 		setFilter(e.target.value as keyof typeof EFilter)
