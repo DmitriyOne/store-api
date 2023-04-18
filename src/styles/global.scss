@@ -73,6 +73,10 @@ textarea {
 	box-shadow: none;
 }
 
+select:focus-visible {
+	box-shadow: 0 0 0 1px transparent !important;
+}
+
 #__next {
 	display: flex;
 	overflow-x: hidden;

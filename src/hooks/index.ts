@@ -1,4 +1,5 @@
 export * from './useAppActions'
 export * from './useAppSelector'
 export * from './useCustomStyles'
+export * from './useFilter'
 export * from './useWindowSize'

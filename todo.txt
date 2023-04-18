@@ -2,7 +2,7 @@
 - head favicon (done)
 - adaptive header (done)
 - universal short item component (done)
-- filters product
+- filters product 
 - pagination product
 - page
 ---- product
@@ -15,4 +15,4 @@
 - seo
 - form
 - breadcrumbs (done)
-- count product in cart 
+- count product in cart (done)

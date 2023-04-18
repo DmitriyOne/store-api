@@ -1,5 +1,6 @@
 export * from './Breadcrumbs'
 export * from './CartOrderSummary'
+export * from './FilterSelect'
 export * from './Heading'
 export * from './Layout'
 export * from './MessageWithButton'
