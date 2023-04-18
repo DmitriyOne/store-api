@@ -1,34 +1,24 @@
 import { FC } from 'react'
-
-import { Box, Flex } from '@chakra-ui/react'
+import ReactPaginate from 'react-paginate'
 
 import { IPagination } from '@interfaces'
 
 export const Pagination: FC<IPagination> = ({
-	onPagination,
-	totalProducts,
-	productsPerPage,
+	pageCount,
+	handlePageClick,
 }) => {
 
-	let pageNumbers = []
-	for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
-		pageNumbers.push(i)
-	}
-
-	console.log('total: ', totalProducts)
-	console.log('per page: ', productsPerPage)
-
 	return (
-		<Flex>
-			{pageNumbers.map((number, idx) => (
-				<Box
-					as="div"
-					key={idx}
-					onClick={() => onPagination(number)}
-				>
-					{number}
-				</Box>
-			))}
-		</Flex>
+		<ReactPaginate
+			previousLabel={'← Previous'}
+			nextLabel={'Next →'}
+			pageCount={pageCount}
+			onPageChange={handlePageClick}
+			containerClassName={'pagination'}
+			previousLinkClassName={'pagination__link'}
+			nextLinkClassName={'pagination__link'}
+			disabledClassName={'pagination__link--disabled'}
+			activeClassName={'pagination__link--active'}
+		/>
 	)
 }

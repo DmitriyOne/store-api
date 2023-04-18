@@ -1,0 +1,38 @@
+.pagination {
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+	cursor: pointer;
+	max-width: max-content;
+	margin: 40px auto 0;
+}
+
+.pagination li {
+	margin-right: 14px;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+.pagination a {
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #9dbfe1;
+	color:#6e8faf;
+}
+
+.pagination__link {
+	font-weight: bold;
+}
+
+.pagination__link--active a {
+	color: #fff;
+	background: #9dbfe1;
+}
+
+.pagination__link--disabled a {
+	color: rgb(180 178 187);
+	border: 1px solid rgb(198 197 202);
+}
+
