@@ -3,7 +3,7 @@ import { Flex, SimpleGrid } from '@chakra-ui/react'
 import { useFilter, usePagination } from '@hooks'
 import { useGetAllProductsQuery } from '@services/product'
 
-import { FilterSelect, Heading, Pagination, ProductItem } from '@components'
+import { FilterSearch, FilterSelect, Heading, Pagination, ProductItem } from '@components'
 
 import { gridStyles, rowFiltersStyles } from './shop.styles'
 
@@ -23,6 +23,7 @@ export const Shop = () => {
 				Shop page
 			</Heading>
 			<Flex {...rowFiltersStyles}>
+				<FilterSearch />
 				<FilterSelect value={filterValue} onChange={onFilter} />
 			</Flex>
 			{products

@@ -9,7 +9,8 @@ export const gridStyles: SimpleGridProps = {
 export const rowFiltersStyles: FlexProps = {
 	w: 'full',
 	flexDirection: { base: 'column', md: 'row' },
-	justifyContent: { base: 'flex-start', md: 'flex-end' },
+	alignItems: { base: 'flex-end', md: 'center' },
+	justifyContent: { base: 'flex-end', md: 'space-between' },
 	mb: { base: '10px', md: '20px', lg: '20px' },
 }
 
