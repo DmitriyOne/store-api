@@ -8,11 +8,11 @@ export const usePagination = (products: IProduct[]) => {
 	const offset = currentPage * perPage
 	const pageCount = Math.ceil(products.length / perPage)
 
-	const productsSlice = products.slice(offset, offset + perPage)
+	const pageProducts = products.slice(offset, offset + perPage)
 
 	const handlePageClick = ({ selected }: { selected: number }) => {
 		setCurrentPage(selected)
 	}
 
-	return { productsSlice, pageCount, handlePageClick }
+	return { pageProducts, pageCount, handlePageClick }
 }

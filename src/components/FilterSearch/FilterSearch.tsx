@@ -1,9 +1,17 @@
+/* eslint-disable no-unused-vars */
+import { ChangeEvent, FC } from 'react'
+
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
 
 import { componentStyles, inputIconStyles, inputStyles } from './filter-search.styles'
 
-export const FilterSearch = () => {
+interface IProps {
+	value: string
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void
+}
+
+export const FilterSearch: FC<IProps> = ({ value, onChange }) => {
 
 	return (
 		<InputGroup {...componentStyles}>
@@ -16,6 +24,8 @@ export const FilterSearch = () => {
 			<Input
 				type="text"
 				placeholder="Search..."
+				value={value}
+				onChange={onChange}
 				{...inputStyles}
 			/>
 		</InputGroup>

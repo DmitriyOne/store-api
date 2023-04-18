@@ -3,9 +3,9 @@
 - adaptive header (done)
 - universal short item component (done)
 - filters product 
-- pagination product
+- pagination product (done)
 - page
----- product
+---- product (done)
 ---- form
 ---- account
 ---- favorites
@@ -16,3 +16,4 @@
 - form
 - breadcrumbs (done)
 - count product in cart (done)
+- skeleton 

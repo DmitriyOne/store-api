@@ -1,3 +1,5 @@
+import { ChangeEvent, useEffect, useState } from 'react'
+
 import { Flex, SimpleGrid } from '@chakra-ui/react'
 
 import { useFilter, usePagination } from '@hooks'
@@ -8,13 +10,22 @@ import { FilterSearch, FilterSelect, Heading, Pagination, ProductItem } from '@c
 import { gridStyles, rowFiltersStyles } from './shop.styles'
 
 export const Shop = () => {
-	const { data: products, isFetching, isLoading } = useGetAllProductsQuery()
+	const [valueSearch, setValueSearch] = useState('')
+	const { data, isFetching, isLoading } = useGetAllProductsQuery()
+	const { filteredProducts, filterValue, onFilter } = useFilter(data ?? [])
+	const [products, setProducts] = useState(filteredProducts)
+	const { pageProducts, pageCount, handlePageClick } = usePagination(products)
 
-	const { filteredProducts, filterValue, onFilter } = useFilter(products ?? [])
-	const { productsSlice, pageCount, handlePageClick } = usePagination(filteredProducts)
+	useEffect(() => {
+		setProducts(filteredProducts.filter(product => product.title.toLocaleLowerCase().includes(valueSearch.toLocaleLowerCase())))
+	}, [valueSearch])
 
 	if (isFetching || isLoading) {
 		return <div>Loading...</div>
+	}
+
+	const onChangeValueSearch = (e: ChangeEvent<HTMLInputElement>) => {
+		setValueSearch(e.target.value)
 	}
 
 	return (
@@ -23,14 +34,14 @@ export const Shop = () => {
 				Shop page
 			</Heading>
 			<Flex {...rowFiltersStyles}>
-				<FilterSearch />
+				<FilterSearch value={valueSearch} onChange={onChangeValueSearch} />
 				<FilterSelect value={filterValue} onChange={onFilter} />
 			</Flex>
-			{products
+			{data
 				?
 				<>
 					<SimpleGrid {...gridStyles}>
-						{productsSlice.map(product =>
+						{pageProducts.map(product =>
 							<ProductItem
 								key={product.id}
 								product={product}
