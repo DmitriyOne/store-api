@@ -2,18 +2,17 @@
 - head favicon (done)
 - adaptive header (done)
 - universal short item component (done)
-- filters product 
+- filters product (done)
 - pagination product (done)
 - page
 ---- product (done)
 ---- form
 ---- account
----- favorites
+---- favorites (done)
 ---- home
----- about
+---- about (done)
 ---- ?checkout
 - seo
 - form
 - breadcrumbs (done)
 - count product in cart (done)
-- skeleton 
