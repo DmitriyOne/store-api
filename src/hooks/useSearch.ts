@@ -11,7 +11,7 @@ export const useSearch = (productsData: IProduct[]) => {
 
 	useEffect(() => {
 		setProducts(productsData.filter(product => product.title.toLocaleLowerCase().includes(valueSearch.toLocaleLowerCase())))
-	}, [debounce])
+	}, [debounce, productsData])
 
 	const onChangeValueSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setValueSearch(e.target.value)

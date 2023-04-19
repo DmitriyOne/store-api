@@ -20,9 +20,8 @@ export const ShopPage: NextPage = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
 	(store) => async (context) => {
-
+		
 		store.dispatch(getAllProducts.initiate())
-
 		await Promise.all(store.dispatch(getRQTProduct()))
 
 		return {
