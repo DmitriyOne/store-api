@@ -3,8 +3,6 @@ import { Form } from '@components'
 export const Login = () => {
 
 	return (
-		<>
-			<Form />
-		</>
+		<Form variant="login" />
 	)
 }

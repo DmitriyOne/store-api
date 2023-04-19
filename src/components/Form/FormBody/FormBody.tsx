@@ -1,27 +1,27 @@
-import { FormControl, FormLabel, Input, Stack } from '@chakra-ui/react'
+import { FC } from 'react'
 
-import { PasswordField } from '../PasswordField'
+import { Stack } from '@chakra-ui/react'
 
-import { inputStyles, labelStyles } from './form-body.styles'
+import { IForm } from '@interfaces'
 
-export const FormBody = () => {
+import { FormInput } from '../FormInput'
 
+import { spacingBigStyles, spacingSmallStyles } from './form-body.styles'
+
+export const FormBody: FC<IForm> = ({ variant }) => {
+
+	const styles = variant === 'login' ? { ...spacingBigStyles } : { ...spacingSmallStyles }
 	return (
-		<Stack spacing="5">
-			<FormControl>
-				<FormLabel
-					htmlFor="email"
-					{...labelStyles}
-				>
-					Email
-				</FormLabel>
-				<Input
-					id="email"
-					type="email"
-					{...inputStyles}
-				/>
-			</FormControl>
-			<PasswordField />
+		<Stack {...styles}>
+			{variant === 'forgot'
+				? <FormInput label="Email" type="email" />
+				: <>
+					{variant === 'registration' && <FormInput label="Name" type="text" />}
+					<FormInput label="Email" type="email" />
+					<FormInput label="Password" type="password" />
+					{variant === 'registration' && <FormInput label="Confirm password" type="password" />}
+				</>
+			}
 		</Stack>
 
 	)

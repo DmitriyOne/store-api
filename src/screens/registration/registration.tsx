@@ -1,12 +1,8 @@
-import { Heading } from '@components'
+import { Form } from '@components'
 
 export const Registration = () => {
 
 	return (
-		<>
-			<Heading size="xl">
-				Registration page
-			</Heading>
-		</>
+		<Form variant="registration" />
 	)
 }

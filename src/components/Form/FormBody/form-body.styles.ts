@@ -1,9 +1,10 @@
-import { FormLabelProps, InputProps } from '@chakra-ui/react'
+import { StackProps } from '@chakra-ui/react'
 
-export const labelStyles: FormLabelProps = {
-	fontSize: { base: 'sm', md: 'md' },
+export const spacingBigStyles: StackProps = {
+	spacing: '5',
 }
 
-export const inputStyles: InputProps = {
-	fontSize: { base: 'sm', md: 'md' },
+export const spacingSmallStyles: StackProps = {
+	spacing: '3',
 }
+

@@ -1,10 +1,8 @@
-import { Heading } from '@components'
+import { Form } from '@components'
 
 export const ForgotPassword = () => {
 
 	return (
-		<>
-			<Heading>ForgotPassword</Heading>
-		</>
+		<Form variant="forgot" />
 	)
 }
