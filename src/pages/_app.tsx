@@ -3,7 +3,7 @@ import { FC, ReactElement, ReactNode } from 'react'
 import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
-import { HeaderProvider } from 'src/context'
+import { AuthProvider, HeaderProvider } from 'src/context'
 
 import { ChakraProvider } from '@chakra-ui/react'
 
@@ -28,11 +28,13 @@ export const App: FC<AppPropsWithLayout> = ({ Component, ...rest }) => {
 	return (
 		<Provider store={store}>
 			<ChakraProvider>
-				<HeaderProvider>
-					<Layout>
-						{getLayout(<Component {...props.pageProps} />)}
-					</Layout>
-				</HeaderProvider>
+				<AuthProvider>
+					<HeaderProvider>
+						<Layout>
+							{getLayout(<Component {...props.pageProps} />)}
+						</Layout>
+					</HeaderProvider>
+				</AuthProvider>
 			</ChakraProvider>
 		</Provider>
 	)
