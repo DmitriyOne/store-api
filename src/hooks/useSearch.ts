@@ -1,0 +1,21 @@
+import { ChangeEvent, useEffect, useState } from 'react'
+
+import { IProduct } from '@interfaces'
+
+import { useDebounce } from '@hooks'
+
+export const useSearch = (productsData: IProduct[]) => {
+	const [valueSearch, setValueSearch] = useState('')
+	const [products, setProducts] = useState(productsData)
+	const debounce = useDebounce(valueSearch, 500)
+
+	useEffect(() => {
+		setProducts(productsData.filter(product => product.title.toLocaleLowerCase().includes(valueSearch.toLocaleLowerCase())))
+	}, [debounce])
+
+	const onChangeValueSearch = (e: ChangeEvent<HTMLInputElement>) => {
+		setValueSearch(e.target.value)
+	}
+
+	return { products, valueSearch, onChangeValueSearch }
+}

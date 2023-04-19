@@ -1,6 +1,7 @@
 export * from './useAppActions'
 export * from './useAppSelector'
 export * from './useCustomStyles'
+export * from './useDebounce'
 export * from './useFilter'
 export * from './usePagination'
 export * from './useWindowSize'

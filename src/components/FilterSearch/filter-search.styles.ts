@@ -3,7 +3,7 @@ import { InputGroupProps, InputLeftElementProps, InputProps } from '@chakra-ui/r
 export const componentStyles: InputGroupProps = {
 	maxW: { base: '100%', md: '613px' },
 	mr: { base: 0, md: '20px' },
-	mb: { base: '10px', md: 0 },
+	mt: { base: '10px', md: 0 },
 }
 
 export const inputIconStyles: InputLeftElementProps = {
