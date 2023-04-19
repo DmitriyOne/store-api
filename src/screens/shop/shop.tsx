@@ -1,31 +1,25 @@
-import { ChangeEvent, useEffect, useState } from 'react'
-
 import { Flex, SimpleGrid } from '@chakra-ui/react'
 
 import { useFilter, usePagination } from '@hooks'
+import { useSearch } from '@hooks/useSearch'
 import { useGetAllProductsQuery } from '@services/product'
 
-import { FilterSearch, FilterSelect, Heading, Pagination, ProductItem } from '@components'
+import { FilterSearch, FilterSelect, Heading, Pagination, ProductItem, ProductsError } from '@components'
 
 import { gridStyles, rowFiltersStyles } from './shop.styles'
 
 export const Shop = () => {
-	const [valueSearch, setValueSearch] = useState('')
-	const { data, isFetching, isLoading } = useGetAllProductsQuery()
-	const { filteredProducts, filterValue, onFilter } = useFilter(data ?? [])
-	const [products, setProducts] = useState(filteredProducts)
-	const { pageProducts, pageCount, handlePageClick } = usePagination(products)
-
-	useEffect(() => {
-		setProducts(filteredProducts.filter(product => product.title.toLocaleLowerCase().includes(valueSearch.toLocaleLowerCase())))
-	}, [valueSearch])
+	const { data, isFetching, isLoading, isError } = useGetAllProductsQuery()
+	const { products, valueSearch, onChangeValueSearch } = useSearch(data ?? [])
+	const { filteredProducts, filterValue, onFilter } = useFilter(products)
+	const { pageProducts, pageCount, handlePageClick } = usePagination(filteredProducts)
 
 	if (isFetching || isLoading) {
 		return <div>Loading...</div>
 	}
 
-	const onChangeValueSearch = (e: ChangeEvent<HTMLInputElement>) => {
-		setValueSearch(e.target.value)
+	if (isError) {
+		return <ProductsError isError />
 	}
 
 	return (
@@ -37,7 +31,7 @@ export const Shop = () => {
 				<FilterSearch value={valueSearch} onChange={onChangeValueSearch} />
 				<FilterSelect value={filterValue} onChange={onFilter} />
 			</Flex>
-			{data
+			{pageProducts.length !== 0
 				?
 				<>
 					<SimpleGrid {...gridStyles}>
@@ -48,13 +42,15 @@ export const Shop = () => {
 							/>
 						)}
 					</SimpleGrid>
-					<Pagination
-						pageCount={pageCount}
-						handlePageClick={handlePageClick}
-					/>
+					{pageCount !== 1 &&
+						<Pagination
+							pageCount={pageCount}
+							handlePageClick={handlePageClick}
+						/>
+					}
 				</>
 				:
-				<div>Something went wrong...</div>
+				<ProductsError isNotFound />
 			}
 		</>
 	)
