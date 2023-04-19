@@ -4,29 +4,27 @@ import { Heading, HStack, Link, Stack, Text } from '@chakra-ui/react'
 
 import { STORE_ROUTES } from '@constants'
 
+import { componentStyles, containerStyles, linkStyles, textStyles, titleStyles, wrapperStyles } from './form-header.styles'
+
 export const FormHeader = () => {
 
 	return (
-		<Stack spacing="6">
-			<Stack
-				spacing={{ base: '2', md: '3' }}
-				textAlign="center"
-			>
+		<Stack {...componentStyles}>
+			<Stack {...containerStyles}>
 				<Heading
 					as="h1"
-					fontSize={{ base: 'sm', md: '4xl' }}
+					{...titleStyles}
 				>
 					Log in to your account
 				</Heading>
-				<HStack spacing="1" justify="center">
-					<Text color="muted">
+				<HStack {...wrapperStyles}>
+					<Text {...textStyles}>
 						Don&rsquo;t have an account?
 					</Text>
 					<Link
 						as={NavLink}
 						href={STORE_ROUTES.REGISTRATION}
-						variant="link"
-						color="blue.300"
+						{...linkStyles}
 					>
 						Sign up
 					</Link>

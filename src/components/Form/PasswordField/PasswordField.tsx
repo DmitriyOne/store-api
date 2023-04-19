@@ -3,6 +3,8 @@ import { HiEye, HiEyeOff } from 'react-icons/hi'
 
 import { FormControl, FormLabel, IconButton, Input, InputGroup, InputProps, InputRightElement, useDisclosure, useMergeRefs } from '@chakra-ui/react'
 
+import { labelStyles } from './password-field.styles'
+
 export const PasswordField = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 	const { isOpen, onToggle } = useDisclosure()
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -17,7 +19,12 @@ export const PasswordField = forwardRef<HTMLInputElement, InputProps>((props, re
 
 	return (
 		<FormControl>
-			<FormLabel htmlFor="password">Password</FormLabel>
+			<FormLabel
+				htmlFor="password"
+				{...labelStyles}
+			>
+				Password
+			</FormLabel>
 			<InputGroup>
 				<InputRightElement>
 					<IconButton

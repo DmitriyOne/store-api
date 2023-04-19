@@ -5,23 +5,17 @@ import { FormFooter } from './FormFooter'
 import { FormForgotPass } from './FormForgotPass'
 import { FormHeader } from './FormHeader'
 
+import { componentStyles, formStyles, formWrapStyles, wrapperStyles } from './form.styles'
+
 export const Form = () => {
 	return (
-		<Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
-			<Stack spacing="8">
+		<Container {...componentStyles}>
+			<Stack {...wrapperStyles}>
 				<FormHeader />
-				<Box
-					py={{ base: '0', sm: '8' }}
-					px={{ base: '4', sm: '10' }}
-					bg={{ base: 'transparent', sm: 'bg-surface' }}
-					boxShadow={{ base: 'none', sm: 'md' }}
-					borderRadius={{ base: 'none', sm: 'xl' }}
-				>
-					<Stack spacing="6">
+				<Box {...formStyles}>
+					<Stack {...formWrapStyles}>
 						<FormBody />
-
 						<FormForgotPass />
-
 						<FormFooter />
 					</Stack>
 				</Box>
