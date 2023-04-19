@@ -1,8 +1,8 @@
-import { Form } from '@components'
+import { FormAuth } from '@components'
 
 export const ForgotPassword = () => {
 
 	return (
-		<Form variant="forgot" />
+		<FormAuth variant="forgot" />
 	)
 }

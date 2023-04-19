@@ -11,7 +11,7 @@ const providers = [
 export const AuthButtonGroup = () => (
 	<ButtonGroup {...componentStyles}>
 		{providers.map(({ name, icon }) => (
-			<Button key={name} {...btnStyles}>
+			<Button key={name} isDisabled {...btnStyles}>
 				{icon}
 				<Text as="span" {...textStyles}>Sign in with {name}</Text>
 			</Button>

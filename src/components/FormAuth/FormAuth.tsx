@@ -11,7 +11,7 @@ import { FormHeader } from './FormHeader'
 
 import { componentStyles, formStyles, formWrapStyles, wrapperStyles } from './form.styles'
 
-export const Form: FC<IForm> = ({ variant }) => {
+export const FormAuth: FC<IForm> = ({ variant }) => {
 
 	return (
 		<Container {...componentStyles}>

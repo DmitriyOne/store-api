@@ -1,8 +1,8 @@
-import { Form } from '@components'
+import { FormAuth } from '@components'
 
 export const Login = () => {
 
 	return (
-		<Form variant="login" />
+		<FormAuth variant="login" />
 	)
 }
