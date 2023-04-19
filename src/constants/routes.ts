@@ -10,6 +10,7 @@ export const STORE_ROUTES = {
 	// form page
 	LOGIN: '/login',
 	REGISTRATION: '/registration',
+	FORGOT_PASS: '/forgot-password',
 
 	// account page
 	ACCOUNT: '/account/1435435',
