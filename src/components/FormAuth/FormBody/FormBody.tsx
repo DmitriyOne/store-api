@@ -6,7 +6,7 @@ import { FormControl, FormErrorMessage, FormLabel, Input as InputChakraUi, Stack
 import { VALIDATION } from '@constants'
 import { IForm, IFormBtns, IValidation } from '@interfaces'
 
-import { Input } from '@components'
+import { CustomInput } from '@components'
 
 import { FormBtns } from '../FormBtns'
 
@@ -15,9 +15,7 @@ import { formStyles, spacingBigStyles, spacingSmallStyles } from './form-body.st
 interface IProps extends IForm, IFormBtns { }
 
 export const FormBody: FC<IProps> = ({ variant, btnText }) => {
-	const { register, handleSubmit, formState: { errors }, reset } = useForm<IValidation>({ mode: 'onChange' })
-
-	console.log(register)
+	const { handleSubmit, formState: { errors }, reset, control } = useForm<IValidation>({ mode: 'onChange' })
 
 	const onSubmit: SubmitHandler<IValidation> = (data) => {
 		console.log(data)
@@ -31,40 +29,15 @@ export const FormBody: FC<IProps> = ({ variant, btnText }) => {
 			onSubmit={handleSubmit(onSubmit)}
 			{...formStyles}
 		>
-
 			<Stack {...wrapperStyles}>
-
-				{/* Input */}
-				{/* <FormControl isInvalid={!!errors.name}>
-					<FormLabel htmlFor="name">Name</FormLabel>
-					<Input type="text"
-						{...register('name', VALIDATION.name)}
-					/>
-					<FormErrorMessage>
-						{errors.name && errors.name.message}
-					</FormErrorMessage>
-				</FormControl> */}
-				{/* <Input
-					label="Name"
+				<CustomInput
 					name="name"
-					errors={errors}
-				>
-					<InputChakraUi
-						type="text"
-						{...register('name', VALIDATION.name)}
-					/>
-				</Input> */}
-
-				<Input
-					label="Name"
-					// name="name"
-					type="text"
-					errors={errors}
-					{...register('name', VALIDATION.name)}
+					label="Name:"
+					rules={VALIDATION.name}
+					error={errors.name}
+					control={control}
 				/>
-
 			</Stack>
-
 			<FormBtns variant={variant} btnText={btnText} />
 		</Stack>
 	)

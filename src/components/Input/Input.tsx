@@ -1,56 +1,41 @@
-import { DetailedHTMLProps, ForwardedRef, forwardRef, InputHTMLAttributes, ReactNode, useRef } from 'react'
-import { FieldErrors } from 'react-hook-form'
-import { HiEye, HiEyeOff } from 'react-icons/hi'
+import { InputHTMLAttributes } from 'react'
+import { Control, FieldError, FieldValues, useController } from 'react-hook-form'
 
-import { FormControl, FormErrorMessage, FormLabel, IconButton, Input as InputChakraUi, InputGroup, InputProps, InputRightElement, useDisclosure, useMergeRefs } from '@chakra-ui/react'
+import { FormControl, FormLabel, Input } from '@chakra-ui/react'
 
-import { inputStyles, labelStyles } from './input.styles'
+import { IValidation } from '@interfaces'
 
-interface IProps extends InputProps {
-	name: string
-	label: string
-	type?: InputHTMLAttributes<HTMLInputElement>['type']
-	errors?: FieldErrors
-	children?: ReactNode
+interface InputProps {
+	name: 'email' | 'password' | 'name' | 'confirm_password';
+	label: string;
+	rules?: Record<string, unknown>;
+	error?: FieldError;
+	type?: InputHTMLAttributes<HTMLInputElement>['type'];
+	control: Control<IValidation, any>
 }
 
-export const Input = forwardRef(({
+export const CustomInput = <T extends FieldValues>({
 	name,
 	label,
-	type,
-	errors,
-	children,
-	...props
-}: IProps, ref: ForwardedRef<HTMLInputElement>
-) => {
-	const isError = name ? errors?.hasOwnProperty(name) : false
-	const errorMessage = name ? errors?.[name]?.message : ''
-
-	console.log(errors)
-	console.log(isError)
+	rules,
+	error,
+	type = 'text',
+	control,
+}: InputProps) => {
+	const { field: { value, onChange, ref, ...inputProps } } = useController({ name, control, rules })
 
 	return (
-		<FormControl isInvalid={isError}>
-			<FormLabel
-				htmlFor={name}
-				{...labelStyles}
-			>
-				{label}
-			</FormLabel>
-			<InputChakraUi
+		<FormControl isInvalid={!!error}>
+			<FormLabel htmlFor={name}>{label}</FormLabel>
+			<Input
+				ref={ref}
 				id={name}
 				type={type}
-				name={name}
-				{...props}
-				// {...inputStyles}
+				value={value || ''}
+				onChange={onChange}
+				{...inputProps}
 			/>
-			{children}
-			<FormErrorMessage>
-				{isError && <div>{errorMessage}</div>}
-			</FormErrorMessage>
+			{error && <div>{error.message}</div>}
 		</FormControl>
 	)
 }
-)
-
-Input.displayName = 'Input'
