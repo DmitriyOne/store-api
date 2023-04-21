@@ -43,6 +43,7 @@ export const FormBody: FC<IProps> = ({ variant, btnText }) => {
 				<CustomInput
 					name="email"
 					label="Email"
+					type="email"
 					rules={VALIDATION.email}
 					errors={errors.email}
 					control={control}
@@ -51,6 +52,7 @@ export const FormBody: FC<IProps> = ({ variant, btnText }) => {
 					<CustomInput
 						name="password"
 						label="Password"
+						type="password"
 						rules={VALIDATION.password}
 						errors={errors.password}
 						control={control}
@@ -60,6 +62,7 @@ export const FormBody: FC<IProps> = ({ variant, btnText }) => {
 					<CustomInput
 						name="confirm_password"
 						label="Confirm password"
+						type="password"
 						rules={VALIDATION.password}
 						errors={errors.confirm_password}
 						control={control}
