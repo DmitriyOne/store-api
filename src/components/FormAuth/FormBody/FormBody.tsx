@@ -1,13 +1,15 @@
-import { FC, useContext, useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { FC, useContext } from 'react'
+import {  useForm } from 'react-hook-form'
 import { AlertContext } from 'src/context'
 
-import { AlertStatus, Stack } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
 
 import { VALIDATION } from '@constants'
 import { IForm, IFormBtns, IValidation } from '@interfaces'
 
-import { Alert, CustomInput } from '@components'
+import { useFormSubmit } from '@hooks'
+
+import { CustomInput } from '@components'
 
 import { FormBtns } from '../FormBtns'
 import { FormForgotPass } from '../FormForgotPass'
@@ -19,38 +21,7 @@ interface IProps extends IForm, IFormBtns { }
 export const FormBody: FC<IProps> = ({ variant, btnText }) => {
 	const { handleSubmit, formState: { errors }, reset, control, getValues, setError } = useForm<IValidation>({ mode: 'onChange' })
 	const alert = useContext(AlertContext)
-
-	const handlerTimer = () => {
-		const alertTimeout = setTimeout(() => {
-			alert.visible = false
-			alert.hide!()
-			clearTimeout(alertTimeout)
-		}, 300000)
-	}
-
-	const onSubmit: SubmitHandler<IValidation> = (data) => {
-		console.log(data)
-		const { password, confirm_password } = getValues()
-
-		if (password !== confirm_password && variant === 'registration') {
-			setError('confirm_password', { type: 'manual', message: 'Passwords do not match' })
-			return
-		}
-
-		if (variant === 'login') {
-			alert.visible = true
-			alert.show('You have successfully logged into your account.', 'success')
-		} else if (variant === 'registration') {
-			alert.visible = true
-			alert.show('The account has been created. You have successfully registered.', 'success')
-		} else if (variant === 'forgot') {
-			alert.visible = true
-			alert.show('A one-time password has been sent to your email.', 'success')
-		}
-
-		handlerTimer()
-		reset()
-	}
+	const onSubmit = useFormSubmit(variant, alert, reset, setError, getValues)
 
 	const wrapperStyles = variant === 'login' ? { ...spacingBigStyles } : { ...spacingSmallStyles }
 	return (
