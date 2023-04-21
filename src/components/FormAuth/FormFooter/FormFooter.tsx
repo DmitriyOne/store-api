@@ -28,7 +28,7 @@ export const FormFooter: FC<IForm> = ({ variant }) => {
 
 	return (
 		<Stack {...componentStyles}>
-			<Button {...btnStyles}>
+			<Button type="submit" {...btnStyles}>
 				{btnText}
 			</Button>
 			{variant !== 'forgot' && <>

@@ -79,6 +79,10 @@ input:focus-visible {
 	box-shadow: 0 0 0 1px transparent !important;
 }
 
+input[aria-invalid="true"] {
+	box-shadow: 0 0 0 1px  #e53e3e !important;
+}
+
 #__next {
 	display: flex;
 	overflow-x: hidden;
