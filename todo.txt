@@ -6,13 +6,13 @@
 - pagination product (done)
 - page
 ---- product (done)
----- form
+---- form (done)
 ---- account
 ---- favorites (done)
 ---- home
 ---- about (done)
 ---- ?checkout
 - seo
-- form
+- form (done)
 - breadcrumbs (done)
 - count product in cart (done)
