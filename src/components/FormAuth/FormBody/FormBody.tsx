@@ -1,42 +1,49 @@
 import { FC } from 'react'
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { Stack, Input } from '@chakra-ui/react'
+import { FormControl, FormErrorMessage, FormLabel, Input, Stack } from '@chakra-ui/react'
 
-import { IForm, IValidation } from '@interfaces'
+import { VALIDATION } from '@constants'
+import { IForm, IFormBtns, IValidation } from '@interfaces'
 
-// import { Input } from '@components'
+import { FormBtns } from '../FormBtns'
 
-import { FormInput } from '../FormInput'
+import { formStyles, spacingBigStyles, spacingSmallStyles } from './form-body.styles'
 
-import { spacingBigStyles, spacingSmallStyles } from './form-body.styles'
+interface IProps extends IForm, IFormBtns { }
 
-export const FormBody: FC<IForm> = ({ variant }) => {
+export const FormBody: FC<IProps> = ({ variant, btnText }) => {
 	const { register, handleSubmit, formState: { errors }, reset } = useForm<IValidation>({ mode: 'onChange' })
 
-	const styles = variant === 'login' ? { ...spacingBigStyles } : { ...spacingSmallStyles }
+	const onSubmit: SubmitHandler<IValidation> = (data) => {
+		console.log(data)
+		reset()
+	}
 
+	const wrapperStyles = variant === 'login' ? { ...spacingBigStyles } : { ...spacingSmallStyles }
 	return (
-		<Stack {...styles}>
-			{variant === 'forgot'
-				? <Input  type="email" />
-				: <>
-					{variant === 'registration' && <Input type="text" />}
-					<Input  type="email"
-						{...register('email', {
-							required: 'Емайл заполнить обязательно',
-							pattern: {
-								value:
-									/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-								message: 'Пожалуйста, введите корректный емайл',
-							},
-						})}
-					/>
-					<Input  type="password" />
-					{variant === 'registration' && <Input type="password" />}
-				</>
-			}
-		</Stack>
+		<Stack
+			as="form"
+			onSubmit={handleSubmit(onSubmit)}
+			{...formStyles}
+		>
 
+			<Stack {...wrapperStyles}>
+
+				{/* Input */}
+				<FormControl isInvalid={!!errors.name}>
+					<FormLabel htmlFor="name">Name</FormLabel>
+					<Input type="text"
+						{...register('name', VALIDATION.name)}
+					/>
+					<FormErrorMessage>
+						{errors.name && errors.name.message}
+					</FormErrorMessage>
+				</FormControl>
+
+			</Stack>
+
+			<FormBtns variant={variant} btnText={btnText} />
+		</Stack>
 	)
 }

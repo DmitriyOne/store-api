@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, Text } from '@chakra-ui/react'
 
-import { GoogleIcon } from '../ProviderIcon'
+import { GoogleIcon } from '../../ProviderIcon'
 
 import { btnStyles, componentStyles, textStyles } from './auth-btn-group.styles'
 
