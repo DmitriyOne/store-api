@@ -16,10 +16,16 @@ import { formStyles, spacingBigStyles, spacingSmallStyles } from './form-body.st
 interface IProps extends IForm, IFormBtns { }
 
 export const FormBody: FC<IProps> = ({ variant, btnText }) => {
-	const { handleSubmit, formState: { errors }, reset, control } = useForm<IValidation>({ mode: 'onChange' })
+	const { handleSubmit, formState: { errors }, reset, control, getValues, setError } = useForm<IValidation>({ mode: 'onChange' })
 
 	const onSubmit: SubmitHandler<IValidation> = (data) => {
 		console.log(data)
+		const { password, confirm_password } = getValues()
+		if (password !== confirm_password) {
+			setError('confirm_password', { type: 'manual', message: 'Passwords do not match' })
+			return
+		}
+		
 		reset()
 	}
 
