@@ -3,11 +3,11 @@ export const VALIDATION = {
 		required: 'Please enter your name',
 		minLength: {
 			value: 3,
-			message: 'Name must be at least 3 characters',
+			message: 'Minimum length should be 3',
 		},
 		maxLength: {
 			value: 20,
-			message: 'Name must be at least 20 characters',
+			message: 'Maximum length should be 20',
 		},
 	},
 	email: {

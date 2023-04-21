@@ -1,68 +1,53 @@
-import { ForwardedRef, forwardRef, InputHTMLAttributes, useRef } from 'react'
+import { DetailedHTMLProps, ForwardedRef, forwardRef, InputHTMLAttributes, ReactNode, useRef } from 'react'
+import { FieldErrors } from 'react-hook-form'
 import { HiEye, HiEyeOff } from 'react-icons/hi'
 
-import { FormControl, FormLabel, IconButton, Input as InputChakraUi, InputGroup, InputProps, InputRightElement, useDisclosure, useMergeRefs } from '@chakra-ui/react'
+import { FormControl, FormErrorMessage, FormLabel, IconButton, Input as InputChakraUi, InputGroup, InputProps, InputRightElement, useDisclosure, useMergeRefs } from '@chakra-ui/react'
 
 import { inputStyles, labelStyles } from './input.styles'
 
 interface IProps extends InputProps {
+	name: string
 	label: string
-	type: InputHTMLAttributes<HTMLInputElement>['type']
+	type?: InputHTMLAttributes<HTMLInputElement>['type']
+	errors?: FieldErrors
+	children?: ReactNode
 }
 
 export const Input = forwardRef(({
+	name,
 	label,
 	type,
+	errors,
+	children,
 	...props
 }: IProps, ref: ForwardedRef<HTMLInputElement>
 ) => {
-	const { isOpen, onToggle } = useDisclosure()
-	const inputRef = useRef<HTMLInputElement>(null)
+	const isError = name ? errors?.hasOwnProperty(name) : false
+	const errorMessage = name ? errors?.[name]?.message : ''
 
-	const mergeRef = useMergeRefs(inputRef, ref)
-	const onClickReveal = () => {
-		onToggle()
-		if (inputRef.current) {
-			inputRef.current.focus({ preventScroll: true })
-		}
-	}
+	console.log(errors)
+	console.log(isError)
 
 	return (
-		<FormControl>
+		<FormControl isInvalid={isError}>
 			<FormLabel
-				htmlFor={label}
+				htmlFor={name}
 				{...labelStyles}
 			>
 				{label}
 			</FormLabel>
-			{type === 'password'
-				?
-				<InputGroup>
-					<InputRightElement>
-						<IconButton
-							variant="link"
-							aria-label={isOpen ? 'Mask password' : 'Reveal password'}
-							icon={isOpen ? <HiEyeOff /> : <HiEye />}
-							onClick={onClickReveal}
-						/>
-					</InputRightElement>
-					<InputChakraUi
-						id={label}
-						ref={mergeRef}
-						name={label}
-						type={isOpen ? 'text' : 'password'}
-						autoComplete="current-password"
-						{...props}
-					/>
-				</InputGroup>
-				:
-				<InputChakraUi
-					id={label}
-					type={type}
-					{...props}
-					{...inputStyles}
-				/>
-			}
+			<InputChakraUi
+				id={name}
+				type={type}
+				name={name}
+				{...props}
+				// {...inputStyles}
+			/>
+			{children}
+			<FormErrorMessage>
+				{isError && <div>{errorMessage}</div>}
+			</FormErrorMessage>
 		</FormControl>
 	)
 }
