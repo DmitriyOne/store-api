@@ -1,4 +1,4 @@
-import { StackProps } from '@chakra-ui/react'
+import { StackProps, TextProps } from '@chakra-ui/react'
 
 export const spacingBigStyles: StackProps = {
 	spacing: '5',
@@ -15,4 +15,8 @@ export const formStyles: StackProps = {
 	boxShadow: { base: 'none', sm: 'md' },
 	borderRadius: { base: 'none', sm: 'xl' },
 	spacing: '6',
+}
+
+export const textForgotStyles: TextProps = {
+	fontSize: { base: 'xs', md: 'md' },
 }

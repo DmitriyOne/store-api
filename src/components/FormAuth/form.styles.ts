@@ -2,7 +2,7 @@ import { ContainerProps, StackProps } from '@chakra-ui/react'
 
 export const componentStyles: ContainerProps = {
 	maxW: 'lg',
-	py: { base: '12', md: '24' },
+	py: { base: '8', md: '18' },
 	px: { base: '0', sm: '8' },
 }
 
