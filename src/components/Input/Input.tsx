@@ -1,31 +1,33 @@
-import { InputHTMLAttributes } from 'react'
-import { Control, FieldError, FieldValues, useController } from 'react-hook-form'
+import { FC, InputHTMLAttributes } from 'react'
+import { Control, FieldError, useController } from 'react-hook-form'
 
-import { FormControl, FormLabel, Input } from '@chakra-ui/react'
+import { FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
 
 import { IValidation } from '@interfaces'
 
-interface InputProps {
-	name: 'email' | 'password' | 'name' | 'confirm_password';
-	label: string;
-	rules?: Record<string, unknown>;
-	error?: FieldError;
-	type?: InputHTMLAttributes<HTMLInputElement>['type'];
+interface IProps {
+	name: 'email' | 'password' | 'name' | 'confirm_password'
+	label: string
+	rules?: Record<string, unknown>
+	errors?: FieldError
+	type?: InputHTMLAttributes<HTMLInputElement>['type']
 	control: Control<IValidation, any>
 }
 
-export const CustomInput = <T extends FieldValues>({
+export const CustomInput:FC<IProps> = ({
 	name,
 	label,
 	rules,
-	error,
+	errors,
 	type = 'text',
 	control,
-}: InputProps) => {
+}) => {
 	const { field: { value, onChange, ref, ...inputProps } } = useController({ name, control, rules })
 
+	const isError = !!errors
+
 	return (
-		<FormControl isInvalid={!!error}>
+		<FormControl isInvalid={isError}>
 			<FormLabel htmlFor={name}>{label}</FormLabel>
 			<Input
 				ref={ref}
@@ -35,7 +37,9 @@ export const CustomInput = <T extends FieldValues>({
 				onChange={onChange}
 				{...inputProps}
 			/>
-			{error && <div>{error.message}</div>}
+			<FormErrorMessage>
+				{isError && errors.message}
+			</FormErrorMessage>
 		</FormControl>
 	)
 }

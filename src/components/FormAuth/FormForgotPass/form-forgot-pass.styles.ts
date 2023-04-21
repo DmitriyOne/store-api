@@ -8,5 +8,5 @@ export const componentStyles: StackProps = {
 export const linkStyles: LinkProps = {
 	variant: 'link',
 	colorScheme: 'blue',
-	fontSize: { base: 'xs', md: 'md' },
+	fontSize: { base: 'xs', md: 'sm' },
 }
