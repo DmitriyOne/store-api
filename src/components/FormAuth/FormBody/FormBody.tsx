@@ -25,7 +25,7 @@ export const FormBody: FC<IProps> = ({ variant, btnText }) => {
 			alert.visible = false
 			alert.hide!()
 			clearTimeout(alertTimeout)
-		}, 3000)
+		}, 300000)
 	}
 
 	const onSubmit: SubmitHandler<IValidation> = (data) => {
