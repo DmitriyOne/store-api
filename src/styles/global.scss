@@ -1,6 +1,7 @@
 @use './mixins.scss';
 @use './breakpoints.scss';
 @import './pagination';
+@import './animate';
 
 *,
 *::before,
@@ -8,7 +9,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	border-color: #e2e8f0 !important;
+	border-color: #e2e8f0;
 }
 
 html,
@@ -60,6 +61,7 @@ button {
 	outline: none;
 	background-color: transparent;
 	font-family: inherit;
+	border-color: #e2e8f0 !important;
 
 	&:disabled {
 		cursor: no-drop;
@@ -133,3 +135,22 @@ main {
 .chakra-breadcrumb__list-item > span {
 	display: flex;
 }
+
+.alert {
+	transition: all .4;
+}
+
+.alert-enter {
+	opacity: 0;
+}
+
+.alert-enter-active {
+	animation: alert-visible 350ms ease-out forwards;
+}
+
+.alert-exit-active {
+	animation: alert-hidden 200ms ease-out forwards;
+}
+
+
+

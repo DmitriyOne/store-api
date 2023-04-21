@@ -1,3 +1,4 @@
+export * from './alert.interface'
 export * from './auth.interface'
 export * from './breadcrumbs.interface'
 export * from './cart.interface'

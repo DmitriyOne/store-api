@@ -1,0 +1,34 @@
+@keyframes alert-visible {
+	0% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+
+	50% {
+		opacity: .7;
+		transform: translateX(100px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes alert-hidden {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	50% {
+		opacity: .7;
+		transform: translateX(100px);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateX(250px);
+
+	}
+}
