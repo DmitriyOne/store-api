@@ -7,7 +7,7 @@ import { Alert as ChakraAlert, AlertIcon } from '@chakra-ui/react'
 import { componentStyles } from './alert.styles'
 
 interface IProps {
-	message: string
+	message?: string
 }
 
 export const Alert: FC<IProps> = ({ message }) => {

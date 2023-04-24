@@ -2,4 +2,12 @@ import { createContext } from 'react'
 
 import { IAlert } from '@interfaces'
 
-export const AlertContext = createContext<IAlert>({ message: '' })
+const defaultValue: IAlert = {
+	message: '',
+	visible: false,
+	status: 'success',
+	show: () => { },
+	hide: () => { },
+}
+
+export const AlertContext = createContext<IAlert>(defaultValue)
