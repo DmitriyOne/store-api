@@ -58,6 +58,7 @@ export const ProductDetails: FC<IProps> = ({ product }) => {
 				src={product.image}
 				title={product.title}
 				onClickFavorite={onToggleFavorites}
+				iconStyle={iconFavStyles}
 			/>
 
 			<Flex {...contextWrapStyles}>

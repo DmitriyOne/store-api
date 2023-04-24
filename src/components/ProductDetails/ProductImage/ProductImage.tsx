@@ -7,15 +7,16 @@ import { useWindowSize } from '@hooks'
 
 import { ProductBtn } from '../ProductBtn'
 
-import { btnFavoritesStyles, iconFavoritesStyles, imageStyles, imageWrapStyles } from '../product-details.styles'
+import { btnFavoritesStyles, imageStyles, imageWrapStyles } from '../product-details.styles'
 
 interface IProps {
 	src: string
 	title: string
 	onClickFavorite: () => void
+	iconStyle: any
 }
 
-export const ProductImage: FC<IProps> = ({ src, title, onClickFavorite }) => {
+export const ProductImage: FC<IProps> = ({ src, title, onClickFavorite, iconStyle }) => {
 	const { isMobile } = useWindowSize()
 
 	return (
@@ -32,7 +33,7 @@ export const ProductImage: FC<IProps> = ({ src, title, onClickFavorite }) => {
 					iconPosition="right"
 					icon={FiHeart}
 					btnStyle={btnFavoritesStyles}
-					iconStyle={iconFavoritesStyles}
+					iconStyle={iconStyle}
 				/>
 			}
 		</Flex>
