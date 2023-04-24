@@ -1,4 +1,4 @@
-import { HeadingProps, StackProps, TextProps } from '@chakra-ui/react'
+import { HeadingProps, ListItemProps, StackProps, TextProps } from '@chakra-ui/react'
 
 export const headingStyles: HeadingProps = {
 	size: 'xl',
@@ -12,3 +12,8 @@ export const wrapperStyles: StackProps = {
 export const textStyles: TextProps = {
 	mb: 1,
 }
+
+export const itemStyles: ListItemProps = {
+	fontSize: {base: 'sm', md: 'md'}
+}
+
