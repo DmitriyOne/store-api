@@ -11,7 +11,7 @@ export interface IProduct {
 	category: string
 	image: string
 	rating: IProductRating
-	quantity?: number
+	quantity: number
 }
 
 export interface IShortProduct {
