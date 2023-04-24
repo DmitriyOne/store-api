@@ -4,53 +4,53 @@ import { Box, ListIcon, ListItem, Stack, Text, UnorderedList } from '@chakra-ui/
 
 import { Heading } from '@components'
 
-import { headingStyles, textStyles, wrapperStyles } from './home.styles'
+import { headingStyles, itemStyles, textStyles, wrapperStyles } from './home.styles'
 
 export const Home = () => {
 	return (
 		<>
 			<Heading {...headingStyles}>
-				Добро пожаловать!
+				Welcome!
 			</Heading>
 			<Stack {...wrapperStyles}>
 				<Box>
 					<Text {...textStyles}>
-						В этом приложении используется:
+						This application uses:
 					</Text>
 					<UnorderedList>
-						<ListItem >
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
 							React v18
 						</ListItem>
-						<ListItem >
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
 							NextJS v13
 						</ListItem>
-						<ListItem >
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
 							TypeScript
 						</ListItem>
-						<ListItem >
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
 							Chakra UI
 						</ListItem>
-						<ListItem >
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
 							Redux toolkit
 						</ListItem>
-						<ListItem >
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
 							RTK query
 						</ListItem>
-						<ListItem >
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
 							React hook form
 						</ListItem>
-						<ListItem >
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
 							Module SCSS
 						</ListItem>
-						<ListItem >
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
 							ES Lint/Stylelint
 						</ListItem>
@@ -58,31 +58,34 @@ export const Home = () => {
 				</Box>
 				<Box>
 					<Text {...textStyles}>
-						Что можно сделать в этом приложении? <br />
+						What can be done in this application?
 					</Text>
 					<UnorderedList>
-						<ListItem >
+						<ListItem  {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
-							Добавить свой товар в корзину или избранное
+							Add your product to cart or favorites
 						</ListItem>
-						<ListItem>
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
-							Выполнить фильтр товара по разным критериям
+							Filter the product by different criteria
 						</ListItem>
-						<ListItem>
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
-							Найти нужный товар по его названию
+							Find the right product by its name
 						</ListItem>
-						<ListItem>
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
-							Посмотреть все данные выбранного товара
+							View all data of the selected product
 						</ListItem>
-						<ListItem>
+						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
-							Произвести логин или авторизацию в свой кабнет (пока в стадии разрабтке. будет сделанно через firebase).
+							Login or authorize in your cabinet (still under development. will be done through firebase).
 						</ListItem>
 					</UnorderedList>
 				</Box>
+				<Text as="b">
+					Walk on it and you will understand how comfortable it is.
+				</Text>
 			</Stack>
 		</>
 	)

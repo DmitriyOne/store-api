@@ -8,7 +8,7 @@
 }
 
 .pagination li {
-	margin-right: 14px;
+	margin-right: 8px;
 
 	&:last-child {
 		margin-right: 0;
@@ -16,10 +16,10 @@
 }
 
 .pagination a {
-	padding: 10px;
+	padding: 5px 10px;
 	border-radius: 5px;
-	border: 1px solid #9dbfe1;
-	color:#6e8faf;
+	border: 1px solid transparent !important;
+	color:#1a202c;
 }
 
 .pagination__link {
@@ -27,8 +27,7 @@
 }
 
 .pagination__link--active a {
-	color: #fff;
-	background: #9dbfe1;
+	background: #edf2f6;
 }
 
 .pagination__link--disabled a {
