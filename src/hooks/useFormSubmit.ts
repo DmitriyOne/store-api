@@ -37,8 +37,6 @@ export const useFormSubmit = (
 		signInWithEmailAndPassword(auth, user.email, user.password)
 			.then((userCredential) => {
 				const fbuser = userCredential.user
-				console.log(fbuser)
-
 				addUser({
 					id: fbuser.uid,
 					name: fbuser.displayName,
@@ -59,7 +57,6 @@ export const useFormSubmit = (
 				updateProfile(userCredential.user, {
 					displayName: user.name,
 				})
-				console.log(fbuser)
 				addUser({
 					id: fbuser.uid,
 					name: user.name,
