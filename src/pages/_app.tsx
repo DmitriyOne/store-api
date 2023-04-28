@@ -11,6 +11,8 @@ import { wrapper } from '@services'
 
 import { Layout } from '@components'
 
+import '../../firebase'
+
 import '@styles/global.scss'
 
 type NextPageWithLayout = NextPage & {
