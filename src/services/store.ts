@@ -2,12 +2,13 @@ import { createWrapper } from 'next-redux-wrapper'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import { productApi } from './product'
-import { cartReducer, favoritesReducer } from './reducers'
+import { cartReducer, favoritesReducer, userReducer } from './reducers'
 
 const rootReducer = combineReducers({
 	[productApi.reducerPath]: productApi.reducer,
 	cart: cartReducer,
 	favorites: favoritesReducer,
+	user: userReducer,
 })
 
 export const makeStore = () =>

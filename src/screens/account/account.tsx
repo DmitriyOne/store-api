@@ -1,11 +1,14 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import { useAuth } from '@hooks'
+
 import { Heading } from '@components'
 
 export const Account = () => {
 	const router = useRouter()
 	const { id } = router.query
+	const { user } = useAuth()
 
 	return (
 		<>
@@ -13,16 +16,16 @@ export const Account = () => {
 				Account page
 			</Heading>
 			<div>
-				<h1>Профиль пользователя {id}</h1>
+				<h1>Welcome, {user.name}</h1>
 				<ul>
 					<li>
 						<Link href={`/account/${id}/settings`}>
-							Настройки профиля
+							Settings account
 						</Link>
 					</li>
 					<li>
 						<Link href={`/account/${id}/my-orders`}>
-							Мои заказы
+							My orders
 						</Link>
 					</li>
 				</ul>

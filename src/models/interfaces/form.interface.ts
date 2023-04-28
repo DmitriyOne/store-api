@@ -13,6 +13,6 @@ export interface IFormHeader {
 
 export interface IFormBtns {
 	btnText: string
-	isLoading: boolean
+	isLoading?: boolean
 }
 

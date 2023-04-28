@@ -1,11 +1,12 @@
 import { useDispatch } from 'react-redux'
 import { bindActionCreators } from '@reduxjs/toolkit'
 
-import { cartActions, favoritesActions } from '@services/reducers'
+import { cartActions, favoritesActions, userActions } from '@services/reducers'
 
 const actions = {
 	...cartActions,
 	...favoritesActions,
+	...userActions,
 }
 
 export const useAppActions = () => {

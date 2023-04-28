@@ -1,5 +1,6 @@
 export * from './useAppActions'
 export * from './useAppSelector'
+export * from './useAuth'
 export * from './useCustomStyles'
 export * from './useDebounce'
 export * from './useFilter'
