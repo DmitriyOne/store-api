@@ -21,7 +21,7 @@ interface IProps extends IForm, IFormBtns { }
 export const FormBody: FC<IProps> = ({ variant, btnText }) => {
 	const { handleSubmit, formState: { errors }, reset, control, getValues, setError } = useForm<IValidation>({ mode: 'onChange' })
 	const alert = useContext(AlertContext)
-	const onSubmit = useFormSubmit(variant, alert, reset, setError, getValues)
+	const { onSubmit, isLoading } = useFormSubmit(variant, alert, reset, setError, getValues)
 
 	const wrapperStyles = variant === 'login' ? { ...spacingBigStyles } : { ...spacingSmallStyles }
 	return (
@@ -75,7 +75,7 @@ export const FormBody: FC<IProps> = ({ variant, btnText }) => {
 				}
 			</Stack>
 			{variant === 'login' && <FormForgotPass />}
-			<FormBtns variant={variant} btnText={btnText} />
+			<FormBtns isLoading={isLoading} variant={variant} btnText={btnText} />
 		</Stack>
 	)
 }

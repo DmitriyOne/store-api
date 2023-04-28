@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 import { IAlert, IValidation } from '@interfaces'
 
@@ -8,7 +8,15 @@ const messages: any = {
 	forgot: 'A one-time password has been sent to your email.',
 }
 
-export const useFormSubmit = (variant: string, alert: IAlert, reset: any, setError: any, getValues: any) => {
+export const useFormSubmit = (
+	variant: string,
+	alert: IAlert,
+	reset: any,
+	setError: any,
+	getValues: any,
+) => {
+	const [isLoading, setIsLoading] = useState(false)
+
 	const handlerTimer = () => {
 		const alertTimeout = setTimeout(() => {
 			alert.visible = false
@@ -17,8 +25,11 @@ export const useFormSubmit = (variant: string, alert: IAlert, reset: any, setErr
 		}, 3000)
 	}
 
-	return useCallback((data: IValidation) => {
+	const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
+	const onSubmit = useCallback(async (data: IValidation) => {
 		console.log(data)
+		setIsLoading(true)
 		const { password, confirm_password } = getValues()
 
 		if (password !== confirm_password && variant === 'registration') {
@@ -26,10 +37,14 @@ export const useFormSubmit = (variant: string, alert: IAlert, reset: any, setErr
 			return
 		}
 
+		await sleep(1000)
+		setIsLoading(false)
 		alert.visible = true
 		alert.show(messages[variant], 'success')
 		handlerTimer()
 		reset()
 
 	}, [variant, alert, getValues, reset, setError])
+
+	return { isLoading, onSubmit }
 }
