@@ -36,7 +36,7 @@ export const Registration = () => {
 					id: fbuser.uid,
 					name: data.name,
 					email: fbuser.email,
-					token: fbuser.accessToken,
+					token: fbuser.refreshToken,
 				})
 				await sleep(500)
 				alert.visible = true

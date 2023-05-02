@@ -27,7 +27,7 @@ export const Login = () => {
 					id: fbuser.uid,
 					name: fbuser.displayName,
 					email: fbuser.email,
-					token: fbuser.accessToken,
+					token: fbuser.refreshToken,
 				})
 				await sleep(500)
 				alert.visible = true
