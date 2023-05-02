@@ -1,4 +1,6 @@
 import { useContext } from 'react'
+import { useRouter } from 'next/router'
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 import { AlertContext } from 'src/context'
 
@@ -11,8 +13,32 @@ import { FormAuth } from '@components'
 
 export const ForgotPassword = () => {
 	const alert = useContext(AlertContext)
-	const { handleSubmit, formState: { errors }, reset, control, getValues, setError } = useForm<IUser>({ mode: 'onChange' })
-	const { onSubmit, isLoading } = useFormSubmit('forgot', alert, reset, setError, getValues)
+	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
+	const { handlerTimer } = useFormSubmit(alert)
+	const auth = getAuth()
+	const router = useRouter()
+
+	const onSubmit = async (data: IUser) => {
+		console.log(data)
+
+		sendPasswordResetEmail(auth, data.email)
+			.then(() => {
+				reset()
+				router.push(STORE_ROUTES.LOGIN)
+			})
+			.catch((error) => {
+				alert.visible = true
+				if (error.code === 'auth/user-not-found') {
+					alert.show('It is not possible to reset the password because the user does not exist. Go to the registration page.', 'error')
+					handlerTimer()
+					return
+				}
+				alert.show('An error has occurred.', 'error')
+				handlerTimer()
+				return
+			})
+
+	}
 
 	const header: IFormHeader = {
 		title: 'Recover your password',
@@ -30,7 +56,7 @@ export const ForgotPassword = () => {
 			handleSubmit={handleSubmit}
 			errors={errors}
 			control={control}
-			isLoading={isLoading}
+			isLoading={isSubmitting}
 		/>
 	)
 }

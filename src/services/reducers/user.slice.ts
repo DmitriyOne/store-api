@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { IUser, IUserState } from '@interfaces'
+import { IUserState } from '@interfaces'
 
 const initialState: IUserState = {
 	name: null,
