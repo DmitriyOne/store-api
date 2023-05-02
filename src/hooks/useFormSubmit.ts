@@ -47,6 +47,8 @@ export const useFormSubmit = (
 			.catch((error) => {
 				const errorCode = error.code
 				const errorMessage = error.message
+				console.log('login error: ', error)
+
 			})
 	}
 
@@ -67,7 +69,7 @@ export const useFormSubmit = (
 			.catch((error) => {
 				const errorCode = error.code
 				const errorMessage = error.message
-				// ..
+				return
 			})
 	}
 
@@ -78,6 +80,7 @@ export const useFormSubmit = (
 
 		if (password !== confirm_password && variant === 'registration') {
 			setError('confirm_password', { type: 'manual', message: 'Passwords do not match' })
+			setIsLoading(false)
 			return
 		}
 

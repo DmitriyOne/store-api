@@ -32,7 +32,6 @@ export const MenuAccount = () => {
 						as={NextLink}
 						key={item.href}
 						href={item.href}
-						onClick={(e) => handlerLogout(e)}
 					>
 						{item.title}
 					</MenuItem>

@@ -1,13 +1,10 @@
-import { FC, useContext } from 'react'
-import { useForm } from 'react-hook-form'
-import { AlertContext } from 'src/context'
+/* eslint-disable no-unused-vars */
+import { FC } from 'react'
 
 import { Stack, Text } from '@chakra-ui/react'
 
 import { VALIDATION } from '@constants'
-import { IForm, IFormBtns, IValidation } from '@interfaces'
-
-import { useFormSubmit } from '@hooks'
+import { IFormBody } from '@interfaces'
 
 import { CustomInput } from '@components'
 
@@ -16,14 +13,10 @@ import { FormForgotPass } from '../FormForgotPass'
 
 import { formStyles, spacingBigStyles, spacingSmallStyles, textForgotStyles } from './form-body.styles'
 
-interface IProps extends IForm, IFormBtns { }
-
-export const FormBody: FC<IProps> = ({ variant, btnText }) => {
-	const { handleSubmit, formState: { errors }, reset, control, getValues, setError } = useForm<IValidation>({ mode: 'onChange' })
-	const alert = useContext(AlertContext)
-	const { onSubmit, isLoading } = useFormSubmit(variant, alert, reset, setError, getValues)
+export const FormBody: FC<IFormBody> = ({ variant, btnText, isLoading, onSubmit, handleSubmit, errors, control }) => {
 
 	const wrapperStyles = variant === 'login' ? { ...spacingBigStyles } : { ...spacingSmallStyles }
+
 	return (
 		<Stack
 			as="form"
@@ -32,7 +25,8 @@ export const FormBody: FC<IProps> = ({ variant, btnText }) => {
 		>
 			{variant === 'forgot' &&
 				<Text {...textForgotStyles}>
-					Write in the email field that you used to create your account on this site. If the email is correct, then within a couple of minutes a one-time password will be sent to your email to reset the password in the store account. Do not share this password with anyone.					</Text>
+					Write in the email field that you used to create your account on this site. If the email is correct, then within a couple of minutes a one-time password will be sent to your email to reset the password in the store account. Do not share this password with anyone.
+				</Text>
 			}
 
 			<Stack {...wrapperStyles}>
@@ -75,7 +69,11 @@ export const FormBody: FC<IProps> = ({ variant, btnText }) => {
 				}
 			</Stack>
 			{variant === 'login' && <FormForgotPass />}
-			<FormBtns isLoading={isLoading} variant={variant} btnText={btnText} />
+			<FormBtns
+				variant={variant}
+				isLoading={isLoading}
+				btnText={btnText}
+			/>
 		</Stack>
 	)
 }
