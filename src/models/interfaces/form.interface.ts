@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { UseFormHandleSubmit } from 'react-hook-form'
+import { Control, UseFormHandleSubmit } from 'react-hook-form'
 
 import { EForm } from '@enums'
 import { IUser } from '@interfaces'
@@ -17,7 +17,7 @@ export interface IForm
 	onSubmit: (data: IUser) => Promise<void>
 	handleSubmit: UseFormHandleSubmit<IUser>
 	errors: any
-	control: any
+	control: Control<IUser, any>
 }
 
 export interface IFormHeader {
@@ -33,5 +33,5 @@ export interface IFormBody
 	onSubmit: (data: IUser) => Promise<void>
 	handleSubmit: UseFormHandleSubmit<IUser>
 	errors: any
-	control: any
+	control: Control<IUser, any>
 }

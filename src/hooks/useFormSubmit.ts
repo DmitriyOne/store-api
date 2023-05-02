@@ -13,11 +13,11 @@ const messages: any = {
 }
 
 export const useFormSubmit = (
-	variant: keyof typeof EForm,
+	// variant: keyof typeof EForm,
 	alert: IAlert,
-	reset: any,
-	setError: any,
-	getValues: any,
+	// reset: any,
+	// setError: any,
+	// getValues: any,
 ) => {
 	const [isLoading, setIsLoading] = useState(false)
 	const { addUser } = useAppActions()
@@ -52,54 +52,38 @@ export const useFormSubmit = (
 			})
 	}
 
-	const handlerRegister = (user: IUser) => {
-		createUserWithEmailAndPassword(auth, user.email, user.password)
-			.then((userCredential) => {
-				const fbuser = userCredential.user
-				updateProfile(userCredential.user, {
-					displayName: user.name,
-				})
-				addUser({
-					id: fbuser.uid,
-					name: user.name,
-					email: fbuser.email,
-					token: fbuser.accessToken,
-				})
-			})
-			.catch((error) => {
-				const errorCode = error.code
-				const errorMessage = error.message
-				return
-			})
+	// const onSubmit = useCallback(async (data: IUser) => {
+	// 	console.log(data)
+	// 	setIsLoading(true)
+	// 	const { password, confirm_password } = getValues()
+
+	// 	if (password !== confirm_password && variant === 'registration') {
+	// 		setError('confirm_password', { type: 'manual', message: 'Passwords do not match' })
+	// 		setIsLoading(false)
+	// 		return
+	// 	}
+
+	// 	if (variant === 'login') {
+	// 		handlerLogin(data)
+	// 	}
+
+	// 	if (variant === 'registration') {
+	// 		handlerRegister(data)
+	// 	}
+
+	// 	await sleep(1000)
+	// 	setIsLoading(false)
+	// 	alert.visible = true
+	// 	alert.show(messages[variant], 'success')
+	// 	handlerTimer()
+	// 	reset()
+
+	// }, [variant, alert, getValues, reset, setError])
+
+	return {
+		isLoading,
+		//  onSubmit,
+		handlerTimer,
+		sleep,
 	}
-
-	const onSubmit = useCallback(async (data: IUser) => {
-		console.log(data)
-		setIsLoading(true)
-		const { password, confirm_password } = getValues()
-
-		if (password !== confirm_password && variant === 'registration') {
-			setError('confirm_password', { type: 'manual', message: 'Passwords do not match' })
-			setIsLoading(false)
-			return
-		}
-
-		if (variant === 'login') {
-			handlerLogin(data)
-		}
-
-		if (variant === 'registration') {
-			handlerRegister(data)
-		}
-
-		await sleep(1000)
-		setIsLoading(false)
-		alert.visible = true
-		alert.show(messages[variant], 'success')
-		handlerTimer()
-		reset()
-
-	}, [variant, alert, getValues, reset, setError])
-
-	return { isLoading, onSubmit }
 }

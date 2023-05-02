@@ -1,17 +1,19 @@
 import { InputHTMLAttributes } from 'react'
-import { Control, useController } from 'react-hook-form'
+import { Control, FieldName, useController } from 'react-hook-form'
 
 import { FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
+
+import { IUser } from '@interfaces'
 
 import { InputPassword } from './InputPassword'
 
 interface IProps {
-	name: 'email' | 'password' | 'name' | 'confirm_password'
+	name: FieldName<IUser>
 	label: string
 	rules?: Record<string, unknown>
 	errors?: any
 	type?: InputHTMLAttributes<HTMLInputElement>['type']
-	control: Control<any, any>
+	control: Control<IUser, any>
 }
 
 export const CustomInput = ({

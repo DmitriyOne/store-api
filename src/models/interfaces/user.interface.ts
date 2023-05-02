@@ -3,6 +3,7 @@ export interface IUser {
 	name: string
 	email: string
 	password: string
+	confirm_password?: string
 	token: string
 }
 
