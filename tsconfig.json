@@ -82,7 +82,7 @@
     "**/*.ts",
     "**/*.tsx",
     "env.d.ts"
-, "firebase.js"  ],
+, "firebase.ts"  ],
   "exclude": [
     "node_modules"
   ]

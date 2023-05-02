@@ -4,6 +4,8 @@ import { AlertContext } from 'src/context'
 
 import { Button, ButtonGroup, Text } from '@chakra-ui/react'
 
+import { useAuth } from '@hooks'
+
 import { GoogleIcon } from '../../ProviderIcon'
 
 import { btnStyles, componentStyles, textStyles } from './auth-btn-group.styles'
@@ -13,14 +15,14 @@ const providers = [
 ]
 
 export const AuthButtonGroup = () => {
-	const auth = getAuth()
 	const provider = new GoogleAuthProvider()
 	const alert = useContext(AlertContext)
+	const { myAuth } = useAuth()
 
 	const onClick = () => {
-		console.log(auth);
-		
-		signInWithPopup(auth, provider)
+		console.log(myAuth)
+
+		signInWithPopup(myAuth, provider)
 			.then((result) => {
 				// This gives you a Google Access Token. You can use it to access the Google API.
 				const credential = GoogleAuthProvider.credentialFromResult(result)

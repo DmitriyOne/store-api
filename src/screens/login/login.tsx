@@ -6,21 +6,21 @@ import { AlertContext } from 'src/context'
 import { STORE_ROUTES } from '@constants'
 import { IFormHeader, IUser } from '@interfaces'
 
-import { useAppActions, useFormSubmit } from '@hooks'
+import { useAppActions, useAuth, useFormSubmit } from '@hooks'
 
 import { FormAuth } from '@components'
 
 export const Login = () => {
-	const auth = getAuth()
 	const alert = useContext(AlertContext)
 	const { addUser } = useAppActions()
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control, getValues, setError } = useForm<IUser>({ mode: 'onChange' })
 	const { handlerTimer, sleep } = useFormSubmit(alert)
+	const { myAuth } = useAuth()
 
 	const onSubmit = async (data: IUser) => {
 		console.log(data)
 
-		signInWithEmailAndPassword(auth, data.email, data.password)
+		signInWithEmailAndPassword(myAuth, data.email, data.password)
 			.then(async (userCredential) => {
 				const fbuser = userCredential.user
 				addUser({

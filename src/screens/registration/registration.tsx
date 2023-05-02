@@ -1,12 +1,12 @@
 import { useContext } from 'react'
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 import { AlertContext } from 'src/context'
 
 import { STORE_ROUTES } from '@constants'
 import { IFormHeader, IUser } from '@interfaces'
 
-import { useAppActions, useFormSubmit } from '@hooks'
+import { useAppActions, useAuth, useFormSubmit } from '@hooks'
 
 import { FormAuth } from '@components'
 
@@ -15,7 +15,7 @@ export const Registration = () => {
 	const { addUser } = useAppActions()
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control, getValues, setError } = useForm<IUser>({ mode: 'onChange' })
 	const { handlerTimer, sleep } = useFormSubmit(alert)
-	const auth = getAuth()
+	const { myAuth } = useAuth()
 
 	const onSubmit = async (data: IUser) => {
 		console.log(data)
@@ -26,7 +26,7 @@ export const Registration = () => {
 			return
 		}
 
-		createUserWithEmailAndPassword(auth, data.email, data.password)
+		createUserWithEmailAndPassword(myAuth, data.email, data.password)
 			.then(async (userCredential) => {
 				const fbuser = userCredential.user
 				updateProfile(userCredential.user, {

@@ -7,7 +7,7 @@ import { AlertContext } from 'src/context'
 import { STORE_ROUTES } from '@constants'
 import { IFormHeader, IUser } from '@interfaces'
 
-import { useFormSubmit } from '@hooks'
+import { useAuth, useFormSubmit } from '@hooks'
 
 import { FormAuth } from '@components'
 
@@ -15,13 +15,13 @@ export const ForgotPassword = () => {
 	const alert = useContext(AlertContext)
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
 	const { handlerTimer } = useFormSubmit(alert)
-	const auth = getAuth()
 	const router = useRouter()
-
+	const { myAuth } = useAuth()
+	
 	const onSubmit = async (data: IUser) => {
 		console.log(data)
 
-		sendPasswordResetEmail(auth, data.email)
+		sendPasswordResetEmail(myAuth, data.email)
 			.then(() => {
 				reset()
 				router.push(STORE_ROUTES.LOGIN)

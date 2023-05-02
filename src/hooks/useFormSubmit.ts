@@ -21,7 +21,7 @@ export const useFormSubmit = (
 ) => {
 	const [isLoading, setIsLoading] = useState(false)
 	const { addUser } = useAppActions()
-	const auth = getAuth()
+	
 
 	const handlerTimer = () => {
 		const alertTimeout = setTimeout(() => {
