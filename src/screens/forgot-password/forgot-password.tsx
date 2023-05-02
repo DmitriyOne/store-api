@@ -1,27 +1,28 @@
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
+import { sendPasswordResetEmail } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 import { AlertContext } from 'src/context'
 
 import { STORE_ROUTES } from '@constants'
 import { IFormHeader, IUser } from '@interfaces'
 
-import { useAuth, useFormSubmit } from '@hooks'
+import { useFormSubmit } from '@hooks'
 
 import { FormAuth } from '@components'
+
+import { auth } from '@fb'
 
 export const ForgotPassword = () => {
 	const alert = useContext(AlertContext)
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
 	const { handlerTimer } = useFormSubmit(alert)
 	const router = useRouter()
-	const { myAuth } = useAuth()
-	
+
 	const onSubmit = async (data: IUser) => {
 		console.log(data)
 
-		sendPasswordResetEmail(myAuth, data.email)
+		sendPasswordResetEmail(auth, data.email)
 			.then(() => {
 				reset()
 				router.push(STORE_ROUTES.LOGIN)

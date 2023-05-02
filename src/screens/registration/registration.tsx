@@ -6,16 +6,17 @@ import { AlertContext } from 'src/context'
 import { STORE_ROUTES } from '@constants'
 import { IFormHeader, IUser } from '@interfaces'
 
-import { useAppActions, useAuth, useFormSubmit } from '@hooks'
+import { useAppActions, useFormSubmit } from '@hooks'
 
 import { FormAuth } from '@components'
+
+import { auth } from '@fb'
 
 export const Registration = () => {
 	const alert = useContext(AlertContext)
 	const { addUser } = useAppActions()
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control, getValues, setError } = useForm<IUser>({ mode: 'onChange' })
 	const { handlerTimer, sleep } = useFormSubmit(alert)
-	const { myAuth } = useAuth()
 
 	const onSubmit = async (data: IUser) => {
 		console.log(data)
@@ -26,7 +27,7 @@ export const Registration = () => {
 			return
 		}
 
-		createUserWithEmailAndPassword(myAuth, data.email, data.password)
+		createUserWithEmailAndPassword(auth, data.email, data.password)
 			.then(async (userCredential) => {
 				const fbuser = userCredential.user
 				updateProfile(userCredential.user, {

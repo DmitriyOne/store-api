@@ -1,17 +1,16 @@
 import { NextPage } from 'next'
 import { signOut } from 'firebase/auth'
 
-import { useAuth } from '@hooks'
-
 import { HeadTitleDynamic } from '@components'
 
 import { Home } from '@screens'
 
+import { auth } from '@fb'
+
 export const HomePage: NextPage = () => {
-	const { myAuth } = useAuth()
 
 	const logout = () => {
-		signOut(myAuth).then((e) => {
+		signOut(auth).then((e) => {
 			console.log(e)
 		}).catch((error) => {
 			console.log(error)
