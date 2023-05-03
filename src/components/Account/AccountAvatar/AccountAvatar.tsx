@@ -12,7 +12,7 @@ import { useWindowSize } from '@hooks'
 import { avatarStyles, buttonIconStyles, buttonStyles, componentStyles } from './account-avatar.styles'
 
 interface IProps extends IUserState {
-	isSettingPage: boolean
+	isSettingPage?: boolean
 }
 
 export const AccountAvatar: FC<IProps> = ({

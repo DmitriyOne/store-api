@@ -13,8 +13,8 @@ import { componentStyles, nameStyles, textStyles } from './account-body.styles'
 export const AccountBody: FC<IUserState> = ({ ...user }) => {
 	const { isDesktop } = useWindowSize()
 
-	const date1 = new Date(user.createAccount)
-	const date2 = new Date(user.lastLogin)
+	const dateCreate = new Date(user.createAccount)
+	const dateLogin = new Date(user.lastLogin)
 
 	return (
 		<Box {...componentStyles}>
@@ -35,11 +35,11 @@ export const AccountBody: FC<IUserState> = ({ ...user }) => {
 			<AccountVerifiedData variant="phone" />
 
 			<Text {...textStyles}>
-				<b>Account created on</b> {date1.toLocaleString()}
+				<b>Account created on</b> {dateCreate.toLocaleString()}
 			</Text>
 
 			<Text {...textStyles}>
-				<b>Last login on</b> {date2.toLocaleString()}
+				<b>Last login on</b> {dateLogin.toLocaleString()}
 			</Text>
 		</Box>
 
