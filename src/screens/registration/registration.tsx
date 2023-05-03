@@ -19,7 +19,6 @@ export const Registration = () => {
 	const { handlerTimer, sleep } = useFormSubmit(alert)
 
 	const onSubmit = async (data: IUser) => {
-		console.log(data)
 		const { password, confirm_password } = getValues()
 
 		if (password !== confirm_password) {
@@ -30,14 +29,18 @@ export const Registration = () => {
 		createUserWithEmailAndPassword(auth, data.email, data.password)
 			.then(async (userCredential) => {
 				const fbuser = userCredential.user
-				console.log(fbuser);
 				updateProfile(userCredential.user, {
 					displayName: data.name,
 				})
 				addUser({
 					id: fbuser.uid,
-					name: data.name,
+					name: fbuser.displayName,
 					email: fbuser.email,
+					isEmailVerified: fbuser.emailVerified,
+					avatar: fbuser.photoURL,
+					phone: fbuser.phoneNumber,
+					createAccount: fbuser.metadata.creationTime,
+					lastLogin: fbuser.metadata.lastSignInTime,
 					token: fbuser.refreshToken,
 				})
 				await sleep(700)

@@ -6,7 +6,7 @@ import { Avatar, Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui
 
 import { STORE_ROUTES } from '@constants'
 
-import { useAppActions, useAppSelector } from '@hooks'
+import { useAppActions, useAuth } from '@hooks'
 
 import { menuItem } from './menu'
 
@@ -15,7 +15,7 @@ import { buttonStyles } from './menu-account.styles'
 import { auth } from '@fb'
 
 export const MenuAccount = () => {
-	const { user } = useAppSelector(state => state)
+	const { user } = useAuth()
 	const { removeUser } = useAppActions()
 	const route = useRouter()
 
@@ -26,7 +26,7 @@ export const MenuAccount = () => {
 			route.push(STORE_ROUTES.SHOP)
 			removeUser()
 		}).catch((error) => {
-			console.log(error)
+			console.error(error)
 		})
 	}
 

@@ -20,8 +20,6 @@ export const ForgotPassword = () => {
 	const router = useRouter()
 
 	const onSubmit = async (data: IUser) => {
-		console.log(data)
-
 		sendPasswordResetEmail(auth, data.email)
 			.then(async () => {
 				await sleep(400)
@@ -39,7 +37,6 @@ export const ForgotPassword = () => {
 				handlerTimer()
 				return
 			})
-
 	}
 
 	const header: IFormHeader = {

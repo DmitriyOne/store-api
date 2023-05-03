@@ -15,12 +15,10 @@ import { auth } from '@fb'
 export const Login = () => {
 	const alert = useContext(AlertContext)
 	const { addUser } = useAppActions()
-	const { handleSubmit, formState: { errors, isSubmitting }, reset, control, getValues, setError } = useForm<IUser>({ mode: 'onChange' })
+	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
 	const { handlerTimer, sleep } = useFormSubmit(alert)
 
 	const onSubmit = async (data: IUser) => {
-		console.log(data)
-
 		signInWithEmailAndPassword(auth, data.email, data.password)
 			.then(async (userCredential) => {
 				const fbuser = userCredential.user
@@ -32,6 +30,7 @@ export const Login = () => {
 					avatar: fbuser.photoURL,
 					phone: fbuser.phoneNumber,
 					createAccount: fbuser.metadata.creationTime,
+					lastLogin: fbuser.metadata.lastSignInTime,
 					token: fbuser.refreshToken,
 				})
 				await sleep(500)
