@@ -2,11 +2,11 @@ import { NextPage } from 'next'
 
 import { MyOrders } from '@screens'
 
-export const MyOrdersPage: NextPage = () => {
+export const OrdersPage: NextPage = () => {
 
 	return (
 		<MyOrders />
 	)
 }
 
-export default MyOrdersPage
+export default OrdersPage

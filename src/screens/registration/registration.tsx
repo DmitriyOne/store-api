@@ -30,6 +30,7 @@ export const Registration = () => {
 		createUserWithEmailAndPassword(auth, data.email, data.password)
 			.then(async (userCredential) => {
 				const fbuser = userCredential.user
+				console.log(fbuser);
 				updateProfile(userCredential.user, {
 					displayName: data.name,
 				})
@@ -39,7 +40,7 @@ export const Registration = () => {
 					email: fbuser.email,
 					token: fbuser.refreshToken,
 				})
-				await sleep(500)
+				await sleep(700)
 				alert.visible = true
 				alert.show('The account has been created. You have successfully registered.', 'success')
 				handlerTimer()

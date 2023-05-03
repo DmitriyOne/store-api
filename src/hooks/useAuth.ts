@@ -1,10 +1,10 @@
 import { useAppSelector } from './useAppSelector'
 
 export const useAuth = () => {
-	const { email, ...user } = useAppSelector(state => state.user)
+	const { ...user } = useAppSelector(state => state.user)
 
 	return {
-		isAuth: !!email,
+		isAuth: !!user.email,
 		user,
 	}
 }

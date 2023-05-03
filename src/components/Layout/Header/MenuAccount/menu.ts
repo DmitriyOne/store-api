@@ -14,8 +14,4 @@ export const menuItem: IMenu[] = [
 		title: 'Settings',
 		href: STORE_ROUTES.SETTINGS,
 	},
-	{
-		title: 'Logout',
-		href: '#',
-	},
 ]

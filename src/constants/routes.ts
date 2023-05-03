@@ -13,7 +13,7 @@ export const STORE_ROUTES = {
 	FORGOT_PASS: '/forgot-password',
 
 	// account page
-	ACCOUNT: '/account/:id',
-	MY_ORDERS: 'account/:id/my-orders',
-	SETTINGS: 'account/:id/settings',
+	ACCOUNT: '/account/[displayName]',
+	MY_ORDERS: '/account/[displayName]/orders',
+	SETTINGS: '/account/[displayName]/settings',
 }

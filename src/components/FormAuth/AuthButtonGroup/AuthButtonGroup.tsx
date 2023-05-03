@@ -4,6 +4,8 @@ import { AlertContext } from 'src/context'
 
 import { Button, ButtonGroup, Text } from '@chakra-ui/react'
 
+import { useAppActions } from '@hooks'
+
 import { GoogleIcon } from '../../ProviderIcon'
 
 import { btnStyles, componentStyles, textStyles } from './auth-btn-group.styles'
@@ -15,15 +17,26 @@ const providers = [
 ]
 
 export const AuthButtonGroup = () => {
+	const { addUser } = useAppActions()
 	const provider = new GoogleAuthProvider()
 	const alert = useContext(AlertContext)
 
 	const onClick = () => {
-		console.log(auth)
-
 		signInWithPopup(auth, provider)
 			.then((result) => {
-				console.log(result)
+				console.log(result.user)
+				const fbuser = result.user
+				addUser({
+					id: fbuser.uid,
+					name: fbuser.displayName,
+					email: fbuser.email,
+					isEmailVerified: fbuser.emailVerified,
+					avatar: fbuser.photoURL,
+					phone: fbuser.phoneNumber,
+					createAccount: fbuser.metadata.creationTime,
+					lastLogin: fbuser.metadata.lastSignInTime,
+					token: fbuser.refreshToken,
+				})
 			}).catch((error) => {
 				console.error(error)
 			})

@@ -16,14 +16,15 @@ import { auth } from '@fb'
 export const ForgotPassword = () => {
 	const alert = useContext(AlertContext)
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
-	const { handlerTimer } = useFormSubmit(alert)
+	const { handlerTimer, sleep } = useFormSubmit(alert)
 	const router = useRouter()
 
 	const onSubmit = async (data: IUser) => {
 		console.log(data)
 
 		sendPasswordResetEmail(auth, data.email)
-			.then(() => {
+			.then(async () => {
+				await sleep(400)
 				reset()
 				router.push(STORE_ROUTES.LOGIN)
 			})

@@ -11,5 +11,10 @@ export interface IUserState {
 	id: string
 	name: string
 	email: string
+	isEmailVerified: boolean
+	avatar: string | null
+	phone: string | null
+	createAccount: string
+	lastLogin: string | null
 	token: string
 }

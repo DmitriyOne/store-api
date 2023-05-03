@@ -28,6 +28,10 @@ export const Login = () => {
 					id: fbuser.uid,
 					name: fbuser.displayName,
 					email: fbuser.email,
+					isEmailVerified: fbuser.emailVerified,
+					avatar: fbuser.photoURL,
+					phone: fbuser.phoneNumber,
+					createAccount: fbuser.metadata.creationTime,
 					token: fbuser.refreshToken,
 				})
 				await sleep(500)
