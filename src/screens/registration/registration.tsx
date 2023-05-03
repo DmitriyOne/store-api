@@ -39,6 +39,7 @@ export const Registration = () => {
 					isEmailVerified: fbuser.emailVerified,
 					avatar: fbuser.photoURL,
 					phone: fbuser.phoneNumber,
+					isPhoneVerified: false,
 					createAccount: fbuser.metadata.creationTime,
 					lastLogin: fbuser.metadata.lastSignInTime,
 					token: fbuser.refreshToken,

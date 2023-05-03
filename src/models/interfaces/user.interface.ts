@@ -14,6 +14,7 @@ export interface IUserState {
 	isEmailVerified: boolean
 	avatar: string | null
 	phone: string | null
+	isPhoneVerified: boolean
 	createAccount: string
 	lastLogin: string | null
 	token: string

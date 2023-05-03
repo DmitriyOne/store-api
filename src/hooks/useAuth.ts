@@ -20,6 +20,7 @@ export const useAuth = () => {
 					isEmailVerified: fbUser.emailVerified,
 					avatar: fbUser.photoURL,
 					phone: fbUser.phoneNumber,
+					isPhoneVerified: false,
 					createAccount: fbUser.metadata.creationTime,
 					lastLogin: fbUser.metadata.lastSignInTime,
 					token: fbUser.refreshToken,

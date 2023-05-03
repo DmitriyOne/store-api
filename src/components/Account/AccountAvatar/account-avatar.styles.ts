@@ -2,6 +2,7 @@ import { AvatarProps, ButtonProps, FlexProps, IconProps } from '@chakra-ui/react
 
 export const componentStyles: FlexProps = {
 	flexDirection: 'column',
+	pos: 'relative',
 }
 
 export const avatarStyles: AvatarProps = {

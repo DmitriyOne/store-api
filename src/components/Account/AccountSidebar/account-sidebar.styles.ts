@@ -7,9 +7,10 @@ export const componentStyles: BoxProps = {
 	borderRightWidth: '1px',
 	borderColor: 'gray.200',
 	bg: 'white',
-	w: '60',
-	pr: '8',
-	pt: '10',
+	w: 'full',
+	maxW: { base: '140px', lg: '170px' },
+	pr: '4',
+	pt: '8',
 }
 
 export const wrapperStyles: StackProps = {

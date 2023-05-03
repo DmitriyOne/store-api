@@ -2,15 +2,14 @@ import { FlexProps } from '@chakra-ui/react'
 
 export const componentStyles: FlexProps = {
 	direction: 'row',
-	align: 'flex-start',
-	maxW: { xl: '1200px' },
+	align: 'stretch',
 	mx: 'auto',
-	px: { base: '6', md: '8' },
-	pt: '12',
+	pt: { base: '6', md: '12' },
 	pb: '8',
 }
 
 export const contentStyles: FlexProps = {
+	flexDirection: { base: 'column', md: 'row' },
 	flex: '1',
-	pl: '72px',
+	pl: { base: '0', md: '8', lg: '12' },
 }

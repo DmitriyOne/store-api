@@ -9,6 +9,7 @@ const initialState: IUserState = {
 	isEmailVerified: false,
 	avatar: null,
 	phone: null,
+	isPhoneVerified: false,
 	createAccount: null,
 	lastLogin: null,
 	token: null,
@@ -25,6 +26,7 @@ export const userSlice = createSlice({
 			state.isEmailVerified = action.payload.isEmailVerified
 			state.avatar = action.payload.avatar
 			state.phone = action.payload.phone
+			state.isPhoneVerified = action.payload.isPhoneVerified
 			state.createAccount = action.payload.createAccount
 			state.lastLogin = action.payload.lastLogin
 			state.token = action.payload.token
@@ -36,6 +38,7 @@ export const userSlice = createSlice({
 			state.isEmailVerified = null
 			state.avatar = null
 			state.phone = null
+			state.isPhoneVerified = null
 			state.createAccount = null
 			state.lastLogin = null
 			state.token = null
