@@ -1,6 +1,4 @@
-import { MouseEvent } from 'react'
 import NextLink from 'next/link'
-import { useSelector } from 'react-redux'
 
 import { Avatar, Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 
@@ -13,6 +11,8 @@ import { buttonStyles } from './menu-account.styles'
 export const MenuAccount = () => {
 	const { user } = useAppSelector(state => state)
 	const { removeUser } = useAppActions()
+
+	const userName = user.name.toLowerCase().replace(/\s+/g, '').trim()
 
 	const handlerLogout = (e: any) => {
 		e.preventDefault()
@@ -35,7 +35,7 @@ export const MenuAccount = () => {
 						key={item.href}
 						href={{
 							pathname: item.href,
-							query: { displayName: user.name.toLowerCase() },
+							query: { displayName: userName },
 						}}
 					>
 						{item.title}
