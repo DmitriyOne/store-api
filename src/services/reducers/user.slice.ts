@@ -31,6 +31,9 @@ export const userSlice = createSlice({
 			state.lastLogin = action.payload.lastLogin
 			state.token = action.payload.token
 		},
+		updateUser: (state, action: PayloadAction<Partial<IUserState>>) => {
+			Object.assign(state, action.payload)
+		},
 		removeUser: (state) => {
 			state.id = null
 			state.name = null

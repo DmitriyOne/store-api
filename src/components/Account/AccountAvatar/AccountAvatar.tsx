@@ -10,7 +10,7 @@ import { Avatar, Box, Button, Flex, Icon } from '@chakra-ui/react'
 import { STORE_ROUTES } from '@constants'
 import { IUserState } from '@interfaces'
 
-import { useAuth, useFormSubmit, useWindowSize } from '@hooks'
+import { useAppActions, useAuth, useFormSubmit, useWindowSize } from '@hooks'
 
 import { avatarMarginLStyles, avatarMarginRStyles, buttonIconStyles, componentStyles, uploadButtonStyles, uploadWrapperStyles } from './account-avatar.styles'
 
@@ -25,9 +25,9 @@ export const AccountAvatar: FC<IProps> = ({
 	...user
 }) => {
 	const { isMobile } = useWindowSize()
-	const { avatarPreview, setAvatarPreview } = useAuth()
 	const alert = useContext(AlertContext)
 	const { handlerTimer } = useFormSubmit(alert)
+	const { updateUser } = useAppActions()
 
 	const userName = user.name?.toLowerCase().replace(/\s+/g, '').trim()
 
@@ -44,7 +44,7 @@ export const AccountAvatar: FC<IProps> = ({
 
 		try {
 			await updateProfile(auth.currentUser, { photoURL: downloadURL })
-			setAvatarPreview(downloadURL)
+			updateUser({ avatar: downloadURL })
 		} catch (error) {
 			console.error('Failed to update user profile:', error)
 		}
@@ -53,16 +53,16 @@ export const AccountAvatar: FC<IProps> = ({
 
 	return (
 		<Flex {...componentStyles}>
-			{avatarPreview ? (
+			{user.avatar ? (
 				<Avatar
 					name={user.name}
-					src={avatarPreview}
+					src={user.avatar}
 					{...avatarStyles}
 				/>
 			) : (
 				<Avatar
 					name={user.name}
-					src={avatarPreview ?? undefined}
+					src={user.avatar ?? undefined}
 					{...avatarStyles}
 				/>
 			)}

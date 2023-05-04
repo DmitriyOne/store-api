@@ -12,16 +12,9 @@ import { auth } from '@fb'
 
 export const useAuth = () => {
 	const { ...user } = useAppSelector(state => state.user)
-	const [avatarPreview, setAvatarPreview] = useState<string | null>(user.avatar)
 	const { addUser, removeUser } = useAppActions()
 	const router = useRouter()
 	const { sleep } = useFormSubmit()
-
-	useEffect(() => {
-		if (user.avatar) {
-			setAvatarPreview(user.avatar)
-		}
-	}, [user.avatar])
 
 	useEffect(() => {
 		auth.onAuthStateChanged((fbUser) => {
@@ -58,8 +51,6 @@ export const useAuth = () => {
 
 	return {
 		isAuth: !!user.email,
-		avatarPreview,
-		setAvatarPreview,
 		user,
 		logout,
 	}

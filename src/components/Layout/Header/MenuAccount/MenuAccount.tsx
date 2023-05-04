@@ -9,7 +9,7 @@ import { menuItem } from './menu'
 import { buttonStyles } from './menu-account.styles'
 
 export const MenuAccount = () => {
-	const { avatarPreview, user, logout } = useAuth()
+	const {  user, logout } = useAuth()
 
 	const userName = user.name.toLowerCase().replace(/\s+/g, '').trim()
 
@@ -23,7 +23,7 @@ export const MenuAccount = () => {
 				<Avatar
 					size="sm"
 					name={user.name}
-					src={avatarPreview}
+					src={user.avatar}
 				/>
 			</MenuButton>
 			<MenuList>
