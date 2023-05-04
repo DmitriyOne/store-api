@@ -8,13 +8,20 @@ import { useWindowSize } from '@hooks'
 
 import { AccountVerifiedData } from '../AccountVerifiedData'
 
-import { componentStyles, nameStyles, textStyles } from './account-body.styles'
+import { componentPaddingNoneStyles, componentPaddingStyles, namePaddingBStyles, namePaddingXStyles, textStyles } from './account-body.styles'
 
-export const AccountBody: FC<IUserState> = ({ ...user }) => {
+interface IProps extends IUserState {
+	isSettingPage?: boolean
+}
+
+export const AccountBody: FC<IProps> = ({ isSettingPage, ...user }) => {
 	const { isDesktop } = useWindowSize()
 
 	const dateCreate = new Date(user.createAccount)
 	const dateLogin = new Date(user.lastLogin)
+
+	const componentStyles = isSettingPage ? { ...componentPaddingNoneStyles } : { ...componentPaddingStyles }
+	const nameStyles = isSettingPage ? { ...namePaddingXStyles } : { ...namePaddingBStyles }
 
 	return (
 		<Box {...componentStyles}>

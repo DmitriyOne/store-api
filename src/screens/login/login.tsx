@@ -20,10 +20,15 @@ export const Login = () => {
 	const { handlerTimer, sleep } = useFormSubmit(alert)
 	const router = useRouter()
 
+
 	const onSubmit = async (data: IUser) => {
 		signInWithEmailAndPassword(auth, data.email, data.password)
 			.then(async (userCredential) => {
 				const fbuser = userCredential.user
+				fbuser.getIdToken().then((e) => {
+					console.log(e)
+				})
+
 				const userName = fbuser.displayName.toLowerCase().replace(/\s+/g, '').trim()
 				addUser({
 					id: fbuser.uid,

@@ -1,15 +1,20 @@
-import { ChangeEvent, FC, useState } from 'react'
+import { ChangeEvent, FC, useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
+import { updateProfile } from 'firebase/auth'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { FaEdit, FaUpload } from 'react-icons/fa'
+import { AlertContext } from 'src/context'
 
 import { Avatar, Box, Button, Flex, Icon } from '@chakra-ui/react'
 
 import { STORE_ROUTES } from '@constants'
 import { IUserState } from '@interfaces'
 
-import { useWindowSize } from '@hooks'
+import { useAuth, useFormSubmit, useWindowSize } from '@hooks'
 
-import { avatarStyles, buttonIconStyles, buttonStyles, componentStyles } from './account-avatar.styles'
+import { avatarMarginLStyles, avatarMarginRStyles, buttonIconStyles, componentStyles, uploadButtonStyles, uploadWrapperStyles } from './account-avatar.styles'
+
+import { auth, storage } from '@fb'
 
 interface IProps extends IUserState {
 	isSettingPage?: boolean
@@ -19,21 +24,32 @@ export const AccountAvatar: FC<IProps> = ({
 	isSettingPage = false,
 	...user
 }) => {
-	const [avatarPreview, setAvatarPreview] = useState<string | null>(null)
 	const { isMobile } = useWindowSize()
+	const { avatarPreview, setAvatarPreview } = useAuth()
+	const alert = useContext(AlertContext)
+	const { handlerTimer } = useFormSubmit(alert)
 
 	const userName = user.name?.toLowerCase().replace(/\s+/g, '').trim()
 
-	const handleAvatarChange = (event: ChangeEvent<HTMLInputElement>) => {
-		const file = event.target.files?.[0]
-		if (file) {
-			const reader = new FileReader()
-			reader.onloadend = () => {
-				setAvatarPreview(reader.result as string)
-			}
-			reader.readAsDataURL(file)
+	const handleAvatarChange = async (e: ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0]
+		if (!file) {
+			return
+		}
+
+		const storageRef = ref(storage, `${userName}/avatar/${file.name}`)
+		const snapshot = await uploadBytes(storageRef, file)
+
+		const downloadURL = await getDownloadURL(storageRef)
+
+		try {
+			await updateProfile(auth.currentUser, { photoURL: downloadURL })
+			setAvatarPreview(downloadURL)
+		} catch (error) {
+			console.error('Failed to update user profile:', error)
 		}
 	}
+	const avatarStyles = isSettingPage ? { ...avatarMarginLStyles } : { ...avatarMarginRStyles }
 
 	return (
 		<Flex {...componentStyles}>
@@ -46,13 +62,13 @@ export const AccountAvatar: FC<IProps> = ({
 			) : (
 				<Avatar
 					name={user.name}
-					src={user.avatar ?? undefined}
+					src={avatarPreview ?? undefined}
 					{...avatarStyles}
 				/>
 			)}
 
 			{isSettingPage &&
-				<Box>
+				<Box {...uploadWrapperStyles}>
 					<input
 						type="file"
 						id="avatar-upload"
@@ -61,7 +77,7 @@ export const AccountAvatar: FC<IProps> = ({
 					/>
 					<Button
 						onClick={() => document.getElementById('avatar-upload')?.click()}
-						{...buttonStyles}
+						{...uploadButtonStyles}
 					>
 						<Icon
 							as={FaUpload}

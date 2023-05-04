@@ -1,8 +1,13 @@
 import { FlexProps, IconProps, TextProps } from '@chakra-ui/react'
 
-export const componentStyles = {
+export const componentPaddingStyles = {
 	pl: { base: 0, md: 6 },
 	pt: { base: 4, md: 0 },
+}
+
+export const componentPaddingNoneStyles = {
+	pl: 0,
+	pt: 0,
 }
 
 export const emailWrapperStyles: FlexProps = {
@@ -10,7 +15,13 @@ export const emailWrapperStyles: FlexProps = {
 	pb: 2,
 }
 
-export const nameStyles: TextProps = {
+export const namePaddingXStyles: TextProps = {
+	fontSize: '2xl',
+	pt: 4,
+	pb: 4,
+}
+
+export const namePaddingBStyles: TextProps = {
 	fontSize: '2xl',
 	pb: 4,
 }
