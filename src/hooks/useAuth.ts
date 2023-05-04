@@ -1,13 +1,20 @@
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { signOut } from 'firebase/auth'
+
+import { STORE_ROUTES } from '@constants'
 
 import { useAppActions } from './useAppActions'
 import { useAppSelector } from './useAppSelector'
+import { useFormSubmit } from './useFormSubmit'
 
 import { auth } from '@fb'
 
 export const useAuth = () => {
 	const { ...user } = useAppSelector(state => state.user)
 	const { addUser, removeUser } = useAppActions()
+	const router = useRouter()
+	const { sleep } = useFormSubmit()
 
 	useEffect(() => {
 		auth.onAuthStateChanged((fbUser) => {
@@ -32,8 +39,19 @@ export const useAuth = () => {
 		})
 	}, [])
 
+	const logout = async () => {
+		router.push(STORE_ROUTES.SHOP)
+		await sleep(1000)
+		signOut(auth).then(async () => {
+			removeUser()
+		}).catch((error) => {
+			console.error(error)
+		})
+	}
+
 	return {
 		isAuth: !!user.email,
 		user,
+		logout,
 	}
 }

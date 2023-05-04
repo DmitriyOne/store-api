@@ -7,7 +7,7 @@ import { SidebarItem } from './SidebarItem'
 import { componentStyles, wrapperStyles } from './account-sidebar.styles'
 
 export const Sidebar = () => {
-	const { user } = useAuth()
+	const { user, logout } = useAuth()
 
 	const userName = user.name?.toLowerCase().replace(/\s+/g, '').trim()
 
@@ -30,8 +30,9 @@ export const Sidebar = () => {
 					href={`/account/${userName}/settings`}
 				/>
 				<SidebarItem
+					isButton
 					label="Logout"
-					href={`/account/######`}
+					onClick={logout}
 				/>
 			</Stack>
 		</Box>
