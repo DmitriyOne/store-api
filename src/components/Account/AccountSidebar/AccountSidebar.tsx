@@ -1,17 +1,15 @@
-import { useState } from 'react'
-
 import { Box, Stack } from '@chakra-ui/react'
+
+import { useAuth } from '@hooks'
 
 import { SidebarItem } from './SidebarItem'
 
 import { componentStyles, wrapperStyles } from './account-sidebar.styles'
 
 export const Sidebar = () => {
-	const [activeLink, setActiveLink] = useState('My Account')
+	const { user } = useAuth()
 
-	const handleSidebarItemClick = (label: string) => {
-		setActiveLink(label)
-	}
+	const userName = user.name?.toLowerCase().replace(/\s+/g, '').trim()
 
 	return (
 		<Box
@@ -21,23 +19,19 @@ export const Sidebar = () => {
 			<Stack {...wrapperStyles}>
 				<SidebarItem
 					label="My Account"
-					active={activeLink === 'My Account'}
-					onClick={() => handleSidebarItemClick('My Account')}
+					href={`/account/${userName}`}
 				/>
 				<SidebarItem
 					label="My Orders"
-					active={activeLink === 'My Orders'}
-					onClick={() => handleSidebarItemClick('My Orders')}
+					href={`/account/${userName}/orders`}
 				/>
 				<SidebarItem
 					label="Settings"
-					active={activeLink === 'Settings'}
-					onClick={() => handleSidebarItemClick('Settings')}
+					href={`/account/${userName}/settings`}
 				/>
 				<SidebarItem
 					label="Logout"
-					active={activeLink === 'Logout'}
-					onClick={() => handleSidebarItemClick('Logout')}
+					href={`/account/######`}
 				/>
 			</Stack>
 		</Box>

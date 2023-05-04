@@ -6,7 +6,6 @@ export const componentStyles: BoxProps = {
 	minH: '50vh',
 	borderRightWidth: '1px',
 	borderColor: 'gray.200',
-	bg: 'white',
 	w: 'full',
 	maxW: { base: '140px', lg: '170px' },
 	pr: '4',

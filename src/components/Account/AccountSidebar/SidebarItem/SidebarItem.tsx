@@ -1,24 +1,24 @@
 import { FC } from 'react'
 
-import { Link } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
+
+import { ActiveLink } from '@components'
 
 interface IProps {
 	label: string;
-	active?: boolean;
-	onClick: () => void;
+	href: string
 }
 
-export const SidebarItem: FC<IProps> = ({ label, active, onClick }) => {
-	
+export const SidebarItem: FC<IProps> = ({ label, href }) => {
+
 	return (
-		<Link
-			href="#"
-			fontSize="lg"
-			fontWeight={active ? 'bold' : 'normal'}
-			color={active ? 'blue.500' : 'gray.500'}
-			onClick={onClick}
+		<ActiveLink
+			href={href}
+			activeClassName="sidebar-link_active"
 		>
-			{label}
-		</Link>
+			<Text>
+				{label}
+			</Text>
+		</ActiveLink>
 	)
 }

@@ -21,12 +21,10 @@ export const iconStyles: IconProps = {
 
 export const textStyles: TextProps = {
 	fontSize: { base: 'md', md: 'lg' },
-	color: 'gray.600',
 }
 
 export const phoneWrapperStyles: TextProps = {
 	fontSize: { base: 'md', md: 'lg' },
-	color: 'gray.600',
 	pb: 2,
 }
 

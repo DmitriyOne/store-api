@@ -2,6 +2,8 @@
 @use './breakpoints.scss';
 @import './pagination';
 @import './animate';
+@import './alert';
+@import './account';
 
 *,
 *::before,
@@ -135,22 +137,3 @@ main {
 .chakra-breadcrumb__list-item > span {
 	display: flex;
 }
-
-.alert {
-	transition: all .4;
-}
-
-.alert-enter {
-	opacity: 0;
-}
-
-.alert-enter-active {
-	animation: alert-visible 350ms ease-out forwards;
-}
-
-.alert-exit-active {
-	animation: alert-hidden 200ms ease-out forwards;
-}
-
-
-
