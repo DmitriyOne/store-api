@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { signOut } from 'firebase/auth'
 
@@ -17,7 +17,7 @@ export const useAuth = () => {
 	const { sleep } = useFormSubmit()
 
 	useEffect(() => {
-		auth.onAuthStateChanged((fbUser) => {
+		const unsubscribe = auth.onAuthStateChanged((fbUser) => {
 			if (fbUser) {
 				localStorage.setItem('currentUser', JSON.stringify(fbUser))
 				addUser({
@@ -37,6 +37,7 @@ export const useAuth = () => {
 				removeUser()
 			}
 		})
+		return () => unsubscribe()
 	}, [])
 
 	const logout = async () => {

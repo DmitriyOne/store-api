@@ -21,3 +21,4 @@
 - remove blinking (img/text..) on account page
 - head title account page
 - add disabled btn upload + alert after upload
+- ssr user
