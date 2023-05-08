@@ -6,13 +6,12 @@ import { Box, Text } from '@chakra-ui/react'
 import { IUserState } from '@interfaces'
 
 import { useAppActions, useWindowSize } from '@hooks'
+import { auth } from '@firebase'
 
 import { AccountEditableField } from '../AccountEditableField'
 import { AccountVerifiedData } from '../AccountVerifiedData'
 
 import { componentPaddingNoneStyles, componentPaddingStyles, namePaddingBStyles, namePaddingXStyles, textStyles } from './account-body.styles'
-
-import { auth } from '@fb'
 
 interface IProps extends IUserState {
 	isSettingPage?: boolean

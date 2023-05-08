@@ -4,11 +4,11 @@ import { signOut } from 'firebase/auth'
 
 import { STORE_ROUTES } from '@constants'
 
+import { auth } from '@firebase'
+
 import { useAppActions } from './useAppActions'
 import { useAppSelector } from './useAppSelector'
 import { useFormSubmit } from './useFormSubmit'
-
-import { auth } from '@fb'
 
 export const useAuth = () => {
 	const { ...user } = useAppSelector(state => state.user)

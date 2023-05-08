@@ -11,7 +11,7 @@ import { wrapper } from '@services'
 
 import { Layout } from '@components'
 
-import '../../firebase'
+import '@firebase'
 
 import '@styles/global.scss'
 

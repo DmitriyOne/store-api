@@ -8,10 +8,9 @@ import { STORE_ROUTES } from '@constants'
 import { IFormHeader, IUser } from '@interfaces'
 
 import { useFormSubmit } from '@hooks'
+import { auth } from '@firebase'
 
 import { FormAuth } from '@components'
-
-import { auth } from '@fb'
 
 export const ForgotPassword = () => {
 	const alert = useContext(AlertContext)

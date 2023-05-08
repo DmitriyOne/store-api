@@ -36,8 +36,11 @@
       "@services": [
         "src/services"
       ],
-      "@fb": [
+      "@firebase": [
         "./firebase"
+      ],
+      "@firebase/*": [
+        "./firebase/*"
       ],
       "@services/*": [
         "src/services/*"

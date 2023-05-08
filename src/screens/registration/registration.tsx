@@ -7,10 +7,9 @@ import { STORE_ROUTES } from '@constants'
 import { IFormHeader, IUser } from '@interfaces'
 
 import { useAppActions, useFormSubmit } from '@hooks'
+import { auth } from '@firebase'
 
 import { FormAuth } from '@components'
-
-import { auth } from '@fb'
 
 export const Registration = () => {
 	const alert = useContext(AlertContext)

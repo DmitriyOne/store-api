@@ -11,10 +11,9 @@ import { STORE_ROUTES } from '@constants'
 import { IUserState } from '@interfaces'
 
 import { useAppActions, useFormSubmit, useWindowSize } from '@hooks'
+import { auth, storage } from '@firebase'
 
 import { avatarMarginLStyles, avatarMarginRStyles, buttonIconStyles, componentStyles, uploadButtonStyles, uploadWrapperStyles } from './account-avatar.styles'
-
-import { auth, storage } from '@fb'
 
 interface IProps extends IUserState {
 	isSettingPage?: boolean

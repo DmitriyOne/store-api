@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 
 import { Account } from '@screens'
 
@@ -14,8 +14,12 @@ export const AccountPage: NextPage<Props> = ({ user }) => {
 	)
 }
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+	console.log('user ssr: ',)
 
-// }
+	return {
+		props: {},
+	}
+}
 
 export default AccountPage
