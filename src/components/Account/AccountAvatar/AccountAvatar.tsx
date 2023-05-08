@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, FC, useContext } from 'react'
 import Link from 'next/link'
 import { updateProfile } from 'firebase/auth'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
@@ -10,7 +10,7 @@ import { Avatar, Box, Button, Flex, Icon } from '@chakra-ui/react'
 import { STORE_ROUTES } from '@constants'
 import { IUserState } from '@interfaces'
 
-import { useAppActions, useAuth, useFormSubmit, useWindowSize } from '@hooks'
+import { useAppActions, useFormSubmit, useWindowSize } from '@hooks'
 
 import { avatarMarginLStyles, avatarMarginRStyles, buttonIconStyles, componentStyles, uploadButtonStyles, uploadWrapperStyles } from './account-avatar.styles'
 

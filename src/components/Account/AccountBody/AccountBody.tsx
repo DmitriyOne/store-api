@@ -1,14 +1,18 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
+import { updateProfile } from 'firebase/auth'
 
 import { Box, Text } from '@chakra-ui/react'
 
 import { IUserState } from '@interfaces'
 
-import { useWindowSize } from '@hooks'
+import { useAppActions, useWindowSize } from '@hooks'
 
+import { AccountEditableField } from '../AccountEditableField'
 import { AccountVerifiedData } from '../AccountVerifiedData'
 
 import { componentPaddingNoneStyles, componentPaddingStyles, namePaddingBStyles, namePaddingXStyles, textStyles } from './account-body.styles'
+
+import { auth } from '@fb'
 
 interface IProps extends IUserState {
 	isSettingPage?: boolean
@@ -16,6 +20,14 @@ interface IProps extends IUserState {
 
 export const AccountBody: FC<IProps> = ({ isSettingPage, ...user }) => {
 	const { isDesktop } = useWindowSize()
+	const [updateName, setUpdateName] = useState(user.name)
+	const { updateUser } = useAppActions()
+
+	const handleUpdateName = async (value: string) => {
+		setUpdateName(value)
+		await updateProfile(auth.currentUser, { displayName: value })
+		updateUser({ name: value })
+	}
 
 	const dateCreate = new Date(user.createAccount)
 	const dateLogin = new Date(user.lastLogin)
@@ -25,7 +37,14 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, ...user }) => {
 
 	return (
 		<Box {...componentStyles}>
-			{isDesktop &&
+
+			{isDesktop && isSettingPage
+				?
+				<AccountEditableField
+					defaultValue={updateName}
+					onUpdate={handleUpdateName}
+				/>
+				:
 				<Text {...nameStyles}>
 					{user.name}
 				</Text>
