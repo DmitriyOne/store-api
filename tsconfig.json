@@ -45,12 +45,6 @@
       "@constants": [
         "src/constants"
       ],
-      "@context/*": [
-        "src/context/*"
-      ],
-      "@context": [
-        "src/context"
-      ],
       "@constants/*": [
         "src/constants/*"
       ],

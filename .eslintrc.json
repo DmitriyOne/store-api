@@ -73,8 +73,7 @@
 							[
 								"^@hooks",
 								"^@services",
-								"^@firebase",
-								"^@context"
+								"^@firebase"
 							],
 							[
 								"^@components"
