@@ -9,16 +9,16 @@ export const Pagination: FC<IPagination> = ({
 }) => {
 
 	return (
-		<ReactPaginate
-			previousLabel={'← Previous'}
-			nextLabel={'Next →'}
-			pageCount={pageCount}
-			onPageChange={handlePageClick}
-			containerClassName={'pagination'}
-			previousLinkClassName={'pagination__link'}
-			nextLinkClassName={'pagination__link'}
-			disabledClassName={'pagination__link--disabled'}
-			activeClassName={'pagination__link--active'}
-		/>
+		(ReactPaginate as any)({
+			previousLabel: '← Previous',
+			nextLabel: 'Next →',
+			pageCount: pageCount,
+			onPageChange: handlePageClick,
+			containerClassName: 'pagination',
+			previousLinkClassName: 'pagination__link',
+			nextLinkClassName: 'pagination__link',
+			disabledClassName: 'pagination__link--disabled',
+			activeClassName: 'pagination__link--active',
+		})
 	)
 }
