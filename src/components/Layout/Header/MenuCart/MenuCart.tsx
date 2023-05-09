@@ -1,13 +1,13 @@
 import { useContext } from 'react'
 import NextLink from 'next/link'
 import { AiOutlineShopping } from 'react-icons/ai'
-import { HeaderContext } from 'src/context'
 
 import { Box, IconButton, useColorMode } from '@chakra-ui/react'
 
 import { STORE_ROUTES } from '@constants'
 
 import { useAppSelector } from '@hooks'
+import { HeaderContext } from '@context'
 
 import { componentStyles, countStyles, iconStyles } from './menu-cart.styles'
 

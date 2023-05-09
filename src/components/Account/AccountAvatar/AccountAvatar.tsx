@@ -1,9 +1,9 @@
+/* eslint-disable no-console */
 import { ChangeEvent, FC, useContext } from 'react'
 import Link from 'next/link'
 import { updateProfile } from 'firebase/auth'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { FaEdit, FaUpload } from 'react-icons/fa'
-import { AlertContext } from 'src/context'
 
 import { Avatar, Box, Button, Flex, Icon } from '@chakra-ui/react'
 
@@ -11,10 +11,10 @@ import { STORE_ROUTES } from '@constants'
 import { IUserState } from '@interfaces'
 
 import { useAppActions, useFormSubmit, useWindowSize } from '@hooks'
+import { auth, storage } from '@firebase'
+import { AlertContext } from '@context'
 
 import { avatarMarginLStyles, avatarMarginRStyles, buttonIconStyles, componentStyles, uploadButtonStyles, uploadWrapperStyles } from './account-avatar.styles'
-
-import { auth, storage } from '@fb'
 
 interface IProps extends IUserState {
 	isSettingPage?: boolean

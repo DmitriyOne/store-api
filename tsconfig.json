@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "strictNullChecks": false,
     "skipLibCheck": true,
@@ -21,72 +17,48 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@components": [
-        "src/components"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@hooks": [
-        "src/hooks"
-      ],
-      "@hooks/*": [
-        "src/hooks/*"
-      ],
-      "@services": [
-        "src/services"
-      ],
-      "@fb": [
-        "./firebase"
-      ],
-      "@services/*": [
-        "src/services/*"
-      ],
-      "@constants": [
-        "src/constants"
-      ],
-      "@constants/*": [
-        "src/constants/*"
-      ],
-      "@enums": [
-        "src/models/enums"
-      ],
-      "@enums/*": [
-        "src/models/enums/*"
-      ],
-      "@interfaces": [
-        "src/models/interfaces"
-      ],
-      "@interfaces/*": [
-        "src/models/interfaces/*"
-      ],
-      "@screens": [
-        "src/screens"
-      ],
-      "@screens/*": [
-        "src/screens/*"
-      ],
-      "@images": [
-        "public"
-      ],
-      "@images/*": [
-        "public/*"
-      ],
-      "@styles": [
-        "src/styles"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
+      "@components": ["src/components"],
+      "@components/*": ["src/components/*"],
+
+      "@hooks": ["src/hooks"],
+      "@hooks/*": ["src/hooks/*"],
+
+      "@services": ["src/services"],
+      "@services/*": ["src/services/*"],
+
+      "@firebase": ["src/firebase"],
+      "@firebase/*": ["src/firebase/*"],
+
+      "@context": ["src/context"],
+      "@context/*": ["src/context/*"],
+
+      "@env": ["./environment"],
+      "@env/*": ["./environment/*"],
+
+      "@constants": ["src/constants"],
+      "@constants/*": ["src/constants/*"],
+
+      "@enums": ["src/models/enums"],
+      "@enums/*": ["src/models/enums/*"],
+
+      "@interfaces": ["src/models/interfaces"],
+      "@interfaces/*": ["src/models/interfaces/*"],
+
+      "@screens": ["src/screens"],
+      "@screens/*": ["src/screens/*"],
+
+      "@images": ["public"],
+      "@images/*": ["public/*"],
+
+      "@styles": ["src/styles"],
+      "@styles/*": ["src/styles/*"],
     }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "env.d.ts"
-, "firebase.ts"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "environment/env.d.ts",
+  ],
+  "exclude": ["node_modules"]
 }

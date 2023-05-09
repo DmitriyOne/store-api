@@ -1,19 +1,19 @@
+/* eslint-disable no-console */
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { AlertContext } from 'src/context'
 
 import { Button, ButtonGroup, Text } from '@chakra-ui/react'
 
 import { STORE_ROUTES } from '@constants'
 
 import { useAppActions, useFormSubmit } from '@hooks'
+import { auth } from '@firebase'
+import { AlertContext } from '@context'
 
 import { GoogleIcon } from '../../ProviderIcon'
 
 import { btnStyles, componentStyles, textStyles } from './auth-btn-group.styles'
-
-import { auth } from '@fb'
 
 const providers = [
 	{ name: 'Google', icon: <GoogleIcon boxSize="5" /> },

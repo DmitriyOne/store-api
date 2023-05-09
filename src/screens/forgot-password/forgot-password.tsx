@@ -2,16 +2,15 @@ import { useContext } from 'react'
 import { useRouter } from 'next/router'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
-import { AlertContext } from 'src/context'
 
 import { STORE_ROUTES } from '@constants'
 import { IFormHeader, IUser } from '@interfaces'
 
 import { useFormSubmit } from '@hooks'
+import { auth } from '@firebase'
+import { AlertContext } from '@context'
 
 import { FormAuth } from '@components'
-
-import { auth } from '@fb'
 
 export const ForgotPassword = () => {
 	const alert = useContext(AlertContext)

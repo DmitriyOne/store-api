@@ -1,8 +1,9 @@
 import { useContext } from 'react'
-import { HeaderContext } from 'src/context'
 
 import { IconButton } from '@chakra-ui/react'
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
+
+import { HeaderContext } from '@context'
 
 import { iconStyles } from './menu-burger.styles'
 

@@ -2,16 +2,15 @@ import { useContext } from 'react'
 import { useRouter } from 'next/router'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
-import { AlertContext } from 'src/context'
 
 import { STORE_ROUTES } from '@constants'
 import { IFormHeader, IUser } from '@interfaces'
 
 import { useAppActions, useFormSubmit } from '@hooks'
+import { auth } from '@firebase'
+import { AlertContext } from '@context'
 
 import { FormAuth } from '@components'
-
-import { auth } from '@fb'
 
 export const Login = () => {
 	const alert = useContext(AlertContext)
@@ -19,7 +18,6 @@ export const Login = () => {
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
 	const { handlerTimer, sleep } = useFormSubmit(alert)
 	const router = useRouter()
-
 
 	const onSubmit = async (data: IUser) => {
 		signInWithEmailAndPassword(auth, data.email, data.password)

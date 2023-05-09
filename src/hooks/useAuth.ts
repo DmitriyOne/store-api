@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react'
+/* eslint-disable no-console */
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { signOut } from 'firebase/auth'
+import { auth } from 'src/firebase/auth'
 
 import { STORE_ROUTES } from '@constants'
 
 import { useAppActions } from './useAppActions'
 import { useAppSelector } from './useAppSelector'
 import { useFormSubmit } from './useFormSubmit'
-
-import { auth } from '@fb'
 
 export const useAuth = () => {
 	const { ...user } = useAppSelector(state => state.user)
