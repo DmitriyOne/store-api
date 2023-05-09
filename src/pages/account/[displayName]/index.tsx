@@ -1,25 +1,12 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { NextPage } from 'next'
 
 import { Account } from '@screens'
 
-interface Props {
-	user: any
-}
-
-export const AccountPage: NextPage<Props> = ({ user }) => {
-	console.log('user page: ', user)
+export const AccountPage: NextPage = () => {
 
 	return (
 		<Account />
 	)
-}
-
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-	console.log('user ssr: ',)
-
-	return {
-		props: {},
-	}
 }
 
 export default AccountPage

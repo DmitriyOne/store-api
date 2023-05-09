@@ -3,11 +3,11 @@ import { FC, ReactElement, ReactNode } from 'react'
 import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
-import { AlertProvider, HeaderProvider } from 'src/context'
 
 import { ChakraProvider } from '@chakra-ui/react'
 
 import { wrapper } from '@services'
+import { AlertProvider, HeaderProvider } from '@context'
 
 import { Layout } from '@components'
 
