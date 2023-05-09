@@ -8,9 +8,10 @@ import { STORE_ROUTES } from '@constants'
 import { IFormHeader, IUser } from '@interfaces'
 
 import { useAppActions, useFormSubmit } from '@hooks'
-import { auth } from '@firebase'
 
 import { FormAuth } from '@components'
+
+import { auth } from '@fb'
 
 export const Login = () => {
 	const alert = useContext(AlertContext)
@@ -18,6 +19,7 @@ export const Login = () => {
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
 	const { handlerTimer, sleep } = useFormSubmit(alert)
 	const router = useRouter()
+
 
 	const onSubmit = async (data: IUser) => {
 		signInWithEmailAndPassword(auth, data.email, data.password)
