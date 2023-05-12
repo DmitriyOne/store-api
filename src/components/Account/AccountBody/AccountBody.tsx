@@ -1,12 +1,12 @@
 import { FC, useState } from 'react'
 import { updateProfile } from 'firebase/auth'
-import { auth } from 'src/firebase/auth'
 
 import { Box, Text } from '@chakra-ui/react'
 
 import { IUserState } from '@interfaces'
 
 import { useAppActions, useWindowSize } from '@hooks'
+import { auth } from '@firebase'
 
 import { AccountEditableField } from '../AccountEditableField'
 import { AccountVerifiedData } from '../AccountVerifiedData'
