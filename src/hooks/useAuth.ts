@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
-import { signOut } from 'firebase/auth'
-import { auth } from 'src/firebase/auth'
+import { signOut, User } from 'firebase/auth'
 
 import { STORE_ROUTES } from '@constants'
+
+import { auth } from '@firebase'
 
 import { useAppActions } from './useAppActions'
 import { useAppSelector } from './useAppSelector'
@@ -17,28 +18,33 @@ export const useAuth = () => {
 	const router = useRouter()
 	const { sleep } = useFormSubmit()
 
+	const memoizedUser = useMemo(() => user, [user])
+
+	const handleAuthStateChanged = useCallback((fbUser: User) => {
+		if (fbUser) {
+			localStorage.setItem('currentUser', JSON.stringify(fbUser))
+			addUser({
+				id: fbUser.uid,
+				name: fbUser.displayName,
+				email: fbUser.email,
+				isEmailVerified: fbUser.emailVerified,
+				avatar: fbUser.photoURL ?? null,
+				phone: fbUser.phoneNumber,
+				isPhoneVerified: false,
+				createAccount: fbUser.metadata.creationTime,
+				lastLogin: fbUser.metadata.lastSignInTime,
+				token: fbUser.refreshToken,
+			})
+		} else {
+			localStorage.removeItem('currentUser')
+			removeUser()
+		}
+	}, [addUser, removeUser])
+
 	useEffect(() => {
-		auth.onAuthStateChanged((fbUser) => {
-			if (fbUser) {
-				localStorage.setItem('currentUser', JSON.stringify(fbUser))
-				addUser({
-					id: fbUser.uid,
-					name: fbUser.displayName,
-					email: fbUser.email,
-					isEmailVerified: fbUser.emailVerified,
-					avatar: fbUser.photoURL ?? null,
-					phone: fbUser.phoneNumber,
-					isPhoneVerified: false,
-					createAccount: fbUser.metadata.creationTime,
-					lastLogin: fbUser.metadata.lastSignInTime,
-					token: fbUser.refreshToken,
-				})
-			} else {
-				localStorage.removeItem('currentUser')
-				removeUser()
-			}
-		})
-	}, [])
+		const unsubscribe = auth.onAuthStateChanged(handleAuthStateChanged)
+		return () => unsubscribe()
+	}, [handleAuthStateChanged])
 
 	const logout = async () => {
 		router.push(STORE_ROUTES.SHOP)
@@ -50,9 +56,11 @@ export const useAuth = () => {
 		})
 	}
 
+	const isAuth = useMemo(() => !!user.email, [user.email])
+
 	return {
-		isAuth: !!user.email,
-		user,
+		isAuth,
+		user: memoizedUser,
 		logout,
 	}
 }
