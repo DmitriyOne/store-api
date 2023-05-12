@@ -11,12 +11,14 @@ import { auth } from '@firebase'
 import { useAppActions } from './useAppActions'
 import { useAppSelector } from './useAppSelector'
 import { useFormSubmit } from './useFormSubmit'
+import { useLoading } from './useLoading'
 
 export const useAuth = () => {
 	const { ...user } = useAppSelector(state => state.user)
 	const { addUser, removeUser } = useAppActions()
 	const router = useRouter()
 	const { sleep } = useFormSubmit()
+	const { loading } = useLoading()
 
 	const memoizedUser = useMemo(() => user, [user])
 
@@ -62,5 +64,6 @@ export const useAuth = () => {
 		isAuth,
 		user: memoizedUser,
 		logout,
+		loading,
 	}
 }
