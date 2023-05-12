@@ -1,14 +1,17 @@
 import { Flex } from '@chakra-ui/react'
 
-import { useAuth, useWindowSize } from '@hooks'
+import { useAuth } from '@hooks'
 
-import { AccountAvatar, AccountBody, Heading, Sidebar } from '@components'
+import { AccountAvatar, AccountBody, Heading, Sidebar, Spinner } from '@components'
 
 import { componentStyles, contentStyles } from './account.styles'
 
 export const Account = () => {
-	const { user } = useAuth()
-	const { isDesktop } = useWindowSize()
+	const { user, loading, isAuth } = useAuth()
+
+	if (loading && !isAuth) {
+		return <Spinner />
+	}
 
 	return (
 		<>
@@ -17,7 +20,7 @@ export const Account = () => {
 			</Heading>
 
 			<Flex {...componentStyles}>
-				{isDesktop && <Sidebar />}
+				<Sidebar />
 				<Flex {...contentStyles}>
 					<AccountAvatar {...user} />
 					<AccountBody {...user} />

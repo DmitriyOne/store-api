@@ -1,6 +1,7 @@
 import { BoxProps, StackProps } from '@chakra-ui/react'
 
 export const componentStyles: BoxProps = {
+	display: { base: 'none', md: 'block' },
 	pos: 'sticky',
 	top: 0,
 	minH: '50vh',

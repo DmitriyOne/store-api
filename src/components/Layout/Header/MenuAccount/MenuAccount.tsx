@@ -18,11 +18,19 @@ export const MenuAccount = () => {
 				variant="link"
 				{...buttonStyles}
 			>
-				<Avatar
-					size="sm"
-					name={user.name}
-					src={user.avatar}
-				/>
+				{user.avatar
+					?
+					<Avatar
+						size="sm"
+						src={user.avatar}
+					/>
+					:
+					<Avatar
+						size="sm"
+						name={user.name}
+						src={undefined}
+					/>
+				}
 			</MenuButton>
 			<MenuList>
 				<ActiveLink

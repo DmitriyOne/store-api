@@ -55,7 +55,6 @@ export const AccountAvatar: FC<IProps> = ({
 		<Flex {...componentStyles}>
 			{user.avatar ? (
 				<Avatar
-					name={user.name}
 					src={user.avatar}
 					{...avatarStyles}
 				/>
