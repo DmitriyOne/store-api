@@ -31,9 +31,9 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 	}
 
 	const handleUpdateEmail = async (value: string) => {
-		setNewEmail(value)
-		await updateEmail(auth.currentUser, value)
-		updateUser({ name: value })
+		// setNewEmail(value)
+		// await updateEmail(auth.currentUser, value)
+		// updateUser({ name: value })
 		// setNewEmail(value)
 		// const user = auth.currentUser
 		// if (!user) return
@@ -44,9 +44,7 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 	}
 
 	const handleUpdatePhone = async (value: string) => {
-		setNewPhone(value)
-		await updateProfile(auth.currentUser, { displayName: value })
-		updateUser({ name: value })
+
 	}
 
 	const dateCreate = new Date(user.createAccount)
@@ -90,13 +88,16 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 			</Text>
 			<AccountVerifiedData variant="phone" />
 
-			<Text {...textStyles}>
-				<b>Account created on</b> {dateCreate.toLocaleString()}
-			</Text>
+			{!isSettingPage && <>
+				<Text {...textStyles}>
+					<b>Account created on</b> {dateCreate.toLocaleString()}
+				</Text>
 
-			<Text {...textStyles}>
-				<b>Last login on</b> {dateLogin.toLocaleString()}
-			</Text>
+				<Text {...textStyles}>
+					<b>Last login on</b> {dateLogin.toLocaleString()}
+				</Text>
+			</>
+			}
 		</Box>
 
 	)

@@ -2,7 +2,9 @@
 import { ChangeEvent, FC, useState } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
 
-import { Box, Button, Flex, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement, Text, useDisclosure } from '@chakra-ui/react'
+
+import { PopupConfirmPassword } from '@components'
 
 import { componentStyles, iconStyles, iconWrapperStyles, inputBtnCancelStyles, inputBtnSaveStyles, inputBtnWrapperStyles, inputWrapperStyles, textDefaultStyles, textTitleStyles } from './account-editable-field.styles'
 
@@ -21,6 +23,7 @@ export const AccountEditableField: FC<IProps> = ({
 }) => {
 	const [isEditing, setIsEditing] = useState(false)
 	const [value, setValue] = useState<string>(defaultValue)
+	const { isOpen, onOpen, onClose } = useDisclosure()
 
 	const handleEdit = () => {
 		setIsEditing(true)
@@ -28,12 +31,14 @@ export const AccountEditableField: FC<IProps> = ({
 
 	const handleCancel = () => {
 		setIsEditing(false)
+		onClose()
 		setValue(defaultValue)
 	}
 
-	const handleUpdate = () => {
+	const handleSave = () => {
 		setIsEditing(false)
 		onUpdate(value)
+		onClose()
 	}
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -43,59 +48,68 @@ export const AccountEditableField: FC<IProps> = ({
 	const textStyles = isTitle ? { ...textTitleStyles } : { ...textDefaultStyles }
 
 	return (
-		<FormControl
-			id={label}
-			{...componentStyles}
-		>
-			{label &&
-				<FormLabel>
-					{label}
-				</FormLabel>
-			}
-
-			<InputGroup>
-				{isEditing
-					?
-					<Flex {...inputWrapperStyles}>
-						<Input
-							value={value}
-							onChange={handleChange}
-							autoFocus
-						/>
-
-						<Box {...inputBtnWrapperStyles}>
-							<Button
-								onClick={handleCancel}
-								{...inputBtnCancelStyles}
-							>
-								Cancel
-							</Button>
-							<Button
-								onClick={handleUpdate}
-								{...inputBtnSaveStyles}
-							>
-								Save
-							</Button>
-						</Box>
-					</Flex>
-					:
-					<Text {...textStyles}>
-						{defaultValue}
-					</Text>
+		<>
+			<FormControl
+				id={label}
+				{...componentStyles}
+			>
+				{label &&
+					<FormLabel>
+						{label}
+					</FormLabel>
 				}
 
-				{!isEditing &&
-					<InputRightElement
-						onClick={handleEdit}
-						{...iconWrapperStyles}
-					>
-						<Icon
-							as={FaPencilAlt}
-							{...iconStyles}
-						/>
-					</InputRightElement>
-				}
-			</InputGroup>
-		</FormControl>
+				<InputGroup>
+					{isEditing
+						?
+						<Flex {...inputWrapperStyles}>
+							<Input
+								value={value}
+								onChange={handleChange}
+								autoFocus
+							/>
+
+							<Box {...inputBtnWrapperStyles}>
+								<Button
+									onClick={handleCancel}
+									{...inputBtnCancelStyles}
+								>
+									Cancel
+								</Button>
+								<Button
+									onClick={onOpen}
+									{...inputBtnSaveStyles}
+								>
+									Save
+								</Button>
+							</Box>
+						</Flex>
+						:
+						<Text {...textStyles}>
+							{defaultValue}
+						</Text>
+					}
+
+					{!isEditing &&
+						<InputRightElement
+							onClick={handleEdit}
+							{...iconWrapperStyles}
+						>
+							<Icon
+								as={FaPencilAlt}
+								{...iconStyles}
+							/>
+						</InputRightElement>
+					}
+				</InputGroup>
+			</FormControl>
+
+			<PopupConfirmPassword
+				isOpen={isOpen}
+				onClose={onClose}
+				onSave={handleSave}
+				value={value}
+			/>
+		</>
 	)
 }

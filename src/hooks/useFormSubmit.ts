@@ -1,7 +1,7 @@
 import { IAlert } from '@interfaces'
 
 export const useFormSubmit = (alert?: IAlert) => {
-
+	
 	const handlerTimer = () => {
 		const alertTimeout = setTimeout(() => {
 			alert.visible = false
