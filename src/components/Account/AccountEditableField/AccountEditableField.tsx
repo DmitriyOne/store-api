@@ -2,18 +2,22 @@
 import { ChangeEvent, FC, useState } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
 
-import { Box, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
+
+import { componentStyles, iconStyles, iconWrapperStyles, inputBtnCancelStyles, inputBtnSaveStyles, inputBtnWrapperStyles, inputWrapperStyles, textDefaultStyles, textTitleStyles } from './account-editable-field.styles'
 
 interface IProps {
 	label?: string
 	defaultValue: string
 	onUpdate: (value: string) => void
+	isTitle?: boolean
 }
 
 export const AccountEditableField: FC<IProps> = ({
 	label,
-	defaultValue = 'j',
+	defaultValue = '',
 	onUpdate,
+	isTitle,
 }) => {
 	const [isEditing, setIsEditing] = useState(false)
 	const [value, setValue] = useState<string>(defaultValue)
@@ -36,51 +40,61 @@ export const AccountEditableField: FC<IProps> = ({
 		setValue(event.target.value)
 	}
 
+	const textStyles = isTitle ? { ...textTitleStyles } : { ...textDefaultStyles }
+
 	return (
-		<FormControl id={label}>
-			{label && <FormLabel>{label}</FormLabel>}
+		<FormControl
+			id={label}
+			{...componentStyles}
+		>
+			{label &&
+				<FormLabel>
+					{label}
+				</FormLabel>
+			}
+
 			<InputGroup>
 				{isEditing
 					?
-					<>
+					<Flex {...inputWrapperStyles}>
 						<Input
 							value={value}
 							onChange={handleChange}
 							autoFocus
-							variant="flushed"
 						/>
-						<Box display="inline-block" ml="2">
-							<Text
-								color="gray.500"
-								cursor="pointer"
+
+						<Box {...inputBtnWrapperStyles}>
+							<Button
 								onClick={handleCancel}
+								{...inputBtnCancelStyles}
 							>
 								Cancel
-							</Text>
-							<Text
-								color="primary.500"
-								cursor="pointer"
-								ml="4"
+							</Button>
+							<Button
 								onClick={handleUpdate}
+								{...inputBtnSaveStyles}
 							>
 								Save
-							</Text>
+							</Button>
 						</Box>
-					</>
+					</Flex>
 					:
-					<Text cursor="default">{defaultValue}</Text>
+					<Text {...textStyles}>
+						{defaultValue}
+					</Text>
 				}
-				<InputRightElement
-					// pointerEvents="none"
-					onClick={handleEdit}
-					cursor="pointer"
-					pos="relative"
-					h="auto"
-					w="auto"
-					ml={2}
-				>
-					<Icon as={FaPencilAlt} color="gray.500" />
-				</InputRightElement>
+
+				{!isEditing &&
+					<InputRightElement
+						onClick={handleEdit}
+						{...iconWrapperStyles}
+					>
+						<Icon
+							as={FaPencilAlt}
+							{...iconStyles}
+						/>
+					</InputRightElement>
+				}
 			</InputGroup>
 		</FormControl>
 	)

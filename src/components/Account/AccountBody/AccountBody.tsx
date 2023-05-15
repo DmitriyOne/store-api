@@ -1,29 +1,50 @@
 import { FC, useState } from 'react'
-import { updateProfile } from 'firebase/auth'
+import { EmailAuthProvider, reauthenticateWithCredential, updateEmail, updateProfile } from 'firebase/auth'
 
 import { Box, Text } from '@chakra-ui/react'
 
-import { IUserState } from '@interfaces'
+import { IUserBody } from '@interfaces'
 
-import { useAppActions, useWindowSize } from '@hooks'
+import { useAppActions } from '@hooks'
 import { auth } from '@firebase'
 
 import { AccountEditableField } from '../AccountEditableField'
 import { AccountVerifiedData } from '../AccountVerifiedData'
 
-import { componentPaddingNoneStyles, componentPaddingStyles, namePaddingBStyles, namePaddingXStyles, textStyles } from './account-body.styles'
+import { componentStyles, nameStyles, textStyles } from './account-body.styles'
 
-interface IProps extends IUserState {
+interface IProps {
 	isSettingPage?: boolean
+	user: IUserBody
 }
 
-export const AccountBody: FC<IProps> = ({ isSettingPage, ...user }) => {
-	const { isDesktop } = useWindowSize()
-	const [updateName, setUpdateName] = useState(user.name)
+export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
+	const [newName, setNewName] = useState(user.name)
+	const [newEmail, setNewEmail] = useState(user.email)
+	const [newPhone, setNewPhone] = useState(user.phone)
 	const { updateUser } = useAppActions()
 
 	const handleUpdateName = async (value: string) => {
-		setUpdateName(value)
+		setNewName(value)
+		await updateProfile(auth.currentUser, { displayName: value })
+		updateUser({ name: value })
+	}
+
+	const handleUpdateEmail = async (value: string) => {
+		setNewEmail(value)
+		await updateEmail(auth.currentUser, value)
+		updateUser({ name: value })
+		// setNewEmail(value)
+		// const user = auth.currentUser
+		// if (!user) return
+
+		// const credential = EmailAuthProvider.credential(user.email, '123456')
+		// await reauthenticateWithCredential(user, credential)
+		// await updateEmail(user, value)
+	}
+
+	const handleUpdatePhone = async (value: string) => {
+		setNewPhone(value)
 		await updateProfile(auth.currentUser, { displayName: value })
 		updateUser({ name: value })
 	}
@@ -31,17 +52,16 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, ...user }) => {
 	const dateCreate = new Date(user.createAccount)
 	const dateLogin = new Date(user.lastLogin)
 
-	const componentStyles = isSettingPage ? { ...componentPaddingNoneStyles } : { ...componentPaddingStyles }
-	const nameStyles = isSettingPage ? { ...namePaddingXStyles } : { ...namePaddingBStyles }
-
 	return (
 		<Box {...componentStyles}>
 
-			{isDesktop && isSettingPage
+			{/* Username */}
+			{isSettingPage
 				?
 				<AccountEditableField
-					defaultValue={updateName}
+					defaultValue={newName}
 					onUpdate={handleUpdateName}
+					isTitle
 				/>
 				:
 				<Text {...nameStyles}>
@@ -49,10 +69,21 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, ...user }) => {
 				</Text>
 			}
 
-			<Text {...textStyles}>
-				<b>Email:</b> {user.email}
-			</Text>
-			<AccountVerifiedData variant="email" />
+			{/* Email */}
+			{isSettingPage
+				?
+				<AccountEditableField
+					defaultValue={newEmail}
+					onUpdate={handleUpdateEmail}
+				/>
+				:
+				<>
+					<Text {...textStyles}>
+						<b>Email:</b> {user.email}
+					</Text>
+					<AccountVerifiedData variant="email" />
+				</>
+			}
 
 			<Text {...textStyles}>
 				<b>Phone:</b> {user.phone ?? 'number not provided'}
