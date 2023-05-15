@@ -7,9 +7,13 @@ import { AccountAvatar, AccountBody, Heading, Sidebar, Spinner } from '@componen
 import { componentStyles, contentStyles } from './settings.styles'
 
 export const Settings = () => {
-	const { user, loading, isAuth } = useAuth()
+	const { user, isAuth, loading } = useAuth()
 
 	if (loading && !isAuth) {
+		return <Spinner />
+	}
+
+	if (!loading && user.id === null) {
 		return <Spinner />
 	}
 
@@ -22,8 +26,15 @@ export const Settings = () => {
 			<Flex {...componentStyles}>
 				<Sidebar />
 				<Flex {...contentStyles}>
-					<AccountAvatar isSettingPage {...user} />
-					<AccountBody isSettingPage {...user} />
+					<AccountAvatar
+						avatar={user.avatar}
+						name={user.name}
+						isSettingPage
+					/>
+					<AccountBody
+						user={user}
+						isSettingPage
+					/>
 				</Flex>
 			</Flex>
 		</>

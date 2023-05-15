@@ -8,28 +8,30 @@ import { FaEdit, FaUpload } from 'react-icons/fa'
 import { Avatar, Box, Button, Flex, Icon } from '@chakra-ui/react'
 
 import { STORE_ROUTES } from '@constants'
-import { IUserState } from '@interfaces'
 
 import { useAppActions, useFormSubmit, useWindowSize } from '@hooks'
 import { auth, storage } from '@firebase'
 import { AlertContext } from '@context'
 
-import { avatarMarginLStyles, avatarMarginRStyles, buttonIconStyles, componentStyles, uploadButtonStyles, uploadWrapperStyles } from './account-avatar.styles'
+import { avatarStyles, buttonIconStyles, componentStyles, uploadButtonStyles, uploadWrapperStyles } from './account-avatar.styles'
 
-interface IProps extends IUserState {
+interface IProps {
 	isSettingPage?: boolean
+	name: string
+	avatar: string | null
 }
 
 export const AccountAvatar: FC<IProps> = ({
 	isSettingPage = false,
-	...user
+	name,
+	avatar,
 }) => {
 	const { isMobile } = useWindowSize()
 	const alert = useContext(AlertContext)
 	const { handlerTimer } = useFormSubmit(alert)
 	const { updateUser } = useAppActions()
 
-	const userName = user.name?.toLowerCase().replace(/\s+/g, '').trim()
+	const userName = name?.toLowerCase().replace(/\s+/g, '').trim()
 
 	const handleAvatarChange = async (e: ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0]
@@ -49,19 +51,20 @@ export const AccountAvatar: FC<IProps> = ({
 			console.error('Failed to update user profile:', error)
 		}
 	}
-	const avatarStyles = isSettingPage ? { ...avatarMarginLStyles } : { ...avatarMarginRStyles }
 
 	return (
 		<Flex {...componentStyles}>
-			{user.avatar ? (
+			{avatar ? (
 				<Avatar
-					src={user.avatar}
+					as="div"
+					src={avatar}
 					{...avatarStyles}
 				/>
 			) : (
 				<Avatar
-					name={user.name}
-					src={user.avatar ?? undefined}
+					as="div"
+					name={name}
+					src={avatar ?? undefined}
 					{...avatarStyles}
 				/>
 			)}
@@ -82,7 +85,7 @@ export const AccountAvatar: FC<IProps> = ({
 							as={FaUpload}
 							{...buttonIconStyles}
 						/>
-						Upload your photo
+						Upload
 					</Button>
 				</Box>
 			}
@@ -107,7 +110,7 @@ export const AccountAvatar: FC<IProps> = ({
 						as={FaEdit}
 						mr={1}
 					/>
-					Edit
+					Edit your profile
 				</Link>}
 		</Flex>
 	)

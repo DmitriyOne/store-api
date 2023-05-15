@@ -6,12 +6,8 @@ import { signOut, User } from 'firebase/auth'
 
 import { STORE_ROUTES } from '@constants'
 
+import { useAppActions, useAppSelector, useFormSubmit, useLoading } from '@hooks'
 import { auth } from '@firebase'
-
-import { useAppActions } from './useAppActions'
-import { useAppSelector } from './useAppSelector'
-import { useFormSubmit } from './useFormSubmit'
-import { useLoading } from './useLoading'
 
 export const useAuth = () => {
 	const { ...user } = useAppSelector(state => state.user)
@@ -41,9 +37,12 @@ export const useAuth = () => {
 			localStorage.removeItem('currentUser')
 			removeUser()
 		}
-	}, [addUser, removeUser])
+	}, [addUser, removeUser, loading, user])
 
 	useEffect(() => {
+		if (loading) {
+			return
+		}
 		const unsubscribe = auth.onAuthStateChanged(handleAuthStateChanged)
 		return () => unsubscribe()
 	}, [handleAuthStateChanged])

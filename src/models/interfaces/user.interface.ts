@@ -19,3 +19,14 @@ export interface IUserState {
 	lastLogin: string | null
 	token: string
 }
+
+export interface IUserBody {
+	id: string
+	name: string
+	email: string
+	isEmailVerified: boolean
+	phone: string | null
+	isPhoneVerified: boolean
+	createAccount: string
+	lastLogin: string | null
+}

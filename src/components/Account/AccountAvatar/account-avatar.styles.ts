@@ -5,14 +5,8 @@ export const componentStyles: FlexProps = {
 	pos: 'relative',
 }
 
-export const avatarMarginRStyles: AvatarProps = {
+export const avatarStyles: AvatarProps = {
 	size: '2xl',
-	mr: 4,
-}
-
-export const avatarMarginLStyles: AvatarProps = {
-	size: '2xl',
-	ml: { base: 3, md: 8 },
 }
 
 export const buttonIconStyles: IconProps = {
@@ -24,11 +18,14 @@ export const uploadWrapperStyles: BoxProps = {
 }
 
 export const uploadButtonStyles: ButtonProps = {
+	display: 'block',
 	variant: 'outline',
-	fontSize: { base: 'xs', md: 'md' },
+	fontSize: { base: 'xs', md: 'sm' },
 	h: 'auto',
 	pl: { base: 2, md: 4 },
 	pr: { base: 2, md: 4 },
 	pt: 2,
 	pb: 2,
+	ml: 'auto',
+	mr: 'auto',
 }

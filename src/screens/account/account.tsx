@@ -13,6 +13,10 @@ export const Account = () => {
 		return <Spinner />
 	}
 
+	if (!loading && user.id === null) {
+		return <Spinner />
+	}
+
 	return (
 		<>
 			<Heading size="xl">
@@ -22,8 +26,11 @@ export const Account = () => {
 			<Flex {...componentStyles}>
 				<Sidebar />
 				<Flex {...contentStyles}>
-					<AccountAvatar {...user} />
-					<AccountBody {...user} />
+					<AccountAvatar
+						avatar={user.avatar}
+						name={user.name}
+					/>
+					<AccountBody user={user} />
 				</Flex>
 			</Flex>
 		</>

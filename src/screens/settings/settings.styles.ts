@@ -9,7 +9,7 @@ export const componentStyles: FlexProps = {
 }
 
 export const contentStyles: FlexProps = {
-	flexDirection: { base: 'column', md: 'column' },
+	flexDirection: { base: 'column', md: 'row' },
 	flex: '1',
 	pl: { base: '0', md: '8', lg: '12' },
 }
