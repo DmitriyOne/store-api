@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useContext, useState } from 'react'
 import { EmailAuthProvider, reauthenticateWithCredential, updateEmail, updateProfile } from 'firebase/auth'
 
 import { Box, Text } from '@chakra-ui/react'
@@ -7,6 +7,9 @@ import { IUserBody } from '@interfaces'
 
 import { useAppActions } from '@hooks'
 import { auth } from '@firebase'
+import { PopupConfirmContext } from '@context'
+
+import { PopupConfirmPassword } from '@components'
 
 import { AccountEditableField } from '../AccountEditableField'
 import { AccountVerifiedData } from '../AccountVerifiedData'
@@ -23,6 +26,7 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 	const [newEmail, setNewEmail] = useState(user.email)
 	const [newPhone, setNewPhone] = useState(user.phone)
 	const { updateUser } = useAppActions()
+	const { isOpenPopup, onClosePopup } = useContext(PopupConfirmContext)
 
 	const handleUpdateName = async (value: string) => {
 		setNewName(value)
@@ -51,54 +55,64 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 	const dateLogin = new Date(user.lastLogin)
 
 	return (
-		<Box {...componentStyles}>
+		<>
 
-			{/* Username */}
-			{isSettingPage
-				?
-				<AccountEditableField
-					defaultValue={newName}
-					onUpdate={handleUpdateName}
-					isTitle
-				/>
-				:
-				<Text {...nameStyles}>
-					{user.name}
-				</Text>
-			}
-
-			{/* Email */}
-			{isSettingPage
-				?
-				<AccountEditableField
-					defaultValue={newEmail}
-					onUpdate={handleUpdateEmail}
-				/>
-				:
-				<>
-					<Text {...textStyles}>
-						<b>Email:</b> {user.email}
+			<Box {...componentStyles}>
+				{/* Username */}
+				{isSettingPage
+					?
+					<AccountEditableField
+						defaultValue={newName}
+						onUpdate={handleUpdateName}
+						isTitle
+					/>
+					:
+					<Text {...nameStyles}>
+						{user.name}
 					</Text>
-					<AccountVerifiedData variant="email" />
+				}
+
+				{/* Email */}
+				{isSettingPage
+					?
+					<AccountEditableField
+						defaultValue={newEmail}
+						onUpdate={handleUpdateEmail}
+					/>
+					:
+					<>
+						<Text {...textStyles}>
+							<b>Email:</b> {user.email}
+						</Text>
+						<AccountVerifiedData variant="email" />
+					</>
+				}
+
+				<Text {...textStyles}>
+					<b>Phone:</b> {user.phone ?? 'number not provided'}
+				</Text>
+				<AccountVerifiedData variant="phone" />
+
+				{!isSettingPage && <>
+					<Text {...textStyles}>
+						<b>Account created on</b> {dateCreate.toLocaleString()}
+					</Text>
+
+					<Text {...textStyles}>
+						<b>Last login on</b> {dateLogin.toLocaleString()}
+					</Text>
 				</>
-			}
+				}
+			</Box>
 
-			<Text {...textStyles}>
-				<b>Phone:</b> {user.phone ?? 'number not provided'}
-			</Text>
-			<AccountVerifiedData variant="phone" />
-
-			{!isSettingPage && <>
-				<Text {...textStyles}>
-					<b>Account created on</b> {dateCreate.toLocaleString()}
-				</Text>
-
-				<Text {...textStyles}>
-					<b>Last login on</b> {dateLogin.toLocaleString()}
-				</Text>
-			</>
-			}
-		</Box>
-
+			<PopupConfirmPassword
+				isOpen={isOpenPopup}
+				onClose={onClosePopup}
+				newEmail={newEmail}
+				newName={newName}
+				newPassword=""
+				newPhone={newPhone}
+			/>
+		</>
 	)
 }

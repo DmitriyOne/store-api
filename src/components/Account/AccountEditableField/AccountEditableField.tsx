@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { ChangeEvent, FC, useState } from 'react'
+import { ChangeEvent, FC, useContext, useState } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
 
 import { Box, Button, Flex, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement, Text, useDisclosure } from '@chakra-ui/react'
 
-import { PopupConfirmPassword } from '@components'
+import { PopupConfirmContext } from '@context'
 
 import { componentStyles, iconStyles, iconWrapperStyles, inputBtnCancelStyles, inputBtnSaveStyles, inputBtnWrapperStyles, inputWrapperStyles, textDefaultStyles, textTitleStyles } from './account-editable-field.styles'
 
@@ -23,7 +23,7 @@ export const AccountEditableField: FC<IProps> = ({
 }) => {
 	const [isEditing, setIsEditing] = useState(false)
 	const [value, setValue] = useState<string>(defaultValue)
-	const { isOpen, onOpen, onClose } = useDisclosure()
+	const { onOpenPopup } = useContext(PopupConfirmContext)
 
 	const handleEdit = () => {
 		setIsEditing(true)
@@ -31,14 +31,12 @@ export const AccountEditableField: FC<IProps> = ({
 
 	const handleCancel = () => {
 		setIsEditing(false)
-		onClose()
 		setValue(defaultValue)
 	}
 
 	const handleSave = () => {
-		setIsEditing(false)
 		onUpdate(value)
-		onClose()
+		onOpenPopup()
 	}
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -77,7 +75,7 @@ export const AccountEditableField: FC<IProps> = ({
 									Cancel
 								</Button>
 								<Button
-									onClick={onOpen}
+									onClick={handleSave}
 									{...inputBtnSaveStyles}
 								>
 									Save
@@ -103,13 +101,6 @@ export const AccountEditableField: FC<IProps> = ({
 					}
 				</InputGroup>
 			</FormControl>
-
-			<PopupConfirmPassword
-				isOpen={isOpen}
-				onClose={onClose}
-				onSave={handleSave}
-				value={value}
-			/>
 		</>
 	)
 }
