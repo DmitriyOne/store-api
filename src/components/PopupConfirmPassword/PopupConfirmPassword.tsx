@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react'
+import { FC, useContext, useRef } from 'react'
 import { EmailAuthProvider, reauthenticateWithCredential, updateEmail } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 
@@ -9,6 +9,7 @@ import { IUser } from '@interfaces'
 
 import { useAppActions } from '@hooks'
 import { auth } from '@firebase'
+import { ConfirmContext, EditContext } from '@context'
 
 import { CustomInput, Heading } from '@components'
 
@@ -17,37 +18,29 @@ import { btnSaveStyles, contentStyles, titleStyles } from './popup-confirm-passw
 interface IProps {
 	isOpen: boolean
 	onClose: () => void
-	newEmail: string
-	newName: string
-	newPhone: string
-	newPassword: string
 }
 
 export const PopupConfirmPassword: FC<IProps> = ({
 	isOpen,
 	onClose,
-	newEmail,
-	newName,
-	newPassword,
-	newPhone,
 }) => {
 	const cancelRef = useRef()
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
 	const { updateUser } = useAppActions()
+	const { isOpenConfirm } = useContext(ConfirmContext)
+	const { stopEditing } = useContext(EditContext)
 
 	const onSubmit = async (data: IUser) => {
-		// const user = auth.currentUser
-		// if (!user) return
-		// const credential = EmailAuthProvider.credential(user.email, data.password)
-		// try {
-		// 	await reauthenticateWithCredential(user, credential)
-		// 	await updateEmail(user, value)
-		// 	updateUser({ email: value })
-		// 	onSave()
-		// 	reset()
-		// } catch (error) {
-		// 	console.log('error: ', error)
-		// }
+		const user = auth.currentUser
+		if (!user) return
+		const credential = EmailAuthProvider.credential(user.email, data.password)
+
+		await reauthenticateWithCredential(user, credential).then((e) => {
+			onClose()
+			stopEditing()
+		}).catch((e) => {
+			console.log('re auth err: ', e)
+		})
 	}
 
 	return (

@@ -7,7 +7,7 @@ import { IUserBody } from '@interfaces'
 
 import { useAppActions } from '@hooks'
 import { auth } from '@firebase'
-import { PopupConfirmContext } from '@context'
+import { ConfirmContext } from '@context'
 
 import { PopupConfirmPassword } from '@components'
 
@@ -26,29 +26,14 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 	const [newEmail, setNewEmail] = useState(user.email)
 	const [newPhone, setNewPhone] = useState(user.phone)
 	const { updateUser } = useAppActions()
-	const { isOpenPopup, onClosePopup } = useContext(PopupConfirmContext)
+	const { isOpenConfirm, onCloseConfirm } = useContext(ConfirmContext)
 
 	const handleUpdateName = async (value: string) => {
 		setNewName(value)
-		await updateProfile(auth.currentUser, { displayName: value })
-		updateUser({ name: value })
 	}
 
 	const handleUpdateEmail = async (value: string) => {
-		// setNewEmail(value)
-		// await updateEmail(auth.currentUser, value)
-		// updateUser({ name: value })
-		// setNewEmail(value)
-		// const user = auth.currentUser
-		// if (!user) return
-
-		// const credential = EmailAuthProvider.credential(user.email, '123456')
-		// await reauthenticateWithCredential(user, credential)
-		// await updateEmail(user, value)
-	}
-
-	const handleUpdatePhone = async (value: string) => {
-
+		setNewEmail(value)
 	}
 
 	const dateCreate = new Date(user.createAccount)
@@ -64,6 +49,7 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 					<AccountEditableField
 						defaultValue={newName}
 						onUpdate={handleUpdateName}
+						nameField="name"
 						isTitle
 					/>
 					:
@@ -78,6 +64,7 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 					<AccountEditableField
 						defaultValue={newEmail}
 						onUpdate={handleUpdateEmail}
+						nameField="email"
 					/>
 					:
 					<>
@@ -106,12 +93,8 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 			</Box>
 
 			<PopupConfirmPassword
-				isOpen={isOpenPopup}
-				onClose={onClosePopup}
-				newEmail={newEmail}
-				newName={newName}
-				newPassword=""
-				newPhone={newPhone}
+				isOpen={isOpenConfirm}
+				onClose={onCloseConfirm}
 			/>
 		</>
 	)

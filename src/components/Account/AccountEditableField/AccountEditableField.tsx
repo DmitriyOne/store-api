@@ -1,10 +1,11 @@
+/* eslint-disable indent */
 /* eslint-disable no-unused-vars */
-import { ChangeEvent, FC, useContext, useState } from 'react'
+import { ChangeEvent, FC, use, useContext, useState } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
 
-import { Box, Button, Flex, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
 
-import { PopupConfirmContext } from '@context'
+import { ConfirmContext, EditContext } from '@context'
 
 import { componentStyles, iconStyles, iconWrapperStyles, inputBtnCancelStyles, inputBtnSaveStyles, inputBtnWrapperStyles, inputWrapperStyles, textDefaultStyles, textTitleStyles } from './account-editable-field.styles'
 
@@ -13,6 +14,7 @@ interface IProps {
 	defaultValue: string
 	onUpdate: (value: string) => void
 	isTitle?: boolean
+	nameField: string
 }
 
 export const AccountEditableField: FC<IProps> = ({
@@ -20,28 +22,32 @@ export const AccountEditableField: FC<IProps> = ({
 	defaultValue = '',
 	onUpdate,
 	isTitle,
+	nameField,
 }) => {
-	const [isEditing, setIsEditing] = useState(false)
 	const [value, setValue] = useState<string>(defaultValue)
-	const { onOpenPopup } = useContext(PopupConfirmContext)
+	const { onOpenConfirm } = useContext(ConfirmContext)
+	const [selectedField, setSelectedField] = useState(null)
+	const { editing, startEditing, stopEditing } = useContext(EditContext)
 
 	const handleEdit = () => {
-		setIsEditing(true)
+		startEditing(nameField)
 	}
 
 	const handleCancel = () => {
-		setIsEditing(false)
 		setValue(defaultValue)
+		stopEditing()
 	}
 
 	const handleSave = () => {
 		onUpdate(value)
-		onOpenPopup()
+		onOpenConfirm()
 	}
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setValue(event.target.value)
 	}
+
+	const isEditing = editing === nameField
 
 	const textStyles = isTitle ? { ...textTitleStyles } : { ...textDefaultStyles }
 
