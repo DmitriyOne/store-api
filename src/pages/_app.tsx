@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { ChakraProvider } from '@chakra-ui/react'
 
 import { wrapper } from '@services'
-import { AlertProvider, HeaderProvider, PopupConfirmProvider } from '@context'
+import { AlertProvider, ConfirmProvider, EditProvider, HeaderProvider } from '@context'
 
 import { Layout } from '@components'
 
@@ -30,15 +30,17 @@ export const App: FC<AppPropsWithLayout> = ({ Component, ...rest }) => {
 	return (
 		<Provider store={store}>
 			<ChakraProvider>
-				<PopupConfirmProvider>
-					<AlertProvider>
-						<HeaderProvider>
-							<Layout>
-								{getLayout(<Component {...props.pageProps} />)}
-							</Layout>
-						</HeaderProvider>
-					</AlertProvider>
-				</PopupConfirmProvider>
+				<EditProvider>
+					<ConfirmProvider>
+						<AlertProvider>
+							<HeaderProvider>
+								<Layout>
+									{getLayout(<Component {...props.pageProps} />)}
+								</Layout>
+							</HeaderProvider>
+						</AlertProvider>
+					</ConfirmProvider>
+				</EditProvider>
 			</ChakraProvider>
 		</Provider>
 	)

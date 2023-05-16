@@ -1,3 +1,4 @@
 export * from './alert'
+export * from './edit'
 export * from './header'
-export * from './popup-confirm'
+export * from './confirm'
