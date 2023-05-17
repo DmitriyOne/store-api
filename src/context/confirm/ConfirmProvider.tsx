@@ -10,14 +10,14 @@ interface IProps {
 
 export const ConfirmProvider: FC<IProps> = ({ children }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
-	const [isError, setIsError] = useState(false)
+	const [errorConfirmMsg, setErrorConfirmMsg] = useState('')
 
 	const value = {
 		isOpenConfirm: isOpen,
 		onCloseConfirm: onClose,
 		onOpenConfirm: onOpen,
-		isError,
-		setIsError,
+		errorConfirmMsg,
+		setErrorConfirmMsg,
 	}
 
 	return (

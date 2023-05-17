@@ -6,8 +6,8 @@ const defaultValue: IConfirm = {
 	isOpenConfirm: false,
 	onCloseConfirm: () => { },
 	onOpenConfirm: () => { },
-	isError: false,
-	setIsError: () => { },
+	errorConfirmMsg: '',
+	setErrorConfirmMsg: () => { },
 }
 
 export const ConfirmContext = createContext<IConfirm>(defaultValue)

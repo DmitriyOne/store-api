@@ -1,9 +1,11 @@
-import { InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes, useContext } from 'react'
 import { Control, FieldName, useController } from 'react-hook-form'
 
 import { FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
 
 import { IUser } from '@interfaces'
+
+import { ConfirmContext } from '@context'
 
 import { InputPassword } from './InputPassword'
 
@@ -25,8 +27,9 @@ export const CustomInput = ({
 	control,
 }: IProps) => {
 	const { field: { value, onChange, ...inputProps } } = useController({ name, control, rules })
+	const { errorConfirmMsg } = useContext(ConfirmContext)
 
-	const isError = !!errors
+	const isError = !!errors || !!errorConfirmMsg
 
 	return (
 		<FormControl isInvalid={isError}>
@@ -50,7 +53,7 @@ export const CustomInput = ({
 				/>
 			}
 			<FormErrorMessage>
-				{isError && errors.message}
+				{isError && errors?.message || errorConfirmMsg}
 			</FormErrorMessage>
 		</FormControl>
 	)

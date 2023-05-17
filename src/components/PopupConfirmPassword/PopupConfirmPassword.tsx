@@ -27,8 +27,13 @@ export const PopupConfirmPassword: FC<IProps> = ({
 	const cancelRef = useRef()
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
 	const { updateUser } = useAppActions()
-	const { setIsError } = useContext(ConfirmContext)
+	const { setErrorConfirmMsg } = useContext(ConfirmContext)
 	const { stopEditing } = useContext(EditContext)
+
+	const handlerClose = () => {
+		setErrorConfirmMsg('')
+		onClose()
+	}
 
 	const onSubmit = async (data: IUser) => {
 		const user = auth.currentUser
@@ -37,11 +42,20 @@ export const PopupConfirmPassword: FC<IProps> = ({
 
 		await reauthenticateWithCredential(user, credential).then((e) => {
 			onClose()
+			setErrorConfirmMsg('')
 			stopEditing()
 			reset()
-		}).catch((e) => {
-			console.error(e)
-			setIsError(true)
+		}).catch((error) => {
+			console.error(error)
+			if (error.code === 'auth/wrong-password') {
+				setErrorConfirmMsg('Incorrect password. Try again.')
+				return
+			}
+			if (error.code === 'auth/too-many-requests') {
+				setErrorConfirmMsg('Lots of tries. Try later..')
+				return
+			}
+			setErrorConfirmMsg('An error has occurred. Try again.')
 		})
 	}
 
@@ -72,7 +86,7 @@ export const PopupConfirmPassword: FC<IProps> = ({
 						<AlertDialogFooter p={0}>
 							<Button
 								ref={cancelRef}
-								onClick={onClose}
+								onClick={handlerClose}
 							>
 								Cancel
 							</Button>

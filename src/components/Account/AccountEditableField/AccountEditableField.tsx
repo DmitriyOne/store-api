@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 /* eslint-disable no-unused-vars */
-import { ChangeEvent, FC, use, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, FC, useContext, useEffect, useState } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
 
 import { Box, Button, Flex, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
@@ -23,16 +23,16 @@ export const AccountEditableField: FC<IProps> = ({
 	nameField,
 }) => {
 	const [value, setValue] = useState<string>(defaultValue)
-	const { onOpenConfirm, isOpenConfirm, isError } = useContext(ConfirmContext)
+	const { onOpenConfirm, errorConfirmMsg, setErrorConfirmMsg } = useContext(ConfirmContext)
 	const { editing, startEditing, stopEditing } = useContext(EditContext)
 
 	useEffect(() => {
-		if (isError) {
+		if (errorConfirmMsg) {
 			return
 		}
 		setValue(value)
 
-	}, [isError])
+	}, [errorConfirmMsg])
 
 	const handleEdit = () => {
 		startEditing(nameField)
