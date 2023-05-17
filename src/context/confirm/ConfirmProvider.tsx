@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useState } from 'react'
 
 import { useDisclosure } from '@chakra-ui/react'
 
@@ -10,11 +10,14 @@ interface IProps {
 
 export const ConfirmProvider: FC<IProps> = ({ children }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
+	const [isError, setIsError] = useState(false)
 
 	const value = {
 		isOpenConfirm: isOpen,
 		onCloseConfirm: onClose,
 		onOpenConfirm: onOpen,
+		isError,
+		setIsError,
 	}
 
 	return (

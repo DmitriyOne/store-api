@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 /* eslint-disable no-unused-vars */
-import { ChangeEvent, FC, use, useContext, useState } from 'react'
+import { ChangeEvent, FC, use, useContext, useEffect, useState } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
 
 import { Box, Button, Flex, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
@@ -12,7 +12,6 @@ import { componentStyles, iconStyles, iconWrapperStyles, inputBtnCancelStyles, i
 interface IProps {
 	label?: string
 	defaultValue: string
-	onUpdate: (value: string) => void
 	isTitle?: boolean
 	nameField: string
 }
@@ -20,14 +19,20 @@ interface IProps {
 export const AccountEditableField: FC<IProps> = ({
 	label,
 	defaultValue = '',
-	onUpdate,
 	isTitle,
 	nameField,
 }) => {
 	const [value, setValue] = useState<string>(defaultValue)
-	const { onOpenConfirm } = useContext(ConfirmContext)
-	const [selectedField, setSelectedField] = useState(null)
+	const { onOpenConfirm, isOpenConfirm, isError } = useContext(ConfirmContext)
 	const { editing, startEditing, stopEditing } = useContext(EditContext)
+
+	useEffect(() => {
+		if (isError) {
+			return
+		}
+		setValue(value)
+
+	}, [isError])
 
 	const handleEdit = () => {
 		startEditing(nameField)
@@ -39,7 +44,6 @@ export const AccountEditableField: FC<IProps> = ({
 	}
 
 	const handleSave = () => {
-		onUpdate(value)
 		onOpenConfirm()
 	}
 
@@ -90,7 +94,7 @@ export const AccountEditableField: FC<IProps> = ({
 						</Flex>
 						:
 						<Text {...textStyles}>
-							{defaultValue}
+							{value}
 						</Text>
 					}
 

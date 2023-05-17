@@ -1,12 +1,10 @@
-import { FC, useContext, useState } from 'react'
-import { EmailAuthProvider, reauthenticateWithCredential, updateEmail, updateProfile } from 'firebase/auth'
+import { FC, useContext } from 'react'
 
 import { Box, Text } from '@chakra-ui/react'
 
 import { IUserBody } from '@interfaces'
 
 import { useAppActions } from '@hooks'
-import { auth } from '@firebase'
 import { ConfirmContext } from '@context'
 
 import { PopupConfirmPassword } from '@components'
@@ -22,19 +20,8 @@ interface IProps {
 }
 
 export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
-	const [newName, setNewName] = useState(user.name)
-	const [newEmail, setNewEmail] = useState(user.email)
-	const [newPhone, setNewPhone] = useState(user.phone)
 	const { updateUser } = useAppActions()
 	const { isOpenConfirm, onCloseConfirm } = useContext(ConfirmContext)
-
-	const handleUpdateName = async (value: string) => {
-		setNewName(value)
-	}
-
-	const handleUpdateEmail = async (value: string) => {
-		setNewEmail(value)
-	}
 
 	const dateCreate = new Date(user.createAccount)
 	const dateLogin = new Date(user.lastLogin)
@@ -43,12 +30,12 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 		<>
 
 			<Box {...componentStyles}>
+				
 				{/* Username */}
 				{isSettingPage
 					?
 					<AccountEditableField
-						defaultValue={newName}
-						onUpdate={handleUpdateName}
+						defaultValue={user.name}
 						nameField="name"
 						isTitle
 					/>
@@ -62,8 +49,7 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 				{isSettingPage
 					?
 					<AccountEditableField
-						defaultValue={newEmail}
-						onUpdate={handleUpdateEmail}
+						defaultValue={user.email}
 						nameField="email"
 					/>
 					:

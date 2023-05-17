@@ -27,7 +27,7 @@ export const PopupConfirmPassword: FC<IProps> = ({
 	const cancelRef = useRef()
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
 	const { updateUser } = useAppActions()
-	const { isOpenConfirm } = useContext(ConfirmContext)
+	const { setIsError } = useContext(ConfirmContext)
 	const { stopEditing } = useContext(EditContext)
 
 	const onSubmit = async (data: IUser) => {
@@ -38,8 +38,10 @@ export const PopupConfirmPassword: FC<IProps> = ({
 		await reauthenticateWithCredential(user, credential).then((e) => {
 			onClose()
 			stopEditing()
+			reset()
 		}).catch((e) => {
-			console.log('re auth err: ', e)
+			console.error(e)
+			setIsError(true)
 		})
 	}
 
