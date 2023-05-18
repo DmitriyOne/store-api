@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useRouter } from 'next/router'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 
@@ -16,6 +17,7 @@ export const Registration = () => {
 	const { addUser } = useAppActions()
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control, getValues, setError } = useForm<IUser>({ mode: 'onChange' })
 	const { handlerTimer, sleep } = useFormSubmit(alert)
+	const router = useRouter()
 
 	const onSubmit = async (data: IUser) => {
 		const { password, confirm_password } = getValues()
@@ -28,9 +30,10 @@ export const Registration = () => {
 		createUserWithEmailAndPassword(auth, data.email, data.password)
 			.then(async (userCredential) => {
 				const fbuser = userCredential.user
-				updateProfile(userCredential.user, {
+				await updateProfile(userCredential.user, {
 					displayName: data.name,
 				})
+				const userName = fbuser.displayName.toLowerCase().replace(/\s+/g, '').trim()
 				addUser({
 					id: fbuser.uid,
 					name: fbuser.displayName,
@@ -43,6 +46,10 @@ export const Registration = () => {
 					lastLogin: fbuser.metadata.lastSignInTime,
 					token: fbuser.refreshToken,
 				})
+				router.push({
+					pathname: STORE_ROUTES.ACCOUNT,
+					query: { displayName: userName },
+				})
 				await sleep(700)
 				alert.visible = true
 				alert.show('The account has been created. You have successfully registered.', 'success')
@@ -50,6 +57,8 @@ export const Registration = () => {
 				reset()
 			})
 			.catch((error) => {
+				console.log(error.code)
+
 				alert.visible = true
 				if (error.code === 'auth/email-already-in-use') {
 					alert.show('The email address you provided is already in use.', 'error')
