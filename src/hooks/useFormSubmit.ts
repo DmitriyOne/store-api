@@ -18,10 +18,8 @@ enum ETypeUpdate {
 export const useFormSubmit = (
 	alert?: IAlert,
 	onClose?: () => void,
-	name?: string
 ) => {
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
-	const { updateUser } = useAppActions()
 	const { setErrorConfirmMsg, setIsSuccess } = useContext(ConfirmContext)
 	const { stopEditing } = useContext(EditContext)
 	const { handlerCurrentUserFB } = useAuth()

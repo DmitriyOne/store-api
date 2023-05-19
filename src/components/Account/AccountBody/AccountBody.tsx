@@ -1,8 +1,10 @@
 import { FC, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 import { updateProfile } from 'firebase/auth'
 
 import { Box, Text } from '@chakra-ui/react'
 
+import { STORE_ROUTES } from '@constants'
 import { IUserBody } from '@interfaces'
 
 import { useAppActions, useAuth, useFormSubmit } from '@hooks'
@@ -26,14 +28,22 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 	const { isOpenConfirm, onCloseConfirm } = useContext(ConfirmContext)
 	const { updateUser } = useAppActions()
 	const { handlerCurrentUserFB } = useAuth()
+	const router = useRouter()
 
 	const handlerUpdateName = (value: string) => {
+		const userName = value.toLowerCase().replace(/\s+/g, '').trim()
 		const user = handlerCurrentUserFB()
 		setUpdateName(value)
 		updateProfile(user, {
 			displayName: value,
 		})
 		updateUser({ name: value })
+		router.push({
+			pathname: STORE_ROUTES.SETTINGS,
+			query: { displayName: userName },
+		},
+		undefined, { shallow: true }
+		)
 	}
 
 	const handlerUpdateEmail = (value: string) => {
@@ -100,7 +110,6 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 			<PopupConfirmPassword
 				isOpen={isOpenConfirm}
 				onClose={onCloseConfirm}
-				name={updateName}
 			/>
 		</>
 	)

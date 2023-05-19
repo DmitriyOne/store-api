@@ -14,17 +14,15 @@ import { btnSaveStyles, contentStyles, titleStyles } from './popup-confirm-passw
 interface IProps {
 	isOpen: boolean
 	onClose: () => void
-	name: string
 }
 
 export const PopupConfirmPassword: FC<IProps> = ({
 	isOpen,
 	onClose,
-	name
 }) => {
 	const cancelRef = useRef()
 	const { setErrorConfirmMsg } = useContext(ConfirmContext)
-	const { handleSubmit, onSubmit, errors, control, isSubmitting } = useFormSubmit(undefined, onClose, name)
+	const { handleSubmit, onSubmit, errors, control, isSubmitting } = useFormSubmit(undefined, onClose)
 
 	const handlerClose = () => {
 		setErrorConfirmMsg('')
