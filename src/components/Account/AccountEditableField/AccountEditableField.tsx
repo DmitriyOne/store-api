@@ -5,6 +5,7 @@ import { FaPencilAlt } from 'react-icons/fa'
 
 import { Box, Button, Flex, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
 
+import { useFormSubmit } from '@hooks'
 import { ConfirmContext, EditContext } from '@context'
 
 import { componentStyles, iconStyles, iconWrapperStyles, inputBtnCancelStyles, inputBtnSaveStyles, inputBtnWrapperStyles, inputWrapperStyles, textDefaultStyles, textTitleStyles } from './account-editable-field.styles'
@@ -14,6 +15,7 @@ interface IProps {
 	defaultValue: string
 	isTitle?: boolean
 	nameField: string
+	onUpdate: (value: string) => void
 }
 
 export const AccountEditableField: FC<IProps> = ({
@@ -21,18 +23,19 @@ export const AccountEditableField: FC<IProps> = ({
 	defaultValue = '',
 	isTitle,
 	nameField,
+	onUpdate,
 }) => {
 	const [value, setValue] = useState<string>(defaultValue)
-	const { onOpenConfirm, errorConfirmMsg, setErrorConfirmMsg } = useContext(ConfirmContext)
+	const { onOpenConfirm, isSuccess, setIsSuccess } = useContext(ConfirmContext)
 	const { editing, startEditing, stopEditing } = useContext(EditContext)
 
 	useEffect(() => {
-		if (errorConfirmMsg) {
-			return
+		if (isSuccess) {
+			console.log('update user info')
+			onUpdate(value)
+			setIsSuccess(false)
 		}
-		setValue(value)
-
-	}, [errorConfirmMsg])
+	}, [isSuccess])
 
 	const handleEdit = () => {
 		startEditing(nameField)
@@ -94,7 +97,7 @@ export const AccountEditableField: FC<IProps> = ({
 						</Flex>
 						:
 						<Text {...textStyles}>
-							{value}
+							{defaultValue}
 						</Text>
 					}
 

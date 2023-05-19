@@ -6,4 +6,6 @@ export interface IConfirm {
 	onOpenConfirm: () => void,
 	errorConfirmMsg: string
 	setErrorConfirmMsg: Dispatch<SetStateAction<string>>
+	isSuccess: boolean
+	setIsSuccess: Dispatch<SetStateAction<boolean>>
 }

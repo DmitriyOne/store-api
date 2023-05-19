@@ -1,10 +1,11 @@
-import { FC, useContext } from 'react'
+import { FC, useContext, useState } from 'react'
+import { updateProfile } from 'firebase/auth'
 
 import { Box, Text } from '@chakra-ui/react'
 
 import { IUserBody } from '@interfaces'
 
-import { useAppActions } from '@hooks'
+import { useAppActions, useAuth, useFormSubmit } from '@hooks'
 import { ConfirmContext } from '@context'
 
 import { PopupConfirmPassword } from '@components'
@@ -20,8 +21,24 @@ interface IProps {
 }
 
 export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
-	const { updateUser } = useAppActions()
+	const [updateName, setUpdateName] = useState(user.name)
+	const [updateEmail, setUpdateEmail] = useState(user.email)
 	const { isOpenConfirm, onCloseConfirm } = useContext(ConfirmContext)
+	const { updateUser } = useAppActions()
+	const { handlerCurrentUserFB } = useAuth()
+
+	const handlerUpdateName = (value: string) => {
+		const user = handlerCurrentUserFB()
+		setUpdateName(value)
+		updateProfile(user, {
+			displayName: value,
+		})
+		updateUser({ name: value })
+	}
+
+	const handlerUpdateEmail = (value: string) => {
+		setUpdateEmail(value)
+	}
 
 	const dateCreate = new Date(user.createAccount)
 	const dateLogin = new Date(user.lastLogin)
@@ -30,13 +47,14 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 		<>
 
 			<Box {...componentStyles}>
-				
+
 				{/* Username */}
 				{isSettingPage
 					?
 					<AccountEditableField
-						defaultValue={user.name}
+						defaultValue={updateName}
 						nameField="name"
+						onUpdate={handlerUpdateName}
 						isTitle
 					/>
 					:
@@ -49,8 +67,9 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 				{isSettingPage
 					?
 					<AccountEditableField
-						defaultValue={user.email}
+						defaultValue={updateEmail}
 						nameField="email"
+						onUpdate={handlerUpdateEmail}
 					/>
 					:
 					<>
@@ -81,6 +100,7 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 			<PopupConfirmPassword
 				isOpen={isOpenConfirm}
 				onClose={onCloseConfirm}
+				name={updateName}
 			/>
 		</>
 	)

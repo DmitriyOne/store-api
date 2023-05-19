@@ -1,3 +1,5 @@
+import { EmailAuthCredential, User } from 'firebase/auth'
+
 export interface IUser {
 	id: string
 	name: string
@@ -30,3 +32,5 @@ export interface IUserBody {
 	createAccount: string
 	lastLogin: string | null
 }
+
+export interface ICurrentUserFb extends User, EmailAuthCredential { }

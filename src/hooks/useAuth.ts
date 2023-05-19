@@ -6,14 +6,13 @@ import { signOut, User } from 'firebase/auth'
 
 import { STORE_ROUTES } from '@constants'
 
-import { useAppActions, useAppSelector, useFormSubmit, useLoading } from '@hooks'
+import { useAppActions, useAppSelector, useLoading } from '@hooks'
 import { auth } from '@firebase'
 
 export const useAuth = () => {
 	const { ...user } = useAppSelector(state => state.user)
 	const { addUser, removeUser } = useAppActions()
 	const router = useRouter()
-	const { sleep } = useFormSubmit()
 	const { loading } = useLoading()
 
 	const memoizedUser = useMemo(() => user, [user])
@@ -37,24 +36,30 @@ export const useAuth = () => {
 			localStorage.removeItem('currentUser')
 			removeUser()
 		}
-	}, [addUser, removeUser, loading, user])
+	}, [loading])
 
 	useEffect(() => {
-		if (loading) {
+		if (loading) {			
 			return
-		}
+		}		
 		const unsubscribe = auth.onAuthStateChanged(handleAuthStateChanged)
 		return () => unsubscribe()
 	}, [handleAuthStateChanged])
 
 	const logout = async () => {
 		router.push(STORE_ROUTES.SHOP)
-		await sleep(1000)
 		signOut(auth).then(async () => {
 			removeUser()
 		}).catch((error) => {
 			console.error(error)
 		})
+	}
+
+	const handlerCurrentUserFB = (): User => {
+		const user = auth.currentUser
+		if (!user) return
+
+		return user
 	}
 
 	const isAuth = useMemo(() => !!user.email, [user.email])
@@ -64,5 +69,6 @@ export const useAuth = () => {
 		user: memoizedUser,
 		logout,
 		loading,
+		handlerCurrentUserFB,
 	}
 }
