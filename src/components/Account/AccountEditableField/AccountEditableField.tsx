@@ -1,11 +1,11 @@
 /* eslint-disable indent */
 /* eslint-disable no-unused-vars */
-import { ChangeEvent, FC, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, FC, ForwardedRef, forwardRef, useContext, useEffect, useRef, useState } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
+import { HiEye, HiEyeOff } from 'react-icons/hi'
 
-import { Box, Button, Flex, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel, Icon, IconButton, Input, InputGroup, InputRightElement, Text, useDisclosure, useMergeRefs } from '@chakra-ui/react'
 
-import { useFormSubmit } from '@hooks'
 import { ConfirmContext, EditContext } from '@context'
 
 import { componentStyles, iconStyles, iconWrapperStyles, inputBtnCancelStyles, inputBtnSaveStyles, inputBtnWrapperStyles, inputWrapperStyles, textDefaultStyles, textTitleStyles } from './account-editable-field.styles'
@@ -16,18 +16,23 @@ interface IProps {
 	isTitle?: boolean
 	nameField: string
 	onUpdate: (value: string) => void
+	isPassword?: boolean
 }
 
-export const AccountEditableField: FC<IProps> = ({
+export const AccountEditableField = forwardRef(({
 	label,
 	defaultValue = '',
 	isTitle,
 	nameField,
 	onUpdate,
-}) => {
+	isPassword,
+}: IProps, ref: ForwardedRef<HTMLInputElement>) => {
 	const [value, setValue] = useState<string>(defaultValue)
 	const { onOpenConfirm, isSuccess, setIsSuccess } = useContext(ConfirmContext)
 	const { editing, startEditing, stopEditing } = useContext(EditContext)
+	const inputRef = useRef<HTMLInputElement>(null)
+	const mergeRef = useMergeRefs(inputRef, ref)
+	const { isOpen, onToggle } = useDisclosure()
 
 	useEffect(() => {
 		if (isSuccess) {
@@ -39,6 +44,9 @@ export const AccountEditableField: FC<IProps> = ({
 
 	const handleEdit = () => {
 		startEditing(nameField)
+		if (isPassword) {
+			setValue('')
+		}
 	}
 
 	const handleCancel = () => {
@@ -52,6 +60,13 @@ export const AccountEditableField: FC<IProps> = ({
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setValue(event.target.value)
+	}
+
+	const onClickReveal = () => {
+		onToggle()
+		if (inputRef.current) {
+			inputRef.current.focus({ preventScroll: true })
+		}
 	}
 
 	const isEditing = editing === nameField
@@ -74,11 +89,34 @@ export const AccountEditableField: FC<IProps> = ({
 					{isEditing
 						?
 						<Flex {...inputWrapperStyles}>
-							<Input
-								value={value}
-								onChange={handleChange}
-								autoFocus
-							/>
+							<InputGroup>
+								{isPassword
+									? <>
+										<Input
+											ref={mergeRef}
+											type={isOpen ? 'text' : 'password'}
+											value={value}
+											onChange={handleChange}
+											autoFocus
+										/>
+										<InputRightElement>
+											<IconButton
+												variant="link"
+												aria-label={isOpen ? 'Mask password' : 'Reveal password'}
+												icon={isOpen ? <HiEyeOff /> : <HiEye />}
+												onClick={onClickReveal}
+											/>
+										</InputRightElement>
+									</>
+									:
+									<Input
+										type={'text'}
+										value={value}
+										onChange={handleChange}
+										autoFocus
+									/>
+								}
+							</InputGroup>
 
 							<Box {...inputBtnWrapperStyles}>
 								<Button
@@ -116,4 +154,6 @@ export const AccountEditableField: FC<IProps> = ({
 			</FormControl>
 		</>
 	)
-}
+})
+
+AccountEditableField.displayName = 'AccountEditableField'

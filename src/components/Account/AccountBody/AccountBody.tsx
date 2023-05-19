@@ -1,6 +1,6 @@
 import { FC, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { updateEmail, updateProfile } from 'firebase/auth'
+import { updateEmail, updatePassword, updateProfile } from 'firebase/auth'
 
 import { Box, Text } from '@chakra-ui/react'
 
@@ -25,6 +25,7 @@ interface IProps {
 export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 	const [newName, setNewName] = useState(user.name)
 	const [newEmail, setNewEmail] = useState(user.email)
+	const [newPassword, setNewPassword] = useState('Change your password')
 	const { isOpenConfirm, onCloseConfirm } = useContext(ConfirmContext)
 	const { updateUser } = useAppActions()
 	const { handlerCurrentUserFB } = useAuth()
@@ -50,6 +51,11 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 		setNewEmail(value)
 		updateEmail(user, value)
 		updateUser({ email: value })
+	}
+
+	const handlerUpdatePassword = (value: string) => {
+		const user = handlerCurrentUserFB()
+		updatePassword(user, value)
 	}
 
 	const dateCreate = new Date(user.createAccount)
@@ -92,10 +98,15 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 					</>
 				}
 
-				<Text {...textStyles}>
-					<b>Phone:</b> {user.phone ?? 'number not provided'}
-				</Text>
-				<AccountVerifiedData variant="phone" />
+				{/* Password */}
+				{isSettingPage &&
+					<AccountEditableField
+						defaultValue={newPassword}
+						nameField="password"
+						onUpdate={handlerUpdatePassword}
+						isPassword
+					/>
+				}
 
 				{!isSettingPage && <>
 					<Text {...textStyles}>
@@ -107,6 +118,7 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 					</Text>
 				</>
 				}
+
 			</Box>
 
 			<PopupConfirmPassword
