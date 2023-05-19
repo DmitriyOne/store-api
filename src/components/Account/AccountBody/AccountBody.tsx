@@ -1,13 +1,13 @@
 import { FC, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { updateProfile } from 'firebase/auth'
+import { updateEmail, updateProfile } from 'firebase/auth'
 
 import { Box, Text } from '@chakra-ui/react'
 
 import { STORE_ROUTES } from '@constants'
 import { IUserBody } from '@interfaces'
 
-import { useAppActions, useAuth, useFormSubmit } from '@hooks'
+import { useAppActions, useAuth } from '@hooks'
 import { ConfirmContext } from '@context'
 
 import { PopupConfirmPassword } from '@components'
@@ -23,8 +23,8 @@ interface IProps {
 }
 
 export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
-	const [updateName, setUpdateName] = useState(user.name)
-	const [updateEmail, setUpdateEmail] = useState(user.email)
+	const [newName, setNewName] = useState(user.name)
+	const [newEmail, setNewEmail] = useState(user.email)
 	const { isOpenConfirm, onCloseConfirm } = useContext(ConfirmContext)
 	const { updateUser } = useAppActions()
 	const { handlerCurrentUserFB } = useAuth()
@@ -33,7 +33,7 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 	const handlerUpdateName = (value: string) => {
 		const userName = value.toLowerCase().replace(/\s+/g, '').trim()
 		const user = handlerCurrentUserFB()
-		setUpdateName(value)
+		setNewName(value)
 		updateProfile(user, {
 			displayName: value,
 		})
@@ -41,13 +41,15 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 		router.push({
 			pathname: STORE_ROUTES.SETTINGS,
 			query: { displayName: userName },
-		},
-		undefined, { shallow: true }
+		}, undefined, { shallow: true }
 		)
 	}
 
 	const handlerUpdateEmail = (value: string) => {
-		setUpdateEmail(value)
+		const user = handlerCurrentUserFB()
+		setNewEmail(value)
+		updateEmail(user, value)
+		updateUser({ email: value })
 	}
 
 	const dateCreate = new Date(user.createAccount)
@@ -62,7 +64,7 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 				{isSettingPage
 					?
 					<AccountEditableField
-						defaultValue={updateName}
+						defaultValue={newName}
 						nameField="name"
 						onUpdate={handlerUpdateName}
 						isTitle
@@ -77,7 +79,7 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 				{isSettingPage
 					?
 					<AccountEditableField
-						defaultValue={updateEmail}
+						defaultValue={newEmail}
 						nameField="email"
 						onUpdate={handlerUpdateEmail}
 					/>
