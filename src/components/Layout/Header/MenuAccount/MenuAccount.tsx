@@ -22,6 +22,7 @@ export const MenuAccount = () => {
 					?
 					<Avatar
 						size="sm"
+						name={user.name}
 						src={user.avatar}
 					/>
 					:

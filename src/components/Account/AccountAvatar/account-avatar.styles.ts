@@ -5,6 +5,15 @@ export const componentStyles: FlexProps = {
 	pos: 'relative',
 }
 
+export const avatarWrapperStyles: BoxProps = {
+	pos: 'relative',
+}
+
+export const avatarRemoveBtnStyles: ButtonProps = {
+	p: 0,
+	bg: 'transparent',
+}
+
 export const avatarStyles: AvatarProps = {
 	size: '2xl',
 }
@@ -15,10 +24,12 @@ export const buttonIconStyles: IconProps = {
 
 export const uploadWrapperStyles: BoxProps = {
 	mt: 2,
+	display: { base: 'flex', md: 'block' },
 }
 
 export const uploadButtonStyles: ButtonProps = {
 	display: 'block',
+	minW: { base: '90px', md: '104px' },
 	variant: 'outline',
 	fontSize: { base: 'xs', md: 'sm' },
 	h: 'auto',
@@ -26,6 +37,26 @@ export const uploadButtonStyles: ButtonProps = {
 	pr: { base: 2, md: 4 },
 	pt: 2,
 	pb: 2,
-	ml: 'auto',
-	mr: 'auto',
+	ml: { base: 0, md: 'auto' },
+	mr: { base: 0, md: 'auto' },
+}
+
+export const removeButtonStyles: ButtonProps = {
+	display: 'block',
+	variant: 'outline',
+	minW: { base: '90px', md: '104px' },
+	fontSize: { base: 'xs', md: 'sm' },
+	h: 'auto',
+	pl: { base: 2, md: 4 },
+	pr: { base: 2, md: 4 },
+	pt: 2,
+	pb: 2,
+	ml: { base: '10px', md: 'auto' },
+	mr: { base: 0, md: 'auto' },
+	mt: { base: 0, md: '10px' },
+	bg: 'transparent',
+	color: 'red.500',
+	_hover: {
+		bg: 'red.50',
+	},
 }

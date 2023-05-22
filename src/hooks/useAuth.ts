@@ -11,13 +11,14 @@ import { auth } from '@firebase'
 
 export const useAuth = () => {
 	const { ...user } = useAppSelector(state => state.user)
-	const { addUser, removeUser } = useAppActions()
+	const { addUser, removeUser, updateUser } = useAppActions()
 	const router = useRouter()
 	const { loading } = useLoading()
 
 	const memoizedUser = useMemo(() => user, [user])
 
 	const handleAuthStateChanged = useCallback((fbUser: User) => {
+
 		if (fbUser) {
 			localStorage.setItem('currentUser', JSON.stringify(fbUser))
 			addUser({
@@ -36,12 +37,12 @@ export const useAuth = () => {
 			localStorage.removeItem('currentUser')
 			removeUser()
 		}
-	}, [loading])
+	}, [loading, addUser, removeUser, updateUser])
 
 	useEffect(() => {
-		if (loading) {			
+		if (loading) {
 			return
-		}		
+		}
 		const unsubscribe = auth.onAuthStateChanged(handleAuthStateChanged)
 		return () => unsubscribe()
 	}, [handleAuthStateChanged])
