@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { HeaderContext } from 'src/context'
 
 import { Box, Flex } from '@chakra-ui/react'
 
 import { useCustomStyles } from '@hooks'
+import { HeaderContext } from '@context'
 
 import { menuItem } from '../menu'
 import { NavLink } from '../NavLink'

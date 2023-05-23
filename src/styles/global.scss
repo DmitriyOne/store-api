@@ -2,6 +2,8 @@
 @use './breakpoints.scss';
 @import './pagination';
 @import './animate';
+@import './alert';
+@import './account';
 
 *,
 *::before,
@@ -136,21 +138,9 @@ main {
 	display: flex;
 }
 
-.alert {
-	transition: all .4;
+.chakra-modal__content-container {
+	@include mixins.media-w(breakpoints.$mobile-l) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
 }
-
-.alert-enter {
-	opacity: 0;
-}
-
-.alert-enter-active {
-	animation: alert-visible 350ms ease-out forwards;
-}
-
-.alert-exit-active {
-	animation: alert-hidden 200ms ease-out forwards;
-}
-
-
-

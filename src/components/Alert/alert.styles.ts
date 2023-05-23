@@ -1,7 +1,7 @@
 import { AlertProps } from '@chakra-ui/react'
 
 export const componentStyles: AlertProps = {
-	position: 'absolute',
+	position: 'fixed',
 	top: 0,
 	right: { base: '10px', md: '20px' },
 	maxW: { base: '250px', md: '300px' },

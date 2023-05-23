@@ -1,9 +1,6 @@
-import { useContext } from 'react'
-import { AuthContext } from 'src/context'
-
 import { Box, Flex } from '@chakra-ui/react'
 
-import { useCustomStyles } from '@hooks'
+import { useAuth, useCustomStyles } from '@hooks'
 
 import { MenuAccount } from './MenuAccount'
 import { MenuCart } from './MenuCart'
@@ -15,7 +12,7 @@ import { flexRightStyles, flexWrapStyles, headerStyles } from './header.styles'
 
 export const Header = () => {
 	const { headerBoxStyles } = useCustomStyles()
-	const { isAuth } = useContext(AuthContext)
+	const { isAuth } = useAuth()
 
 	return (
 		<Box

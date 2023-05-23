@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
+const webpack = require('webpack')
+
+const path = require('path')
+const { parsed: myEnv } = require('dotenv').config({
+  path: path.join(__dirname, 'environment', '.env.local'),
+})
+
 const nextConfig = {
   reactStrictMode: true,
+  env: myEnv,
   images: {
     disableStaticImages: true,
     remotePatterns: [
@@ -22,7 +30,7 @@ const nextConfig = {
     })
 
     return config
-  }
+  },
 }
 
 module.exports = nextConfig

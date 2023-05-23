@@ -28,6 +28,10 @@ export const Home = () => {
 						</ListItem>
 						<ListItem {...itemStyles}>
 							<ListIcon as={MdArrowRightAlt} />
+							Firebase
+						</ListItem>
+						<ListItem {...itemStyles}>
+							<ListIcon as={MdArrowRightAlt} />
 							TypeScript
 						</ListItem>
 						<ListItem {...itemStyles}>
