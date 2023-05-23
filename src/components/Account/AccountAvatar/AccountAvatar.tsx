@@ -39,19 +39,25 @@ export const AccountAvatar: FC<IProps> = ({
 		}
 
 		const storageRef = ref(storage, `${userName}/avatar/${file.name}`)
-		const snapshot = await uploadBytes(storageRef, file)
+		await uploadBytes(storageRef, file)
 
 		const downloadURL = await getDownloadURL(storageRef)
 
 		try {
 			await updateProfile(auth.currentUser, { photoURL: downloadURL })
 			updateUser({ avatar: downloadURL })
-			// setNewAvatar(file.name)
 			setIsLoading(false)
 		} catch (error) {
 			console.error('Failed to update user profile:', error)
 			setIsLoading(false)
 		}
+	}
+
+	const handleRemoveAvatar = async () => {
+		setIsLoading(true)
+		await updateProfile(auth.currentUser, { photoURL: '' })
+		updateUser({ avatar: '' })
+		setIsLoading(false)
 	}
 
 	return (
@@ -102,22 +108,24 @@ export const AccountAvatar: FC<IProps> = ({
 							</>
 						}
 					</Button>
-					<Button
-						onClick={null}
-						isDisabled={isLoading}
-						{...removeButtonStyles}
-					>
-						{isLoading
-							?
-							<CircularProgress
-								isIndeterminate
-								size="24px"
-								color="gray.800"
-							/>
-							:
-							'Remove'
-						}
-					</Button>
+					{avatar &&
+						<Button
+							onClick={handleRemoveAvatar}
+							isDisabled={isLoading}
+							{...removeButtonStyles}
+						>
+							{isLoading
+								?
+								<CircularProgress
+									isIndeterminate
+									size="24px"
+									color="gray.800"
+								/>
+								:
+								'Remove'
+							}
+						</Button>
+					}
 				</Box>
 			}
 

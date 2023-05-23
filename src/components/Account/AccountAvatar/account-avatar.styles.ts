@@ -16,6 +16,7 @@ export const avatarRemoveBtnStyles: ButtonProps = {
 
 export const avatarStyles: AvatarProps = {
 	size: '2xl',
+	bg: '#6a7f8f',
 }
 
 export const buttonIconStyles: IconProps = {

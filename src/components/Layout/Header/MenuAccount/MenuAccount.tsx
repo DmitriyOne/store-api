@@ -24,12 +24,14 @@ export const MenuAccount = () => {
 						size="sm"
 						name={user.name}
 						src={user.avatar}
+						bg="#6a7f8f"
 					/>
 					:
 					<Avatar
 						size="sm"
 						name={user.name}
 						src={undefined}
+						bg="#6a7f8f"
 					/>
 				}
 			</MenuButton>

@@ -18,7 +18,6 @@ export const useAuth = () => {
 	const memoizedUser = useMemo(() => user, [user])
 
 	const handleAuthStateChanged = useCallback((fbUser: User) => {
-
 		if (fbUser) {
 			localStorage.setItem('currentUser', JSON.stringify(fbUser))
 			addUser({
