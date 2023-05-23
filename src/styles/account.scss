@@ -1,0 +1,18 @@
+.sidebar-link {
+	font-size: 16px;
+	color: #000;
+}
+
+.sidebar-link_active {
+	font-weight: bold;
+}
+
+html[data-theme="light"] .dropdown-menu-link_active{
+	font-weight: bold;
+	background: #dbe3ed !important;
+}
+
+html[data-theme="dark"] .dropdown-menu-link_active{
+	font-weight: bold;
+	background:  #9ba4b0 !important;
+}

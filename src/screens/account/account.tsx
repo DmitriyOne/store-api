@@ -1,32 +1,38 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { Flex } from '@chakra-ui/react'
 
-import { Heading } from '@components'
+import { useAuth } from '@hooks'
+
+import { AccountAvatar, AccountBody, Heading, Sidebar, Spinner } from '@components'
+
+import { componentStyles, contentStyles } from './account.styles'
 
 export const Account = () => {
-	const router = useRouter()
-	const { id } = router.query
+	const { user, loading, isAuth } = useAuth()
+
+	if (loading && !isAuth) {
+		return <Spinner />
+	}
+
+	if (!loading && user.id === null) {
+		return <Spinner />
+	}
 
 	return (
 		<>
 			<Heading size="xl">
-				Account page
+				Welcome, {user.name}!
 			</Heading>
-			<div>
-				<h1>Профиль пользователя {id}</h1>
-				<ul>
-					<li>
-						<Link href={`/account/${id}/settings`}>
-							Настройки профиля
-						</Link>
-					</li>
-					<li>
-						<Link href={`/account/${id}/my-orders`}>
-							Мои заказы
-						</Link>
-					</li>
-				</ul>
-			</div>
+
+			<Flex {...componentStyles}>
+				<Sidebar />
+				<Flex {...contentStyles}>
+					<AccountAvatar
+						avatar={user.avatar}
+						name={user.name}
+					/>
+					<AccountBody user={user} />
+				</Flex>
+			</Flex>
 		</>
 	)
 }

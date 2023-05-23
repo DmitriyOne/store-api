@@ -1,0 +1,15 @@
+.alert {
+	transition: all .4;
+}
+
+.alert-enter {
+	opacity: 0;
+}
+
+.alert-enter-active {
+	animation: alert-visible 350ms ease-out forwards;
+}
+
+.alert-exit-active {
+	animation: alert-hidden 200ms ease-out forwards;
+}

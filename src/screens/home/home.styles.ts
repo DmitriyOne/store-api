@@ -14,6 +14,6 @@ export const textStyles: TextProps = {
 }
 
 export const itemStyles: ListItemProps = {
-	fontSize: {base: 'sm', md: 'md'}
+	fontSize: { base: 'sm', md: 'md' },
 }
 

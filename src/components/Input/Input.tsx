@@ -1,19 +1,21 @@
-import { InputHTMLAttributes } from 'react'
-import { Control, FieldError, useController } from 'react-hook-form'
+import { InputHTMLAttributes, useContext } from 'react'
+import { Control, FieldName, useController } from 'react-hook-form'
 
 import { FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
 
-import { IValidation } from '@interfaces'
+import { IUser } from '@interfaces'
+
+import { ConfirmContext } from '@context'
 
 import { InputPassword } from './InputPassword'
 
 interface IProps {
-	name: 'email' | 'password' | 'name' | 'confirm_password'
+	name: FieldName<IUser>
 	label: string
 	rules?: Record<string, unknown>
-	errors?: FieldError
+	errors?: any
 	type?: InputHTMLAttributes<HTMLInputElement>['type']
-	control: Control<IValidation, any>
+	control: Control<IUser, any>
 }
 
 export const CustomInput = ({
@@ -25,11 +27,13 @@ export const CustomInput = ({
 	control,
 }: IProps) => {
 	const { field: { value, onChange, ...inputProps } } = useController({ name, control, rules })
+	const { errorConfirmMsg } = useContext(ConfirmContext)
 
 	const isError = !!errors
+	const isErrorCurrentPas = name === 'current_password' && !!errorConfirmMsg
 
 	return (
-		<FormControl isInvalid={isError}>
+		<FormControl isInvalid={isError || isErrorCurrentPas}>
 			<FormLabel htmlFor={name}>{label}</FormLabel>
 			{type === 'password'
 				?
@@ -50,7 +54,8 @@ export const CustomInput = ({
 				/>
 			}
 			<FormErrorMessage>
-				{isError && errors.message}
+				{name !== 'current_password' && isError && errors?.message}
+				{isErrorCurrentPas && errorConfirmMsg}
 			</FormErrorMessage>
 		</FormControl>
 	)

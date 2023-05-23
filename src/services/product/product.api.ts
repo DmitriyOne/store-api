@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { IProduct } from '@interfaces'
 
-const baseUrl = 'https://fakestoreapi.com'
+const baseUrl = process.env.NEXT_PUBLIC_API_URL
 
 export const productApi = createApi({
 	reducerPath: 'product/api',

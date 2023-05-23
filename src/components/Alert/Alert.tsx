@@ -1,8 +1,9 @@
 import { FC, useContext, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { AlertContext } from 'src/context'
 
 import { Alert as ChakraAlert, AlertIcon } from '@chakra-ui/react'
+
+import { AlertContext } from '@context'
 
 import { componentStyles } from './alert.styles'
 

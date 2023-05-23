@@ -1,27 +1,29 @@
+/* eslint-disable no-unused-vars */
 import { FC } from 'react'
 
 import { Container, Stack } from '@chakra-ui/react'
 
-import { IForm, IFormBtns, IFormHeader } from '@interfaces'
+import { IForm } from '@interfaces'
 
 import { FormBody } from './FormBody'
 import { FormHeader } from './FormHeader'
 
 import { componentStyles, containerStyles } from './form.styles'
 
-interface IProps extends IForm, IFormBtns {
-	header: IFormHeader
-}
-
-export const FormAuth: FC<IProps> = ({ variant, header, btnText }) => {
+export const FormAuth: FC<IForm> = (form) => {
 
 	return (
 		<Container {...componentStyles}>
 			<Stack {...containerStyles}>
-				<FormHeader {...header} />
+				<FormHeader {...form.header} />
 				<FormBody
-					variant={variant}
-					btnText={btnText}
+					variant={form.variant}
+					btnText={form.btnText}
+					onSubmit={form.onSubmit}
+					handleSubmit={form.handleSubmit}
+					errors={form.errors}
+					control={form.control}
+					isLoading={form.isLoading}
 				/>
 			</Stack>
 		</Container>

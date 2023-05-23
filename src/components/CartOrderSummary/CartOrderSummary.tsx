@@ -37,6 +37,7 @@ export const CartOrderSummary = () => {
 
 			<Button
 				rightIcon={<FaArrowRight />}
+				isDisabled
 				{...buttonStyles}
 			>
 				Checkout

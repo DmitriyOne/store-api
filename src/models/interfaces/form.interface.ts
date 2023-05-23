@@ -1,7 +1,23 @@
-import { EForm } from '@enums'
+/* eslint-disable no-unused-vars */
+import { Control, UseFormHandleSubmit } from 'react-hook-form'
 
-export interface IForm {
+import { EForm } from '@enums'
+import { IUser } from '@interfaces'
+
+export interface IFormBtns {
+	btnText: string
+	isLoading: boolean
 	variant: keyof typeof EForm
+}
+
+export interface IForm
+	extends IFormBtns {
+	variant: keyof typeof EForm
+	header: IFormHeader
+	onSubmit: (data: IUser) => Promise<void>
+	handleSubmit: UseFormHandleSubmit<IUser>
+	errors: any
+	control: Control<IUser, any>
 }
 
 export interface IFormHeader {
@@ -11,7 +27,11 @@ export interface IFormHeader {
 	href: string
 }
 
-export interface IFormBtns {
-	btnText: string
+export interface IFormBody
+	extends IFormBtns {
+	variant: keyof typeof EForm
+	onSubmit: (data: IUser) => Promise<void>
+	handleSubmit: UseFormHandleSubmit<IUser>
+	errors: any
+	control: Control<IUser, any>
 }
-
