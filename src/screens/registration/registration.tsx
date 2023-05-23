@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
@@ -13,9 +13,10 @@ import { AlertContext } from '@context'
 import { FormAuth } from '@components'
 
 export const Registration = () => {
+	const [isLoading, setIsLoading] = useState(false)
 	const alert = useContext(AlertContext)
 	const { addUser } = useAppActions()
-	const { handleSubmit, formState: { errors, isSubmitting }, reset, control, getValues, setError } = useForm<IUser>({ mode: 'onChange' })
+	const { handleSubmit, formState: { errors }, reset, control, getValues, setError } = useForm<IUser>({ mode: 'onChange' })
 	const { handlerTimer, sleep } = useFormSubmit(alert)
 	const router = useRouter()
 
@@ -27,7 +28,8 @@ export const Registration = () => {
 			return
 		}
 
-		createUserWithEmailAndPassword(auth, data.email, data.password)
+		setIsLoading(true)
+		await createUserWithEmailAndPassword(auth, data.email, data.password)
 			.then(async (userCredential) => {
 				const fbuser = userCredential.user
 				await updateProfile(userCredential.user, {
@@ -69,6 +71,8 @@ export const Registration = () => {
 				handlerTimer()
 				return
 			})
+
+		setIsLoading(false)
 	}
 
 	const header: IFormHeader = {
@@ -87,7 +91,7 @@ export const Registration = () => {
 			handleSubmit={handleSubmit}
 			errors={errors}
 			control={control}
-			isLoading={isSubmitting}
+			isLoading={isLoading}
 		/>
 	)
 }

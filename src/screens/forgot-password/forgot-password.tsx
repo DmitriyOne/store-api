@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
@@ -13,13 +13,15 @@ import { AlertContext } from '@context'
 import { FormAuth } from '@components'
 
 export const ForgotPassword = () => {
+	const [isLoading, setIsLoading] = useState(false)
 	const alert = useContext(AlertContext)
-	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
+	const { handleSubmit, formState: { errors }, reset, control } = useForm<IUser>({ mode: 'onChange' })
 	const { handlerTimer, sleep } = useFormSubmit(alert)
 	const router = useRouter()
 
 	const onSubmit = async (data: IUser) => {
-		sendPasswordResetEmail(auth, data.email)
+		setIsLoading(true)
+		await sendPasswordResetEmail(auth, data.email)
 			.then(async () => {
 				await sleep(400)
 				reset()
@@ -36,6 +38,7 @@ export const ForgotPassword = () => {
 				handlerTimer()
 				return
 			})
+		setIsLoading(false)
 	}
 
 	const header: IFormHeader = {
@@ -54,7 +57,7 @@ export const ForgotPassword = () => {
 			handleSubmit={handleSubmit}
 			errors={errors}
 			control={control}
-			isLoading={isSubmitting}
+			isLoading={isLoading}
 		/>
 	)
 }
