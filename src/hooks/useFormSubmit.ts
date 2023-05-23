@@ -27,7 +27,6 @@ export const useFormSubmit = (
 		const credential = EmailAuthProvider.credential(user.email, data.current_password)
 
 		await reauthenticateWithCredential(user, credential).then(async (e) => {
-			await sleep(10000)
 			if (isOpenUpdateName) {
 				const userName = data.name.toLowerCase().replace(/\s+/g, '').trim()
 				const user = handlerCurrentUserFB()
