@@ -1,14 +1,8 @@
-import { FC, useContext, useState } from 'react'
-import { useRouter } from 'next/router'
-import { updateEmail, updatePassword, updateProfile } from 'firebase/auth'
+import { FC } from 'react'
 
 import { Box, Text } from '@chakra-ui/react'
 
-import { STORE_ROUTES } from '@constants'
 import { IUserBody } from '@interfaces'
-
-import { useAppActions, useAuth } from '@hooks'
-import { ConfirmContext } from '@context'
 
 import { PopupConfirmPassword } from '@components'
 
@@ -23,56 +17,20 @@ interface IProps {
 }
 
 export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
-	const [newName, setNewName] = useState(user.name)
-	const [newEmail, setNewEmail] = useState(user.email)
-	const [newPassword, setNewPassword] = useState('Change your password')
-	const { isOpenConfirm, onCloseConfirm } = useContext(ConfirmContext)
-	const { updateUser } = useAppActions()
-	const { handlerCurrentUserFB } = useAuth()
-	const router = useRouter()
-
-	const handlerUpdateName = (value: string) => {
-		const userName = value.toLowerCase().replace(/\s+/g, '').trim()
-		const user = handlerCurrentUserFB()
-		setNewName(value)
-		updateProfile(user, {
-			displayName: value,
-		})
-		updateUser({ name: value })
-		router.push({
-			pathname: STORE_ROUTES.SETTINGS,
-			query: { displayName: userName },
-		}, undefined, { shallow: true }
-		)
-	}
-
-	const handlerUpdateEmail = (value: string) => {
-		const user = handlerCurrentUserFB()
-		setNewEmail(value)
-		updateEmail(user, value)
-		updateUser({ email: value })
-	}
-
-	const handlerUpdatePassword = (value: string) => {
-		const user = handlerCurrentUserFB()
-		updatePassword(user, value)
-	}
 
 	const dateCreate = new Date(user.createAccount)
 	const dateLogin = new Date(user.lastLogin)
 
 	return (
 		<>
-
 			<Box {...componentStyles}>
 
 				{/* Username */}
 				{isSettingPage
 					?
 					<AccountEditableField
-						defaultValue={newName}
+						value={user.name}
 						nameField="name"
-						onUpdate={handlerUpdateName}
 						isTitle
 					/>
 					:
@@ -85,9 +43,8 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 				{isSettingPage
 					?
 					<AccountEditableField
-						defaultValue={newEmail}
+						value={user.email}
 						nameField="email"
-						onUpdate={handlerUpdateEmail}
 					/>
 					:
 					<>
@@ -101,10 +58,8 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 				{/* Password */}
 				{isSettingPage &&
 					<AccountEditableField
-						defaultValue={newPassword}
+						value="Change your password"
 						nameField="password"
-						onUpdate={handlerUpdatePassword}
-						isPassword
 					/>
 				}
 
@@ -121,10 +76,7 @@ export const AccountBody: FC<IProps> = ({ isSettingPage, user }) => {
 
 			</Box>
 
-			<PopupConfirmPassword
-				isOpen={isOpenConfirm}
-				onClose={onCloseConfirm}
-			/>
+			<PopupConfirmPassword />
 		</>
 	)
 }

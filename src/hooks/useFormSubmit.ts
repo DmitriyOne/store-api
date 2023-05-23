@@ -1,44 +1,62 @@
 /* eslint-disable no-unused-vars */
-import { useContext, useState } from 'react'
-import { EmailAuthProvider, reauthenticateWithCredential, updateProfile } from 'firebase/auth'
+import { useContext } from 'react'
+import { useRouter } from 'next/router'
+import { EmailAuthProvider, reauthenticateWithCredential, updateEmail, updatePassword, updateProfile } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 
+import { STORE_ROUTES } from '@constants'
 import { IAlert, IUser } from '@interfaces'
 
 import { useAppActions, useAuth } from '@hooks'
-import { auth } from '@firebase'
-import { ConfirmContext, EditContext } from '@context'
-
-enum ETypeUpdate {
-	name = 'name',
-	email = 'email',
-	phone = 'phone'
-}
+import { ConfirmContext } from '@context'
 
 export const useFormSubmit = (
 	alert?: IAlert,
 	onClose?: () => void,
 ) => {
 	const { handleSubmit, formState: { errors, isSubmitting }, reset, control } = useForm<IUser>({ mode: 'onChange' })
-	const { setErrorConfirmMsg, setIsSuccess } = useContext(ConfirmContext)
-	const { stopEditing } = useContext(EditContext)
+	const { setErrorConfirmMsg, onCloseConfirm, isOpenUpdateName, isOpenUpdateEmail, isOpenUpdatePassword } = useContext(ConfirmContext)
 	const { handlerCurrentUserFB } = useAuth()
+	const { updateUser } = useAppActions()
+	const router = useRouter()
 
 	const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 	const onSubmit = async (data: IUser) => {
 		const user = handlerCurrentUserFB()
-		const credential = EmailAuthProvider.credential(user.email, data.password)
+		const credential = EmailAuthProvider.credential(user.email, data.current_password)
 
-		await reauthenticateWithCredential(user, credential).then((e) => {
-			setIsSuccess(true)
-			setErrorConfirmMsg('')
-			stopEditing()
-			onClose()
+		await reauthenticateWithCredential(user, credential).then(async (e) => {
+			await sleep(10000)
+			if (isOpenUpdateName) {
+				const userName = data.name.toLowerCase().replace(/\s+/g, '').trim()
+				const user = handlerCurrentUserFB()
+				await updateProfile(user, {
+					displayName: data.name,
+				})
+				updateUser({ name: data.name })
+				router.push({
+					pathname: STORE_ROUTES.SETTINGS,
+					query: { displayName: userName },
+				}, undefined, { shallow: true }
+				)
+			}
+
+			if (isOpenUpdateEmail) {
+				await updateEmail(user, data.email)
+				updateUser({ email: data.email })
+			}
+
+			if (isOpenUpdatePassword) {
+				await updatePassword(user, data.new_password)
+			}
+
 			reset()
+			onCloseConfirm()
+			onClose()
 		}).catch((error) => {
+			// eslint-disable-next-line no-console
 			console.error(error)
-			setIsSuccess(false)
 			if (error.code === 'auth/wrong-password') {
 				setErrorConfirmMsg('Incorrect password. Try again.')
 				return
@@ -49,6 +67,7 @@ export const useFormSubmit = (
 			}
 			setErrorConfirmMsg('An error has occurred. Try again.')
 		})
+
 	}
 
 	const handlerTimer = () => {

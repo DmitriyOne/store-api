@@ -2,6 +2,7 @@ import { BoxProps, ButtonProps, FlexProps, FormControlProps, IconProps, InputPro
 
 export const componentStyles: FormControlProps = {
 	pb: 4,
+	alignItems: 'center',
 }
 
 export const textTitleStyles: TextProps = {

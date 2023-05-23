@@ -137,3 +137,10 @@ main {
 .chakra-breadcrumb__list-item > span {
 	display: flex;
 }
+
+.chakra-modal__content-container {
+	@include mixins.media-w(breakpoints.$mobile-l) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}

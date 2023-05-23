@@ -29,10 +29,11 @@ export const CustomInput = ({
 	const { field: { value, onChange, ...inputProps } } = useController({ name, control, rules })
 	const { errorConfirmMsg } = useContext(ConfirmContext)
 
-	const isError = !!errors || !!errorConfirmMsg
+	const isError = !!errors
+	const isErrorCurrentPas = name === 'current_password' && !!errorConfirmMsg
 
 	return (
-		<FormControl isInvalid={isError}>
+		<FormControl isInvalid={isError || isErrorCurrentPas}>
 			<FormLabel htmlFor={name}>{label}</FormLabel>
 			{type === 'password'
 				?
@@ -53,7 +54,8 @@ export const CustomInput = ({
 				/>
 			}
 			<FormErrorMessage>
-				{isError && errors?.message || errorConfirmMsg}
+				{name !== 'current_password' && isError && errors?.message}
+				{isErrorCurrentPas && errorConfirmMsg}
 			</FormErrorMessage>
 		</FormControl>
 	)

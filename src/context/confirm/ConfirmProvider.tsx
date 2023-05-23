@@ -1,7 +1,5 @@
 import { FC, ReactNode, useState } from 'react'
 
-import { useDisclosure } from '@chakra-ui/react'
-
 import { ConfirmContext } from './ConfirmContext'
 
 interface IProps {
@@ -9,18 +7,35 @@ interface IProps {
 }
 
 export const ConfirmProvider: FC<IProps> = ({ children }) => {
-	const { isOpen, onOpen, onClose } = useDisclosure()
+	const [isOpenUpdateName, setIsOpenUpdateName] = useState(false)
+	const [isOpenUpdateEmail, setIsOpenUpdateEmail] = useState(false)
+	const [isOpenUpdatePassword, setIsOpenUpdatePassword] = useState(false)
 	const [errorConfirmMsg, setErrorConfirmMsg] = useState('')
-	const [isSuccess, setIsSuccess] = useState(false)
+
+	const onOpen = (value: string) => {
+		if (value === 'name') {
+			setIsOpenUpdateName(true)
+		} else if (value === 'email') {
+			setIsOpenUpdateEmail(true)
+		} else if (value === 'password') {
+			setIsOpenUpdatePassword(true)
+		}
+	}
+
+	const onClose = () => {
+		setIsOpenUpdateName(false)
+		setIsOpenUpdateEmail(false)
+		setIsOpenUpdatePassword(false)
+	}
 
 	const value = {
-		isOpenConfirm: isOpen,
+		isOpenUpdateName,
+		isOpenUpdateEmail,
+		isOpenUpdatePassword,
 		onCloseConfirm: onClose,
 		onOpenConfirm: onOpen,
 		errorConfirmMsg,
 		setErrorConfirmMsg,
-		isSuccess,
-		setIsSuccess,
 	}
 
 	return (

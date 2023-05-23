@@ -6,6 +6,8 @@ export interface IUser {
 	email: string
 	password: string
 	confirm_password?: string
+	new_password?: string
+	current_password?: string
 	token: string
 }
 

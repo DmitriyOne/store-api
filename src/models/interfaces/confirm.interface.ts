@@ -1,11 +1,12 @@
+/* eslint-disable no-unused-vars */
 import { Dispatch, SetStateAction } from 'react'
 
 export interface IConfirm {
-	isOpenConfirm: boolean,
+	isOpenUpdateName: boolean,
+	isOpenUpdateEmail: boolean,
+	isOpenUpdatePassword: boolean,
 	onCloseConfirm: () => void,
-	onOpenConfirm: () => void,
+	onOpenConfirm: (value: string) => void,
 	errorConfirmMsg: string
 	setErrorConfirmMsg: Dispatch<SetStateAction<string>>
-	isSuccess: boolean
-	setIsSuccess: Dispatch<SetStateAction<boolean>>
 }
