@@ -23,6 +23,9 @@
       "@hooks": ["src/hooks"],
       "@hooks/*": ["src/hooks/*"],
 
+      "@helpers": ["src/helpers"],
+      "@helpers/*": ["src/helpers/*"],
+
       "@services": ["src/services"],
       "@services/*": ["src/services/*"],
 

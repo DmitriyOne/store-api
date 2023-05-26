@@ -75,7 +75,8 @@
 								"^@services",
 								"^@firebase",
 								"^@env",
-								"^@context"
+								"^@context",
+								"^@helpers"
 							],
 							[
 								"^@components"
