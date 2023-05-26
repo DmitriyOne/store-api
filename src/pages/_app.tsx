@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 
 import { ChakraProvider } from '@chakra-ui/react'
 
-import { wrapper } from '@services'
+import { store } from '@services'
 import { AlertProvider, ConfirmProvider, HeaderProvider } from '@context'
 
 import { Layout } from '@components'
@@ -23,8 +23,7 @@ type AppPropsWithLayout = AppProps & {
 	Component: NextPageWithLayout;
 };
 
-export const App: FC<AppPropsWithLayout> = ({ Component, ...rest }) => {
-	const { store, props } = wrapper.useWrappedStore(rest)
+export const App: FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
 	const getLayout = Component.getLayout ?? ((page) => page)
 
 	return (
@@ -34,7 +33,7 @@ export const App: FC<AppPropsWithLayout> = ({ Component, ...rest }) => {
 					<AlertProvider>
 						<HeaderProvider>
 							<Layout>
-								{getLayout(<Component {...props.pageProps} />)}
+								{getLayout(<Component {...pageProps} />)}
 							</Layout>
 						</HeaderProvider>
 					</AlertProvider>
