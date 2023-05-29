@@ -48,6 +48,12 @@
 				"**/*.ts",
 				"**/*.tsx"
 			],
+			"plugins": [
+				"jest"
+			],
+			"env": {
+				"jest/globals": true
+			},
 			"rules": {
 				"simple-import-sort/imports": [
 					"warn",
