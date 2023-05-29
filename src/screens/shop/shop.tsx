@@ -1,14 +1,28 @@
-import { useFilter, useSearch } from '@hooks'
+import useSWR from 'swr/immutable'
 
-import { Heading } from '@components'
+import { API } from '@constants'
+import { IProduct } from '@interfaces'
+
+import { useFilter, useSearch } from '@hooks'
+import { axiosFetcher } from '@helpers'
+
+import { Heading, ProductsError, Spinner } from '@components'
 
 import { FilterBar } from './filter-bar'
 import { GridCards } from './grid-cards'
 
 export const Shop = () => {
-	// const { data, isLoading, isError } = useGetAllProductsQuery()
-	// const { products, valueSearch, onChangeValueSearch } = useSearch([])
-	// const { filteredProducts, filterValue, onFilter } = useFilter(products)
+	const { data, error: isError, isLoading } = useSWR<IProduct[]>(API.PRODUCTS.ALL, axiosFetcher)
+	const { products, valueSearch, onChangeValueSearch } = useSearch(data ?? [])
+	const { filteredProducts, filterValue, onFilter } = useFilter(products)
+
+	if (isLoading) {
+		return <Spinner />
+	}
+
+	if (isError) {
+		return <ProductsError isError />
+	}
 
 	return (
 		<>
@@ -17,16 +31,14 @@ export const Shop = () => {
 			</Heading>
 
 			<FilterBar
-				valueSearch={''}
-				filterValue={''}
-				onChangeValue={() => { }}
-				onFilter={() => { }}
+				valueSearch={valueSearch}
+				filterValue={filterValue}
+				onChangeValue={onChangeValueSearch}
+				onFilter={onFilter}
 			/>
 
 			<GridCards
-				isLoading={false}
-				isError={false}
-				products={[]}
+				products={filteredProducts}
 			/>
 		</>
 	)

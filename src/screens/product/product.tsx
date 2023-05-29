@@ -1,35 +1,35 @@
 import { FC } from 'react'
-import { useRouter } from 'next/router'
+import useSWR from 'swr/immutable'
 
-import { IBreadcrumb } from '@interfaces'
+import { API } from '@constants'
+import { IBreadcrumb, IProduct } from '@interfaces'
 
-import { MyBreadcrumbs, ProductDetails } from '@components'
+import { axiosFetcher } from '@helpers'
+
+import { MyBreadcrumbs, ProductDetails, Spinner } from '@components'
 
 import { breadcrumbsStyles } from './product.styles'
 
 interface IProps {
 	breadcrumbs: IBreadcrumb[]
+	id: string
 }
 
-export const Product: FC<IProps> = ({ breadcrumbs }) => {
-	const router = useRouter()
-	const { id } = router.query
-	const idToNumber = Number(id)
-	const data: any = []
+export const Product: FC<IProps> = ({ breadcrumbs, id }) => {
+	const { data: product, error: isError, isLoading } = useSWR<IProduct>(API.PRODUCTS.BY_ID(id), axiosFetcher)
 
-	// const { data } = useGetCurrentProductQuery(typeof idToNumber === 'number'
-	// 	? idToNumber
-	// 	: skipToken, { skip: router.isFallback }
-	// )
+	if (isLoading) {
+		return <Spinner />
+	}
 
-	// if (!data) {
-	// 	return <div>Loading...</div>
-	// }
+	if (isError) {
+		return <div>Error..</div>
+	}
 
 	return (
 		<>
 			<MyBreadcrumbs breadcrumbs={breadcrumbs} {...breadcrumbsStyles} />
-			<ProductDetails product={data} />
+			<ProductDetails product={product} />
 		</>
 	)
 }

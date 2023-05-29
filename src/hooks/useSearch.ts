@@ -11,6 +11,9 @@ export const useSearch = (productsData: IProduct[]) => {
 	const debounce = useDebounce(valueSearch, 500)
 
 	useEffect(() => {
+		if(products.length < 1) {
+			return
+		}
 		setProducts(productsData.filter(product => product.title.toLocaleLowerCase().includes(valueSearch.toLocaleLowerCase())))
 	}, [debounce, productsData])
 

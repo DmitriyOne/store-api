@@ -1,56 +1,60 @@
-import { NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { SWRConfig } from 'swr'
 
-import { IBreadcrumb } from '@interfaces'
+import { API, STORE_ROUTES } from '@constants'
+import { IBreadcrumb, IProduct } from '@interfaces'
+
+import { axiosFetcher } from '@helpers'
 
 import { HeadTitleDynamic } from '@components'
 
 import { Product } from '@screens'
 
 interface IProps {
-	id: string
 	breadcrumbs: IBreadcrumb[]
+	fallback: any
+	id: string
 }
 
-export const ProductPage: NextPage<IProps> = ({ id, breadcrumbs }) => {
-	
+export const ProductPage: NextPage<IProps> = ({ breadcrumbs, fallback, id }) => {
+
 	return (
-		<>
+		<SWRConfig value={{ fallback }}>
 			<HeadTitleDynamic pageTitle={id} />
-			<Product breadcrumbs={breadcrumbs} />
-		</>
+			<Product breadcrumbs={breadcrumbs} id={id} />
+		</SWRConfig>
 	)
 }
 
-// export async function getStaticPaths() {
-// 	const store = makeStore()
-// 	const result = await store.dispatch(getAllProducts.initiate())
+export const getStaticPaths: GetStaticPaths = async () => {
+	const result: IProduct[] = await axiosFetcher(API.PRODUCTS.ALL)
 
-// 	return {
-// 		paths: result.data?.map((product) => `/products/${product.id}`),
-// 		fallback: true,
-// 	}
-// }
+	return {
+		paths: result.map((product) => `/products/${product.id}`),
+		fallback: true,
+	}
+}
 
-// export const getStaticProps = wrapper.getStaticProps(
-// 	(store) => async (context) => {
-// 		const id = context.params?.id
+export const getStaticProps: GetStaticProps = async (context) => {
+	const id = context.params?.id
+	const idToString = id.toString()
+	const data: IProduct = await axiosFetcher(API.PRODUCTS.BY_ID(idToString))
 
-// 		store.dispatch(getCurrentProduct.initiate(Number(id)))
-// 		const data: any = await Promise.all(store.dispatch(getRQTProduct()))
+	const breadcrumbs = [
+		{ label: 'Home', href: STORE_ROUTES.HOME },
+		{ label: 'Shop', href: STORE_ROUTES.SHOP },
+		{ label: data.id, href: `/products/${id}` },
+	]
 
-// 		const breadcrumbs = [
-// 			{ label: 'Home', href: '/' },
-// 			{ label: 'Shop', href: '/shop' },
-// 			{ label: data[0].data.id, href: `/products/${id}` },
-// 		]
-
-// 		return {
-// 			props: {
-// 				id,
-// 				breadcrumbs,
-// 			},
-// 		}
-// 	}
-// )
+	return {
+		props: {
+			id: idToString,
+			breadcrumbs,
+			fallback: {
+				[API.PRODUCTS.BY_ID(idToString)]: data,
+			},
+		},
+	}
+}
 
 export default ProductPage
